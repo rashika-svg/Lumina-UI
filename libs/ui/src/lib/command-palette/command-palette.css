@@ -1,0 +1,99 @@
+.lui-cmdk__backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--lui-color-overlay-scrim);
+  z-index: var(--lui-zIndex-modal);
+}
+
+.lui-cmdk__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: var(--lui-zIndex-modal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--lui-space-16) var(--lui-space-4) var(--lui-space-4);
+}
+
+.lui-cmdk__panel {
+  inline-size: 100%;
+  max-inline-size: 36rem;
+  background: var(--lui-color-bg-surface);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-xl);
+  box-shadow: var(--lui-shadow-2xl);
+  overflow: hidden;
+  font-family: var(--lui-font-family-sans);
+  animation: lui-cmdk-pop var(--lui-duration-normal)
+    var(--lui-easing-emphasized);
+}
+
+.lui-cmdk__input {
+  inline-size: 100%;
+  padding: var(--lui-space-4) var(--lui-space-5);
+  border: 0;
+  border-block-end: var(--lui-border-width-thin) solid
+    var(--lui-color-border-default);
+  background: transparent;
+  color: var(--lui-color-fg-default);
+  font-family: inherit;
+  font-size: var(--lui-font-size-md);
+}
+.lui-cmdk__input::placeholder {
+  color: var(--lui-color-fg-subtle);
+}
+.lui-cmdk__input:focus {
+  outline: none;
+}
+
+.lui-cmdk__list {
+  margin: 0;
+  padding: var(--lui-space-2);
+  list-style: none;
+  max-block-size: 22rem;
+  overflow-y: auto;
+}
+
+.lui-cmdk__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--lui-space-3);
+  padding: var(--lui-space-2-5) var(--lui-space-3);
+  border-radius: var(--lui-radius-md);
+  color: var(--lui-color-fg-default);
+  font-size: var(--lui-font-size-sm);
+  cursor: pointer;
+}
+.lui-cmdk__item--active {
+  background: var(--lui-color-accent-subtle);
+  color: var(--lui-color-accent-default);
+}
+
+.lui-cmdk__hint {
+  color: var(--lui-color-fg-subtle);
+  font-size: var(--lui-font-size-xs);
+}
+.lui-cmdk__item--active .lui-cmdk__hint {
+  color: var(--lui-color-accent-default);
+}
+
+.lui-cmdk__empty {
+  padding: var(--lui-space-6);
+  text-align: center;
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+}
+
+@keyframes lui-cmdk-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-cmdk__panel {
+    animation: none;
+  }
+}

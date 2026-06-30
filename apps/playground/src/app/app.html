@@ -213,6 +213,36 @@
       </lui-drawer>
     </section>
 
+    <section class="card" aria-labelledby="s-table">
+      <h2 id="s-table">Data Table</h2>
+      <lui-table
+        [columns]="tableColumns"
+        [data]="team"
+        selectable
+        [(selection)]="selectedRows"
+        [rowKey]="byId"
+      />
+      <p class="muted">
+        Selected: {{ selectedRows().length }} of {{ team.length }}
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="s-cmdk">
+      <h2 id="s-cmdk">Command Palette</h2>
+      <div class="row">
+        <button luiButton variant="secondary" (click)="cmdkOpen.set(true)">
+          Open palette
+        </button>
+        <span luiBadge variant="neutral" appearance="outline">⌘K / Ctrl+K</span>
+      </div>
+      <p class="muted">Last command: {{ lastCommand() || '—' }}</p>
+      <lui-command-palette
+        [(open)]="cmdkOpen"
+        [commands]="commands"
+        (run)="runCommand($event)"
+      />
+    </section>
+
     <section class="card" aria-labelledby="s-nav">
       <h2 id="s-nav">Navigation</h2>
       <lui-breadcrumb [items]="crumbs" />

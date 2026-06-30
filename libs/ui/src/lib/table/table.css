@@ -1,0 +1,139 @@
+:host {
+  display: block;
+  font-family: var(--lui-font-family-sans);
+}
+
+.lui-table__scroll {
+  overflow: auto;
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-lg);
+}
+
+.lui-table__table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--lui-font-size-sm);
+}
+
+.lui-table__cell {
+  padding: var(--lui-space-3) var(--lui-space-4);
+  text-align: start;
+  border-block-end: var(--lui-border-width-thin) solid
+    var(--lui-color-border-muted);
+  white-space: nowrap;
+}
+.lui-table__cell[data-align='center'] {
+  text-align: center;
+}
+.lui-table__cell[data-align='end'] {
+  text-align: end;
+}
+
+.lui-table__head .lui-table__cell {
+  background: var(--lui-color-bg-subtle);
+  color: var(--lui-color-fg-default);
+  font-weight: var(--lui-font-weight-semibold);
+  border-block-end-color: var(--lui-color-border-default);
+}
+
+.lui-table--sticky .lui-table__head .lui-table__cell {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--lui-zIndex-docked);
+}
+
+.lui-table__cell--check {
+  inline-size: 1px;
+  text-align: center;
+}
+
+.lui-table__row {
+  color: var(--lui-color-fg-default);
+}
+.lui-table__row:hover {
+  background: var(--lui-color-bg-subtle);
+}
+.lui-table__row--selected {
+  background: var(--lui-color-accent-subtle);
+}
+.lui-table__row:last-child .lui-table__cell {
+  border-block-end: 0;
+}
+
+.lui-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: var(--lui-font-weight-semibold);
+  cursor: pointer;
+  padding: 0;
+}
+.lui-table__sort:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem var(--lui-color-accent-subtle);
+  border-radius: var(--lui-radius-sm);
+}
+
+.lui-table__sort-icon {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-inline-end: 0.125rem solid currentColor;
+  border-block-end: 0.125rem solid currentColor;
+  opacity: var(--lui-opacity-muted);
+  transition: transform var(--lui-duration-fast) var(--lui-easing-standard);
+}
+.lui-table__sort-icon[data-state='none'] {
+  transform: rotate(45deg);
+  opacity: 0.3;
+}
+.lui-table__sort-icon[data-state='asc'] {
+  transform: rotate(-135deg);
+}
+.lui-table__sort-icon[data-state='desc'] {
+  transform: rotate(45deg);
+}
+
+.lui-table__checkbox {
+  inline-size: 1rem;
+  block-size: 1rem;
+  accent-color: var(--lui-color-accent-default);
+  cursor: pointer;
+}
+
+.lui-table__status {
+  text-align: center;
+  color: var(--lui-color-fg-muted);
+  padding-block: var(--lui-space-8);
+}
+
+.lui-table__spinner {
+  display: inline-block;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin-inline-end: var(--lui-space-2);
+  vertical-align: middle;
+  border: 0.125rem solid currentColor;
+  border-block-start-color: transparent;
+  border-radius: var(--lui-radius-full);
+  animation: lui-table-spin var(--lui-duration-slow) linear infinite;
+}
+
+@keyframes lui-table-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-table__sort-icon {
+    transition: none;
+  }
+  .lui-table__spinner {
+    animation-duration: 1.5s;
+  }
+}

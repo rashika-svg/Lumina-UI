@@ -19,3 +19,7 @@ export * from './lib/toast/toast.service';
 export * from './lib/toast/toast-outlet';
 export * from './lib/breadcrumb/breadcrumb';
 export * from './lib/pagination/pagination';
+
+// Phase 3 — data & power-user
+export * from './lib/table/table';
+export * from './lib/command-palette/command-palette';

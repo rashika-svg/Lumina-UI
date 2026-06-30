@@ -36,9 +36,14 @@ the [design principles](docs/DESIGN_PRINCIPLES.md) (a11y, theming, states, varia
 - [x] Breadcrumb
 - [x] Pagination (with ellipsis truncation)
 
-## ⬜ Phase 3 — Data & power-user
+## 🟡 Phase 3 — Data & power-user (in progress)
 
-Table · Data Grid · Tree View · File Explorer · Command Palette · Kanban Board
+- [x] Data Table (generic, sortable, selectable, sticky header, loading/empty states)
+- [x] Command Palette (⌘K, fuzzy search, keyboard navigation)
+- [ ] Data Grid (virtualised, editable cells)
+- [ ] Tree View
+- [ ] File Explorer
+- [ ] Kanban Board
 
 ## ⬜ Phase 4 — Visualisation
 

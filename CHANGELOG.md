@@ -28,5 +28,10 @@ All notable changes to this project are documented here. The format is based on
   Breadcrumb and Pagination (with ellipsis truncation). Dialog and Drawer share an internal
   focus-trap helper. Each component ships unit tests and Storybook stories and is showcased in the
   playground.
+- **Phase 3 components** (`@lumina/ui`) — a generic, accessible **Data Table** (column-driven config,
+  click-to-sort with `aria-sort`, row selection with select-all, sticky header, loading/empty
+  states) and a **Command Palette** (the ⌘K pattern: fuzzy search, keyboard navigation, ARIA
+  combobox/listbox). Both ship unit tests and Storybook stories; the playground wires ⌘K / Ctrl+K to
+  open the palette.
 - **Tooling** — ESLint (with module-boundary rules), Prettier, Husky, Commitlint, lint-staged, and a
   Nx-affected GitHub Actions CI pipeline.

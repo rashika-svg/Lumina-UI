@@ -12,6 +12,8 @@ import {
   Badge,
   Breadcrumb,
   Button,
+  type Command,
+  CommandPalette,
   Dialog,
   Drawer,
   InputField,
@@ -21,6 +23,8 @@ import {
   Pagination,
   Switch,
   Tab,
+  Table,
+  type TableColumn,
   Tabs,
   ToastOutlet,
   ToastService,
@@ -30,6 +34,14 @@ import { ThemeService, type ThemeMode } from '@lumina/theme';
 interface ThemeOption {
   readonly value: ThemeMode;
   readonly label: string;
+}
+
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  age: number;
+  status: string;
 }
 
 @Component({
@@ -53,10 +65,15 @@ interface ThemeOption {
     MenuItem,
     Breadcrumb,
     Pagination,
+    Table,
+    CommandPalette,
     ToastOutlet,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  host: {
+    '(document:keydown)': 'onGlobalKeydown($event)',
+  },
 })
 export class App {
   protected readonly theme = inject(ThemeService);
@@ -98,6 +115,55 @@ export class App {
     { label: 'Playground' },
   ];
 
+  // Data Table
+  protected readonly tableColumns: TableColumn<TeamMember>[] = [
+    { key: 'name', header: 'Name', sortable: true },
+    { key: 'role', header: 'Role', sortable: true },
+    { key: 'age', header: 'Age', sortable: true, align: 'end', width: '6rem' },
+    { key: 'status', header: 'Status', align: 'center' },
+  ];
+  protected readonly team: TeamMember[] = [
+    {
+      id: 1,
+      name: 'Ada Lovelace',
+      role: 'Engineer',
+      age: 36,
+      status: 'Active',
+    },
+    { id: 2, name: 'Grace Hopper', role: 'Admiral', age: 85, status: 'Active' },
+    { id: 3, name: 'Alan Turing', role: 'Researcher', age: 41, status: 'Away' },
+    {
+      id: 4,
+      name: 'Margaret Hamilton',
+      role: 'Director',
+      age: 88,
+      status: 'Active',
+    },
+  ];
+  protected readonly selectedRows = signal<TeamMember[]>([]);
+  protected readonly byId = (m: TeamMember) => m.id;
+
+  // Command palette (⌘K / Ctrl+K)
+  protected readonly cmdkOpen = signal(false);
+  protected readonly lastCommand = signal('');
+  protected readonly commands: Command[] = [
+    { id: 'theme-light', label: 'Switch to light theme', group: 'Appearance' },
+    { id: 'theme-dark', label: 'Switch to dark theme', group: 'Appearance' },
+    {
+      id: 'theme-hc',
+      label: 'Switch to high contrast',
+      group: 'Appearance',
+      keywords: ['a11y'],
+    },
+    { id: 'open-drawer', label: 'Open settings drawer', group: 'Navigation' },
+    {
+      id: 'toast',
+      label: 'Send a test notification',
+      group: 'Actions',
+      keywords: ['toast'],
+    },
+  ];
+
   protected setTheme(mode: ThemeMode): void {
     this.theme.setMode(mode);
   }
@@ -105,6 +171,34 @@ export class App {
   protected simulateLoad(): void {
     this.loadingDemo.set(true);
     setTimeout(() => this.loadingDemo.set(false), 1600);
+  }
+
+  protected onGlobalKeydown(event: KeyboardEvent): void {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      this.cmdkOpen.set(true);
+    }
+  }
+
+  protected runCommand(command: Command): void {
+    this.lastCommand.set(command.label);
+    switch (command.id) {
+      case 'theme-light':
+        this.theme.setMode('light');
+        break;
+      case 'theme-dark':
+        this.theme.setMode('dark');
+        break;
+      case 'theme-hc':
+        this.theme.setMode('hc');
+        break;
+      case 'open-drawer':
+        this.drawerOpen.set(true);
+        break;
+      case 'toast':
+        this.notify('success');
+        break;
+    }
   }
 
   protected notify(variant: 'info' | 'success' | 'warning' | 'danger'): void {
