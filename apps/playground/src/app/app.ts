@@ -5,7 +5,22 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Avatar, Badge, Button, InputField, Switch } from '@lumina/ui';
+import {
+  Accordion,
+  AccordionItem,
+  Avatar,
+  Badge,
+  Breadcrumb,
+  Button,
+  Dialog,
+  InputField,
+  Pagination,
+  Switch,
+  Tab,
+  Tabs,
+  ToastOutlet,
+  ToastService,
+} from '@lumina/ui';
 import { ThemeService, type ThemeMode } from '@lumina/theme';
 
 interface ThemeOption {
@@ -16,12 +31,28 @@ interface ThemeOption {
 @Component({
   selector: 'lpg-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, Button, Badge, Avatar, InputField, Switch],
+  imports: [
+    FormsModule,
+    Button,
+    Badge,
+    Avatar,
+    InputField,
+    Switch,
+    Tabs,
+    Tab,
+    Accordion,
+    AccordionItem,
+    Dialog,
+    Breadcrumb,
+    Pagination,
+    ToastOutlet,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
   protected readonly theme = inject(ThemeService);
+  private readonly toast = inject(ToastService);
 
   protected readonly themeOptions: readonly ThemeOption[] = [
     { value: 'light', label: 'Light' },
@@ -49,6 +80,14 @@ export class App {
   protected readonly email = signal('');
   protected readonly notifications = signal(true);
   protected readonly loadingDemo = signal(false);
+  protected readonly dialogOpen = signal(false);
+  protected readonly page = signal(3);
+
+  protected readonly crumbs = [
+    { label: 'Home', href: '#' },
+    { label: 'Components', href: '#' },
+    { label: 'Playground' },
+  ];
 
   protected setTheme(mode: ThemeMode): void {
     this.theme.setMode(mode);
@@ -57,5 +96,21 @@ export class App {
   protected simulateLoad(): void {
     this.loadingDemo.set(true);
     setTimeout(() => this.loadingDemo.set(false), 1600);
+  }
+
+  protected notify(variant: 'info' | 'success' | 'warning' | 'danger'): void {
+    switch (variant) {
+      case 'success':
+        this.toast.success('Your changes are live.', 'Saved');
+        break;
+      case 'warning':
+        this.toast.warning('Storage is almost full.', 'Careful');
+        break;
+      case 'danger':
+        this.toast.error('Could not save changes.', 'Error');
+        break;
+      default:
+        this.toast.info('A new build is available.', 'Heads up');
+    }
   }
 }

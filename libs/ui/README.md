@@ -9,13 +9,19 @@ handling.
 
 ## Components
 
-| Component | Selector                            | Notes                                                          |
-| --------- | ----------------------------------- | -------------------------------------------------------------- |
-| Button    | `button[luiButton]`, `a[luiButton]` | variants, sizes, loading & disabled, native semantics          |
-| Badge     | `span[luiBadge]`, `div[luiBadge]`   | solid / subtle / outline appearances, status variants          |
-| Avatar    | `lui-avatar`                        | image with initials fallback, sizes, status dot                |
-| Input     | `lui-input`                         | label / hint / error, full ARIA wiring, `ControlValueAccessor` |
-| Switch    | `lui-switch`                        | WAI-ARIA `switch`, `ControlValueAccessor`                      |
+| Component  | Selector                               | Notes                                                          |
+| ---------- | -------------------------------------- | -------------------------------------------------------------- |
+| Button     | `button[luiButton]`, `a[luiButton]`    | variants, sizes, loading & disabled, native semantics          |
+| Badge      | `span[luiBadge]`, `div[luiBadge]`      | solid / subtle / outline appearances, status variants          |
+| Avatar     | `lui-avatar`                           | image with initials fallback, sizes, status dot                |
+| Input      | `lui-input`                            | label / hint / error, full ARIA wiring, `ControlValueAccessor` |
+| Switch     | `lui-switch`                           | WAI-ARIA `switch`, `ControlValueAccessor`                      |
+| Tabs       | `lui-tabs` + `lui-tab`                 | ARIA tablist, roving tabindex, arrow/Home/End keys             |
+| Accordion  | `lui-accordion` + `lui-accordion-item` | disclosure pattern, single / multiple modes                    |
+| Dialog     | `lui-dialog`                           | modal with focus trap, scrim, Escape, scroll lock              |
+| Toast      | `ToastService` + `lui-toast-outlet`    | injectable notifications in an ARIA live region                |
+| Breadcrumb | `lui-breadcrumb`                       | navigation trail, `aria-current` on the last item              |
+| Pagination | `lui-pagination`                       | page navigation with ellipsis truncation                       |
 
 ## Examples
 

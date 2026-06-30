@@ -1,0 +1,116 @@
+.lui-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--lui-color-overlay-scrim);
+  z-index: var(--lui-zIndex-modal);
+  animation: lui-dialog-fade var(--lui-duration-fast) var(--lui-easing-standard);
+}
+
+.lui-dialog__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: var(--lui-zIndex-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--lui-space-4);
+  overflow-y: auto;
+}
+
+.lui-dialog__panel {
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: 32rem;
+  max-block-size: calc(100vh - var(--lui-space-8));
+  overflow-y: auto;
+  background: var(--lui-color-bg-surface);
+  color: var(--lui-color-fg-default);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-xl);
+  box-shadow: var(--lui-shadow-2xl);
+  font-family: var(--lui-font-family-sans);
+  animation: lui-dialog-pop var(--lui-duration-normal)
+    var(--lui-easing-emphasized);
+}
+.lui-dialog__panel[data-size='sm'] {
+  max-inline-size: 24rem;
+}
+.lui-dialog__panel[data-size='lg'] {
+  max-inline-size: 48rem;
+}
+.lui-dialog__panel:focus-visible {
+  outline: none;
+}
+
+.lui-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--lui-space-3);
+  padding: var(--lui-space-5) var(--lui-space-5) 0;
+}
+.lui-dialog__title {
+  margin: 0;
+  font-size: var(--lui-font-size-lg);
+  font-weight: var(--lui-font-weight-semibold);
+}
+.lui-dialog__close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-2xl);
+  line-height: 1;
+  padding: 0 var(--lui-space-1);
+  border-radius: var(--lui-radius-sm);
+  cursor: pointer;
+}
+.lui-dialog__close:hover {
+  color: var(--lui-color-fg-default);
+}
+.lui-dialog__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem var(--lui-color-accent-subtle);
+}
+
+.lui-dialog__desc {
+  margin: var(--lui-space-2) 0 0;
+  padding-inline: var(--lui-space-5);
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+}
+
+.lui-dialog__body {
+  padding: var(--lui-space-4) var(--lui-space-5);
+  font-size: var(--lui-font-size-sm);
+  line-height: var(--lui-font-line-height-relaxed);
+}
+
+.lui-dialog__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--lui-space-2);
+  padding: 0 var(--lui-space-5) var(--lui-space-5);
+}
+.lui-dialog__footer:empty {
+  display: none;
+}
+
+@keyframes lui-dialog-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes lui-dialog-pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-dialog__backdrop,
+  .lui-dialog__panel {
+    animation: none;
+  }
+}

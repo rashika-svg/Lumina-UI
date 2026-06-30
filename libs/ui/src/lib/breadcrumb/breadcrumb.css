@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  font-family: var(--lui-font-family-sans);
+}
+
+.lui-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--lui-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lui-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  font-size: var(--lui-font-size-sm);
+}
+
+.lui-breadcrumb__link {
+  color: var(--lui-color-fg-muted);
+  text-decoration: none;
+  border-radius: var(--lui-radius-sm);
+}
+a.lui-breadcrumb__link:hover {
+  color: var(--lui-color-fg-link);
+  text-decoration: underline;
+}
+a.lui-breadcrumb__link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem var(--lui-color-accent-subtle);
+}
+
+.lui-breadcrumb__current {
+  color: var(--lui-color-fg-default);
+  font-weight: var(--lui-font-weight-medium);
+}
+
+.lui-breadcrumb__sep {
+  color: var(--lui-color-fg-subtle);
+}

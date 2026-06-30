@@ -30,7 +30,14 @@ export default [
   },
   {
     files: ['**/*.html'],
-    // Override or add rules here
-    rules: {},
+    rules: {
+      // This library builds the primitive ARIA widgets themselves (dialog
+      // backdrop, tablist, focus-trapped containers). Their keyboard handling
+      // lives on focusable children or via Escape, so these consumer-oriented
+      // template rules produce false positives here. They remain enabled for
+      // application code (e.g. the playground).
+      '@angular-eslint/template/click-events-have-key-events': 'off',
+      '@angular-eslint/template/interactive-supports-focus': 'off',
+    },
   },
 ];

@@ -41,6 +41,10 @@ export const States: Story = {
 };
 
 export const DarkTheme: Story = {
+  args: {
+    checked: false,
+  },
+
   globals: { theme: 'dark' },
   ...States,
 };

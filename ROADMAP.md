@@ -25,9 +25,16 @@ the [design principles](docs/DESIGN_PRINCIPLES.md) (a11y, theming, states, varia
 - [ ] Tag
 - [ ] Tooltip
 
-## ⬜ Phase 2 — Composite & overlay
+## 🟡 Phase 2 — Composite & overlay (in progress)
 
-Modal · Drawer · Tabs · Accordion · Dropdown · Toast · Breadcrumb · Pagination
+- [x] Tabs (ARIA tablist, roving tabindex)
+- [x] Accordion (single / multiple disclosure)
+- [x] Dialog / Modal (focus trap, scrim, Escape, scroll lock)
+- [x] Toast (injectable service + ARIA live region)
+- [x] Breadcrumb
+- [x] Pagination (with ellipsis truncation)
+- [ ] Drawer
+- [ ] Dropdown / Menu
 
 ## ⬜ Phase 3 — Data & power-user
 

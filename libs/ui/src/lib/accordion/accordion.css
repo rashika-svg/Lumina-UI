@@ -1,0 +1,78 @@
+/* Container */
+:host(.lui-accordion) {
+  display: block;
+  font-family: var(--lui-font-family-sans);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-lg);
+  overflow: hidden;
+}
+
+/* Item */
+:host(.lui-accordion__item) {
+  display: block;
+}
+:host(.lui-accordion__item:not(:first-of-type)) {
+  border-block-start: var(--lui-border-width-thin) solid
+    var(--lui-color-border-default);
+}
+
+.lui-accordion__heading {
+  margin: 0;
+}
+
+.lui-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  padding: var(--lui-space-3) var(--lui-space-4);
+  border: 0;
+  background: var(--lui-color-bg-surface);
+  color: var(--lui-color-fg-default);
+  font-family: var(--lui-font-family-sans);
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-medium);
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--lui-duration-fast)
+    var(--lui-easing-standard);
+}
+.lui-accordion__trigger:hover:not(:disabled) {
+  background: var(--lui-color-bg-subtle);
+}
+.lui-accordion__trigger:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 0.125rem var(--lui-color-accent-default);
+}
+.lui-accordion__trigger:disabled {
+  color: var(--lui-color-fg-disabled);
+  cursor: not-allowed;
+}
+
+.lui-accordion__icon {
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border-inline-end: var(--lui-border-width-thick) solid currentColor;
+  border-block-end: var(--lui-border-width-thick) solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--lui-duration-normal) var(--lui-easing-standard);
+  margin-inline-start: var(--lui-space-3);
+  flex: 0 0 auto;
+}
+:host(.lui-accordion__item--open) .lui-accordion__icon {
+  transform: rotate(-135deg);
+}
+
+.lui-accordion__content {
+  padding: 0 var(--lui-space-4) var(--lui-space-4);
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+  line-height: var(--lui-font-line-height-relaxed);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-accordion__trigger,
+  .lui-accordion__icon {
+    transition: none;
+  }
+}

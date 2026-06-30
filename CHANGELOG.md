@@ -21,5 +21,10 @@ All notable changes to this project are documented here. The format is based on
 - **Playground** — interactive showcase with a live theme switcher.
 - **Storybook** — component documentation for `@lumina/ui` with a theme toolbar (light/dark/high
   contrast), interactive controls, autodocs and the accessibility addon.
+- **Phase 2 components** (`@lumina/ui`) — Tabs (ARIA tablist + roving tabindex), Accordion
+  (single/multiple disclosure), Dialog/Modal (focus trap, scrim, Escape, scroll lock, focus
+  restoration), Toast (injectable `ToastService` + ARIA live-region `ToastOutlet`), Breadcrumb and
+  Pagination (with ellipsis truncation). Each ships unit tests and Storybook stories, and all are
+  showcased in the playground.
 - **Tooling** — ESLint (with module-boundary rules), Prettier, Husky, Commitlint, lint-staged, and a
   Nx-affected GitHub Actions CI pipeline.

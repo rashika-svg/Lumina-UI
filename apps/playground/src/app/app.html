@@ -113,5 +113,86 @@
         }}
       </p>
     </section>
+
+    <section class="card" aria-labelledby="s-tabs">
+      <h2 id="s-tabs">Tabs</h2>
+      <lui-tabs ariaLabel="Demo tabs">
+        <lui-tab label="Overview"
+          >Lumina components are accessible, themeable and
+          token-driven.</lui-tab
+        >
+        <lui-tab label="Keyboard"
+          >Use Arrow / Home / End to move between tabs; selection follows
+          focus.</lui-tab
+        >
+        <lui-tab label="Disabled" [disabled]="true"
+          >You shouldn't see this.</lui-tab
+        >
+        <lui-tab label="Theming"
+          >Every colour comes from a semantic design token.</lui-tab
+        >
+      </lui-tabs>
+    </section>
+
+    <section class="card" aria-labelledby="s-accordion">
+      <h2 id="s-accordion">Accordion</h2>
+      <lui-accordion>
+        <lui-accordion-item heading="Is it accessible?">
+          Yes — WAI-ARIA disclosure pattern with full keyboard support.
+        </lui-accordion-item>
+        <lui-accordion-item heading="Single or multiple?">
+          Single-open by default; set multiple to allow several.
+        </lui-accordion-item>
+        <lui-accordion-item heading="Themed?">
+          Entirely token-driven, like everything else.
+        </lui-accordion-item>
+      </lui-accordion>
+    </section>
+
+    <section class="card" aria-labelledby="s-overlay">
+      <h2 id="s-overlay">Dialog &amp; Toasts</h2>
+      <div class="row">
+        <button luiButton (click)="dialogOpen.set(true)">Open dialog</button>
+        <button luiButton variant="secondary" (click)="notify('info')">
+          Info toast
+        </button>
+        <button luiButton variant="secondary" (click)="notify('success')">
+          Success
+        </button>
+        <button luiButton variant="secondary" (click)="notify('warning')">
+          Warning
+        </button>
+        <button luiButton variant="secondary" (click)="notify('danger')">
+          Error
+        </button>
+      </div>
+
+      <lui-dialog
+        [(open)]="dialogOpen"
+        heading="Delete project?"
+        description="This permanently removes the project and all of its data."
+      >
+        <p>You can't undo this action. Please confirm you wish to continue.</p>
+        <div dialogFooter>
+          <button luiButton variant="ghost" (click)="dialogOpen.set(false)">
+            Cancel
+          </button>
+          <button luiButton variant="danger" (click)="dialogOpen.set(false)">
+            Delete
+          </button>
+        </div>
+      </lui-dialog>
+    </section>
+
+    <section class="card" aria-labelledby="s-nav">
+      <h2 id="s-nav">Navigation</h2>
+      <lui-breadcrumb [items]="crumbs" />
+      <div style="margin-top: 1rem">
+        <lui-pagination [total]="12" [(page)]="page" />
+        <p class="muted">Current page: {{ page() }}</p>
+      </div>
+    </section>
   </main>
+
+  <lui-toast-outlet position="bottom-end" />
 </div>
