@@ -1,0 +1,88 @@
+{
+  "button": {
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.md}"
+    },
+    "font": {
+      "weight": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.medium}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$type": "color",
+        "$value": "{color.focus.ring}"
+      }
+    },
+    "primary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.accent.default}"
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.accent.hover}"
+      },
+      "bgActive": {
+        "$type": "color",
+        "$value": "{color.accent.active}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.accent.fg}"
+      }
+    },
+    "secondary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.bg.surface}"
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.bg.subtle}"
+      },
+      "bgActive": {
+        "$type": "color",
+        "$value": "{color.bg.muted}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.fg.default}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.border.strong}"
+      }
+    },
+    "ghost": {
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.bg.subtle}"
+      },
+      "bgActive": {
+        "$type": "color",
+        "$value": "{color.bg.muted}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.fg.default}"
+      }
+    },
+    "danger": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.danger.default}"
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{color.danger.hover}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.danger.fg}"
+      }
+    }
+  }
+}

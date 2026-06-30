@@ -1,0 +1,32 @@
+/* Lumina design tokens — installs the primitive layer and every theme. */
+@import '../../../libs/tokens/src/styles/index.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--lui-color-bg-canvas);
+  color: var(--lui-color-fg-default);
+  font-family: var(--lui-font-family-sans);
+  font-size: var(--lui-font-size-md);
+  line-height: var(--lui-font-line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color var(--lui-duration-normal) var(--lui-easing-standard),
+    color var(--lui-duration-normal) var(--lui-easing-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}

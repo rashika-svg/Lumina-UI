@@ -1,0 +1,12 @@
+/* Lumina design tokens for the Storybook canvas. */
+@import '../../tokens/src/styles/index.css';
+
+body {
+  background: var(--lui-color-bg-canvas);
+  color: var(--lui-color-fg-default);
+  font-family: var(--lui-font-family-sans);
+}
+
+.lui-sb-wrap {
+  padding: var(--lui-space-6);
+}

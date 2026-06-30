@@ -1,0 +1,96 @@
+:host {
+  --_height: var(--lui-size-control-md);
+  --_padding-x: var(--lui-space-3);
+  --_font-size: var(--lui-font-size-sm);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--lui-space-1-5);
+  font-family: var(--lui-font-family-sans);
+}
+
+:host([data-size='sm']) {
+  --_height: var(--lui-size-control-sm);
+  --_font-size: var(--lui-font-size-xs);
+}
+:host([data-size='lg']) {
+  --_height: var(--lui-size-control-lg);
+  --_font-size: var(--lui-font-size-md);
+}
+
+.lui-input__label {
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-medium);
+  color: var(--lui-field-label-fg);
+}
+.lui-input__required {
+  color: var(--lui-color-danger-default);
+  margin-inline-start: var(--lui-space-0-5);
+}
+
+.lui-input__control {
+  display: flex;
+  align-items: center;
+}
+
+.lui-input__field {
+  inline-size: 100%;
+  block-size: var(--_height);
+  padding-inline: var(--_padding-x);
+  border: var(--lui-border-width-thin) solid var(--lui-field-border);
+  border-radius: var(--lui-field-radius);
+  background: var(--lui-field-bg);
+  color: var(--lui-field-fg);
+  font-family: inherit;
+  font-size: var(--_font-size);
+  line-height: var(--lui-font-line-height-normal);
+  transition:
+    border-color var(--lui-duration-fast) var(--lui-easing-standard),
+    box-shadow var(--lui-duration-fast) var(--lui-easing-standard);
+  appearance: none;
+}
+
+.lui-input__field::placeholder {
+  color: var(--lui-field-placeholder);
+}
+
+.lui-input__field:hover:not(:disabled) {
+  border-color: var(--lui-field-borderHover);
+}
+
+.lui-input__field:focus-visible {
+  outline: none;
+  border-color: var(--lui-field-borderFocus);
+  box-shadow: 0 0 0 0.1875rem var(--lui-color-accent-subtle);
+}
+
+.lui-input__field:disabled {
+  background: var(--lui-field-bgDisabled);
+  color: var(--lui-color-fg-disabled);
+  cursor: not-allowed;
+}
+
+:host(.lui-input--invalid) .lui-input__field {
+  border-color: var(--lui-field-borderError);
+}
+:host(.lui-input--invalid) .lui-input__field:focus-visible {
+  box-shadow: 0 0 0 0.1875rem var(--lui-color-danger-subtle);
+}
+
+.lui-input__message {
+  margin: 0;
+  font-size: var(--lui-font-size-xs);
+  line-height: var(--lui-font-line-height-snug);
+}
+.lui-input__message--hint {
+  color: var(--lui-field-hint-fg);
+}
+.lui-input__message--error {
+  color: var(--lui-field-error-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-input__field {
+    transition: none;
+  }
+}

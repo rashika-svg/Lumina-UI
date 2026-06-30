@@ -1,0 +1,42 @@
+{
+  "name": "tokens",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tokens/src",
+  "projectType": "library",
+  "tags": ["type:tokens"],
+  "targets": {
+    "tokens": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["{projectRoot}/tokens/**/*", "{projectRoot}/scripts/**/*"],
+      "outputs": ["{projectRoot}/src/generated"],
+      "options": {
+        "cwd": "libs/tokens",
+        "command": "node scripts/build-tokens.mjs"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["tokens"],
+      "options": {
+        "outputPath": "dist/libs/tokens",
+        "main": "libs/tokens/src/index.ts",
+        "tsConfig": "libs/tokens/tsconfig.lib.json",
+        "assets": [
+          "libs/tokens/*.md",
+          {
+            "input": "libs/tokens/src/generated/css",
+            "glob": "**/*.css",
+            "output": "styles"
+          },
+          {
+            "input": "libs/tokens/src/styles",
+            "glob": "**/*.css",
+            "output": "styles"
+          }
+        ]
+      }
+    }
+  }
+}

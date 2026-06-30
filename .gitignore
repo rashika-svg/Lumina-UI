@@ -54,3 +54,6 @@ vitest.config.*.timestamp*
 .nx/polygraph
 .nx/self-healing
 .nx/migrate-runs
+# Local dev server logs
+playground-serve.log
+*.serve.log

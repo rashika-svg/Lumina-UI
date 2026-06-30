@@ -1,0 +1,58 @@
+{
+  "field": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.bg.surface}"
+    },
+    "bgDisabled": {
+      "$type": "color",
+      "$value": "{color.bg.subtle}"
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.fg.default}"
+    },
+    "placeholder": {
+      "$type": "color",
+      "$value": "{color.fg.subtle}"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{color.border.strong}"
+    },
+    "borderHover": {
+      "$type": "color",
+      "$value": "{color.border.strong}"
+    },
+    "borderFocus": {
+      "$type": "color",
+      "$value": "{color.accent.border}"
+    },
+    "borderError": {
+      "$type": "color",
+      "$value": "{color.danger.default}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.md}"
+    },
+    "label": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.fg.default}"
+      }
+    },
+    "hint": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.fg.muted}"
+      }
+    },
+    "error": {
+      "fg": {
+        "$type": "color",
+        "$value": "{color.danger.text}"
+      }
+    }
+  }
+}

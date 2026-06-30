@@ -1,0 +1,117 @@
+<div class="page">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__mark" aria-hidden="true">◇</span>
+      <div>
+        <h1 class="brand__name">Lumina UI</h1>
+        <p class="brand__tag">
+          Enterprise Angular design system — live playground
+        </p>
+      </div>
+    </div>
+
+    <div class="theme-switcher" role="group" aria-label="Theme">
+      @for (option of themeOptions; track option.value) {
+      <button
+        luiButton
+        size="sm"
+        [variant]="theme.mode() === option.value ? 'primary' : 'ghost'"
+        [attr.aria-pressed]="theme.mode() === option.value"
+        (click)="setTheme(option.value)"
+      >
+        {{ option.label }}
+      </button>
+      }
+    </div>
+  </header>
+
+  <main class="content">
+    <p class="resolved">
+      Active theme:
+      <span luiBadge variant="accent" appearance="subtle"
+        >{{ theme.resolvedTheme() }}</span
+      >
+      @if (theme.prefersReducedMotion()) {
+      <span luiBadge variant="warning" appearance="subtle">reduced motion</span>
+      }
+    </p>
+
+    <section class="card" aria-labelledby="s-buttons">
+      <h2 id="s-buttons">Buttons</h2>
+      <div class="row">
+        @for (variant of buttonVariants; track variant) {
+        <button luiButton [variant]="variant">{{ variant }}</button>
+        }
+      </div>
+      <div class="row">
+        <button luiButton size="sm">Small</button>
+        <button luiButton size="md">Medium</button>
+        <button luiButton size="lg">Large</button>
+        <button luiButton disabled>Disabled</button>
+        <button luiButton [loading]="loadingDemo()" (click)="simulateLoad()">
+          {{ loadingDemo() ? 'Saving…' : 'Click to load' }}
+        </button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="s-badges">
+      <h2 id="s-badges">Badges</h2>
+      <div class="row">
+        @for (variant of badgeVariants; track variant) {
+        <span luiBadge [variant]="variant" appearance="subtle"
+          >{{ variant }}</span
+        >
+        }
+      </div>
+      <div class="row">
+        @for (variant of badgeVariants; track variant) {
+        <span luiBadge [variant]="variant" appearance="solid"
+          >{{ variant }}</span
+        >
+        }
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="s-avatars">
+      <h2 id="s-avatars">Avatars</h2>
+      <div class="row row--center">
+        <lui-avatar name="Ada Lovelace" size="xs" />
+        <lui-avatar name="Grace Hopper" size="sm" status="online" />
+        <lui-avatar name="Alan Turing" size="md" status="busy" />
+        <lui-avatar
+          name="Linus Torvalds"
+          size="lg"
+          shape="square"
+          status="away"
+        />
+        <lui-avatar name="Margaret Hamilton" size="xl" />
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="s-forms">
+      <h2 id="s-forms">Form controls</h2>
+      <div class="form-grid">
+        <lui-input
+          label="Email address"
+          type="email"
+          placeholder="ada@lumina.dev"
+          hint="We'll never share your email."
+          [(ngModel)]="email"
+        />
+        <lui-input
+          label="Workspace"
+          placeholder="acme-inc"
+          [error]="'This workspace name is taken.'"
+        />
+      </div>
+      <div class="row">
+        <lui-switch label="Email notifications" [(ngModel)]="notifications" />
+        <lui-switch label="Disabled" disabled />
+      </div>
+      <p class="muted">
+        Email entered: {{ email() || '—' }} · Notifications: {{ notifications()
+        }}
+      </p>
+    </section>
+  </main>
+</div>

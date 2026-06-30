@@ -1,0 +1,200 @@
+{
+  "color": {
+    "bg": {
+      "canvas": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.neutral.100}"
+      },
+      "emphasis": {
+        "$type": "color",
+        "$value": "{color.neutral.200}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.black}"
+      }
+    },
+    "fg": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.black}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.neutral.900}"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.800}"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.600}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{color.brand.800}"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.black}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.neutral.700}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.black}"
+      }
+    },
+    "accent": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.brand.100}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.brand.200}"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.brand.800}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.brand.900}"
+      },
+      "active": {
+        "$type": "color",
+        "$value": "{color.brand.950}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.brand.900}"
+      }
+    },
+    "success": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.success.100}"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.success.800}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.success.900}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.success.900}"
+      }
+    },
+    "warning": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.warning.100}"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.warning.700}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.warning.800}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.warning.900}"
+      }
+    },
+    "danger": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.danger.100}"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.danger.800}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.danger.900}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.danger.900}"
+      }
+    },
+    "info": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.info.100}"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.info.800}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.info.900}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{color.white}"
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.info.900}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$type": "color",
+        "$value": "{color.black}"
+      }
+    },
+    "overlay": {
+      "scrim": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.8)"
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+:host {
+  --_size: 2.5rem;
+  --_font: var(--lui-font-size-sm);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  border-radius: var(--lui-radius-full);
+  background: var(--lui-color-bg-emphasis);
+  color: var(--lui-color-fg-default);
+  font-family: var(--lui-font-family-sans);
+  font-size: var(--_font);
+  font-weight: var(--lui-font-weight-semibold);
+  line-height: var(--lui-font-line-height-none);
+  overflow: visible;
+  user-select: none;
+  flex: 0 0 auto;
+}
+
+:host([data-shape='square']) {
+  border-radius: var(--lui-radius-lg);
+}
+
+:host([data-size='xs']) {
+  --_size: 1.5rem;
+  --_font: var(--lui-font-size-xs);
+}
+:host([data-size='sm']) {
+  --_size: 2rem;
+  --_font: var(--lui-font-size-xs);
+}
+:host([data-size='lg']) {
+  --_size: 3rem;
+  --_font: var(--lui-font-size-lg);
+}
+:host([data-size='xl']) {
+  --_size: 4rem;
+  --_font: var(--lui-font-size-2xl);
+}
+
+.lui-avatar__img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.lui-avatar__fallback {
+  text-transform: uppercase;
+}
+
+/* Visually-hidden accessible name for the initials fallback. */
+.lui-avatar__sr {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lui-avatar__status {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inline-size: 28%;
+  block-size: 28%;
+  min-inline-size: 0.5rem;
+  min-block-size: 0.5rem;
+  border-radius: var(--lui-radius-full);
+  border: var(--lui-border-width-thick) solid var(--lui-color-bg-canvas);
+  background: var(--lui-color-fg-subtle);
+}
+.lui-avatar__status[data-status='online'] {
+  background: var(--lui-color-success-default);
+}
+.lui-avatar__status[data-status='busy'] {
+  background: var(--lui-color-danger-default);
+}
+.lui-avatar__status[data-status='away'] {
+  background: var(--lui-color-warning-default);
+}
+:host([data-shape='square']) .lui-avatar__status {
+  inset-block-end: -2px;
+  inset-inline-end: -2px;
+}

@@ -1,0 +1,166 @@
+{
+  "shadow": {
+    "none": {
+      "$type": "shadow",
+      "$value": "none"
+    },
+    "xs": {
+      "$type": "shadow",
+      "$value": "0 1px 2px 0 rgba(2, 6, 23, 0.05)"
+    },
+    "sm": {
+      "$type": "shadow",
+      "$value": "0 1px 3px 0 rgba(2, 6, 23, 0.10), 0 1px 2px -1px rgba(2, 6, 23, 0.10)"
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": "0 4px 6px -1px rgba(2, 6, 23, 0.10), 0 2px 4px -2px rgba(2, 6, 23, 0.10)"
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": "0 10px 15px -3px rgba(2, 6, 23, 0.10), 0 4px 6px -4px rgba(2, 6, 23, 0.10)"
+    },
+    "xl": {
+      "$type": "shadow",
+      "$value": "0 20px 25px -5px rgba(2, 6, 23, 0.10), 0 8px 10px -6px rgba(2, 6, 23, 0.10)"
+    },
+    "2xl": {
+      "$type": "shadow",
+      "$value": "0 25px 50px -12px rgba(2, 6, 23, 0.25)"
+    }
+  },
+  "duration": {
+    "instant": {
+      "$type": "duration",
+      "$value": "0ms"
+    },
+    "fast": {
+      "$type": "duration",
+      "$value": "120ms"
+    },
+    "normal": {
+      "$type": "duration",
+      "$value": "200ms"
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": "320ms"
+    },
+    "slower": {
+      "$type": "duration",
+      "$value": "480ms"
+    }
+  },
+  "easing": {
+    "linear": {
+      "$type": "cubicBezier",
+      "$value": [0, 0, 1, 1]
+    },
+    "standard": {
+      "$type": "cubicBezier",
+      "$value": [0.2, 0, 0, 1]
+    },
+    "emphasized": {
+      "$type": "cubicBezier",
+      "$value": [0.05, 0.7, 0.1, 1]
+    },
+    "decelerate": {
+      "$type": "cubicBezier",
+      "$value": [0, 0, 0, 1]
+    },
+    "accelerate": {
+      "$type": "cubicBezier",
+      "$value": [0.3, 0, 1, 1]
+    }
+  },
+  "opacity": {
+    "0": {
+      "$type": "number",
+      "$value": 0
+    },
+    "100": {
+      "$type": "number",
+      "$value": 1
+    },
+    "disabled": {
+      "$type": "number",
+      "$value": 0.4
+    },
+    "muted": {
+      "$type": "number",
+      "$value": 0.6
+    },
+    "hover": {
+      "$type": "number",
+      "$value": 0.08
+    },
+    "pressed": {
+      "$type": "number",
+      "$value": 0.12
+    }
+  },
+  "zIndex": {
+    "hide": {
+      "$type": "number",
+      "$value": -1
+    },
+    "base": {
+      "$type": "number",
+      "$value": 0
+    },
+    "docked": {
+      "$type": "number",
+      "$value": 10
+    },
+    "dropdown": {
+      "$type": "number",
+      "$value": 1000
+    },
+    "sticky": {
+      "$type": "number",
+      "$value": 1100
+    },
+    "overlay": {
+      "$type": "number",
+      "$value": 1300
+    },
+    "modal": {
+      "$type": "number",
+      "$value": 1400
+    },
+    "popover": {
+      "$type": "number",
+      "$value": 1500
+    },
+    "toast": {
+      "$type": "number",
+      "$value": 1700
+    },
+    "tooltip": {
+      "$type": "number",
+      "$value": 1800
+    }
+  },
+  "breakpoint": {
+    "sm": {
+      "$type": "dimension",
+      "$value": "640px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "768px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "1024px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "1280px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "1536px"
+    }
+  }
+}

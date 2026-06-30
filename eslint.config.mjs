@@ -14,27 +14,70 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
+      // Lumina UI layered architecture. Each library declares a `type:*` tag;
+      // these constraints enforce a strict, acyclic dependency graph so the
+      // foundation layers (tokens, utilities) can never depend on higher layers.
       '@nx/enforce-module-boundaries': [
         'error',
         {
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
+            // Apps sit at the top and may consume any published layer.
+            { sourceTag: 'type:app', onlyDependOnLibsWithTags: ['*'] },
+            // AI-assisted generation needs the full component surface.
             {
-              sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTags: ['scope:shared'],
+              sourceTag: 'type:ai',
+              onlyDependOnLibsWithTags: [
+                'type:ai',
+                'type:ui',
+                'type:theme',
+                'type:icons',
+                'type:tokens',
+                'type:util',
+              ],
+            },
+            // Test utilities may reach into the layers they help test.
+            {
+              sourceTag: 'type:testing',
+              onlyDependOnLibsWithTags: [
+                'type:testing',
+                'type:ui',
+                'type:theme',
+                'type:tokens',
+                'type:util',
+              ],
+            },
+            // Components compose icons + theme + tokens + utilities.
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:theme',
+                'type:icons',
+                'type:tokens',
+                'type:util',
+              ],
+            },
+            // The theme engine resolves tokens; nothing higher.
+            {
+              sourceTag: 'type:theme',
+              onlyDependOnLibsWithTags: [
+                'type:theme',
+                'type:tokens',
+                'type:util',
+              ],
             },
             {
-              sourceTag: 'scope:shop',
-              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared'],
+              sourceTag: 'type:icons',
+              onlyDependOnLibsWithTags: ['type:icons', 'type:util'],
             },
+            // Utilities are framework-agnostic leaves.
+            { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util'] },
+            // Design tokens are the absolute foundation — zero dependencies.
             {
-              sourceTag: 'scope:api',
-              onlyDependOnLibsWithTags: ['scope:api', 'scope:shared'],
-            },
-            {
-              sourceTag: 'type:data',
-              onlyDependOnLibsWithTags: ['type:data'],
+              sourceTag: 'type:tokens',
+              onlyDependOnLibsWithTags: ['type:tokens'],
             },
           ],
         },

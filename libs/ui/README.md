@@ -1,0 +1,35 @@
+# @lumina/ui
+
+Accessible, signal-first Angular components, fully driven by `@lumina/tokens` and themed by
+`@lumina/theme`.
+
+All components are standalone, `OnPush`, and use Angular signal inputs. They are token-driven (no
+hard-coded visual values) and ship with light, dark and high-contrast support plus reduced-motion
+handling.
+
+## Components
+
+| Component | Selector                            | Notes                                                          |
+| --------- | ----------------------------------- | -------------------------------------------------------------- |
+| Button    | `button[luiButton]`, `a[luiButton]` | variants, sizes, loading & disabled, native semantics          |
+| Badge     | `span[luiBadge]`, `div[luiBadge]`   | solid / subtle / outline appearances, status variants          |
+| Avatar    | `lui-avatar`                        | image with initials fallback, sizes, status dot                |
+| Input     | `lui-input`                         | label / hint / error, full ARIA wiring, `ControlValueAccessor` |
+| Switch    | `lui-switch`                        | WAI-ARIA `switch`, `ControlValueAccessor`                      |
+
+## Examples
+
+```html
+<button luiButton variant="primary">Save</button>
+<button luiButton variant="ghost" size="sm" [loading]="saving()">Saving…</button>
+
+<span luiBadge variant="success" appearance="subtle">Active</span>
+
+<lui-avatar name="Ada Lovelace" src="/ada.jpg" status="online" />
+
+<lui-input label="Email" type="email" [(ngModel)]="email" [error]="emailError()" />
+
+<lui-switch label="Notifications" [(ngModel)]="enabled" />
+```
+
+See [DESIGN_PRINCIPLES.md](../../docs/DESIGN_PRINCIPLES.md) for the rules every component follows.

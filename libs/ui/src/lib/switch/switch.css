@@ -1,0 +1,86 @@
+:host {
+  --_track-w: 2.5rem;
+  --_track-h: 1.5rem;
+  --_thumb: 1.125rem;
+  --_gap: 0.1875rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  font-family: var(--lui-font-family-sans);
+}
+
+:host([data-size='sm']) {
+  --_track-w: 2rem;
+  --_track-h: 1.25rem;
+  --_thumb: 0.875rem;
+}
+
+.lui-switch__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  inline-size: var(--_track-w);
+  block-size: var(--_track-h);
+  padding: 0;
+  border: var(--lui-border-width-thin) solid transparent;
+  border-radius: var(--lui-radius-full);
+  background: var(--lui-color-bg-emphasis);
+  cursor: pointer;
+  transition: background-color var(--lui-duration-normal)
+    var(--lui-easing-standard);
+  flex: 0 0 auto;
+}
+
+.lui-switch__thumb {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: var(--_gap);
+  inline-size: var(--_thumb);
+  block-size: var(--_thumb);
+  border-radius: var(--lui-radius-full);
+  background: var(--lui-color-bg-canvas);
+  box-shadow: var(--lui-shadow-sm);
+  transform: translateY(-50%);
+  transition: inset-inline-start var(--lui-duration-normal)
+    var(--lui-easing-emphasized);
+}
+
+:host(.lui-switch--checked) .lui-switch__track {
+  background: var(--lui-color-accent-default);
+}
+:host(.lui-switch--checked) .lui-switch__thumb {
+  inset-inline-start: calc(
+    var(--_track-w) - var(--_thumb) - var(--_gap) - 0.125rem
+  );
+}
+
+.lui-switch__track:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--lui-border-width-thin) var(--lui-color-bg-canvas),
+    0 0 0 0.1875rem var(--lui-color-focus-ring);
+}
+
+:host(.lui-switch--disabled) .lui-switch__track {
+  cursor: not-allowed;
+  opacity: var(--lui-opacity-disabled);
+}
+
+.lui-switch__label {
+  font-size: var(--lui-font-size-sm);
+  color: var(--lui-color-fg-default);
+  cursor: pointer;
+  user-select: none;
+}
+:host(.lui-switch--disabled) .lui-switch__label {
+  cursor: not-allowed;
+  color: var(--lui-color-fg-disabled);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-switch__track,
+  .lui-switch__thumb {
+    transition: none;
+  }
+}

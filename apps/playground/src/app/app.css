@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  min-block-size: 100vh;
+}
+
+.page {
+  max-inline-size: 64rem;
+  margin-inline: auto;
+  padding: var(--lui-space-6) var(--lui-space-4) var(--lui-space-16);
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--lui-space-4);
+  padding-block: var(--lui-space-4);
+  border-block-end: var(--lui-border-width-thin) solid
+    var(--lui-color-border-default);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-3);
+}
+.brand__mark {
+  display: grid;
+  place-items: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: var(--lui-radius-lg);
+  background: var(--lui-color-accent-default);
+  color: var(--lui-color-accent-fg);
+  font-size: var(--lui-font-size-xl);
+}
+.brand__name {
+  margin: 0;
+  font-size: var(--lui-font-size-xl);
+  font-weight: var(--lui-font-weight-bold);
+}
+.brand__tag {
+  margin: 0;
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+}
+
+.theme-switcher {
+  display: inline-flex;
+  gap: var(--lui-space-1);
+  padding: var(--lui-space-1);
+  border-radius: var(--lui-radius-lg);
+  background: var(--lui-color-bg-subtle);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lui-space-6);
+  margin-block-start: var(--lui-space-6);
+}
+
+.resolved {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  margin: 0;
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+}
+
+.card {
+  padding: var(--lui-space-6);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-xl);
+  background: var(--lui-color-bg-surface);
+  box-shadow: var(--lui-shadow-sm);
+}
+.card h2 {
+  margin: 0 0 var(--lui-space-4);
+  font-size: var(--lui-font-size-lg);
+  font-weight: var(--lui-font-weight-semibold);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--lui-space-3);
+}
+.row + .row {
+  margin-block-start: var(--lui-space-3);
+}
+.row--center {
+  align-items: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--lui-space-4);
+  margin-block-end: var(--lui-space-4);
+}
+
+.muted {
+  margin-block-start: var(--lui-space-4);
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+}
