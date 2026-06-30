@@ -184,6 +184,35 @@
       </lui-dialog>
     </section>
 
+    <section class="card" aria-labelledby="s-menu">
+      <h2 id="s-menu">Drawer &amp; Menu</h2>
+      <div class="row">
+        <button luiButton variant="secondary" (click)="drawerOpen.set(true)">
+          Open drawer
+        </button>
+
+        <lui-menu>
+          <button luiButton variant="secondary" luiMenuTrigger>
+            Options ▾
+          </button>
+          <lui-menu-item (selected)="notify('info')">Edit</lui-menu-item>
+          <lui-menu-item (selected)="notify('success')"
+            >Duplicate</lui-menu-item
+          >
+          <lui-menu-item [disabled]="true">Archive</lui-menu-item>
+          <lui-menu-item (selected)="notify('danger')">Delete</lui-menu-item>
+        </lui-menu>
+      </div>
+
+      <lui-drawer [(open)]="drawerOpen" side="end" heading="Settings">
+        <p>
+          This panel slides in from the end edge with a focus trap and scroll
+          lock.
+        </p>
+        <p>Press Escape or click the backdrop to dismiss.</p>
+      </lui-drawer>
+    </section>
+
     <section class="card" aria-labelledby="s-nav">
       <h2 id="s-nav">Navigation</h2>
       <lui-breadcrumb [items]="crumbs" />

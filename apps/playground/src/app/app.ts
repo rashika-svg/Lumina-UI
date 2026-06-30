@@ -13,7 +13,11 @@ import {
   Breadcrumb,
   Button,
   Dialog,
+  Drawer,
   InputField,
+  Menu,
+  MenuItem,
+  MenuTrigger,
   Pagination,
   Switch,
   Tab,
@@ -43,6 +47,10 @@ interface ThemeOption {
     Accordion,
     AccordionItem,
     Dialog,
+    Drawer,
+    Menu,
+    MenuTrigger,
+    MenuItem,
     Breadcrumb,
     Pagination,
     ToastOutlet,
@@ -81,6 +89,7 @@ export class App {
   protected readonly notifications = signal(true);
   protected readonly loadingDemo = signal(false);
   protected readonly dialogOpen = signal(false);
+  protected readonly drawerOpen = signal(false);
   protected readonly page = signal(3);
 
   protected readonly crumbs = [

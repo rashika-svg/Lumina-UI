@@ -19,6 +19,8 @@ handling.
 | Tabs       | `lui-tabs` + `lui-tab`                 | ARIA tablist, roving tabindex, arrow/Home/End keys             |
 | Accordion  | `lui-accordion` + `lui-accordion-item` | disclosure pattern, single / multiple modes                    |
 | Dialog     | `lui-dialog`                           | modal with focus trap, scrim, Escape, scroll lock              |
+| Drawer     | `lui-drawer`                           | edge-anchored overlay panel (start/end/top/bottom)             |
+| Menu       | `lui-menu` + `luiMenuTrigger` + item   | ARIA menu, keyboard nav, outside-click dismissal               |
 | Toast      | `ToastService` + `lui-toast-outlet`    | injectable notifications in an ARIA live region                |
 | Breadcrumb | `lui-breadcrumb`                       | navigation trail, `aria-current` on the last item              |
 | Pagination | `lui-pagination`                       | page navigation with ellipsis truncation                       |

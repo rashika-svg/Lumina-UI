@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  inline-size: 100%;
+  padding: var(--lui-space-2) var(--lui-space-3);
+  border-radius: var(--lui-radius-md);
+  color: var(--lui-color-fg-default);
+  font-family: var(--lui-font-family-sans);
+  font-size: var(--lui-font-size-sm);
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+:host(:hover:not(.lui-menu-item--disabled)),
+:host(:focus-visible) {
+  background: var(--lui-color-bg-subtle);
+  outline: none;
+}
+
+:host(:focus-visible) {
+  box-shadow: inset 0 0 0 0.125rem var(--lui-color-accent-default);
+}
+
+:host(.lui-menu-item--disabled) {
+  color: var(--lui-color-fg-disabled);
+  cursor: not-allowed;
+}

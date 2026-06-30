@@ -14,61 +14,56 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-
 import { focusFirst, trapTabKey } from '../_internal/focus-trap';
 
-export type DialogSize = 'sm' | 'md' | 'lg';
+export type DrawerSide = 'start' | 'end' | 'top' | 'bottom';
 
 let nextId = 0;
 
 /**
- * Lumina Dialog — an accessible modal built on the WAI-ARIA dialog pattern.
+ * Lumina Drawer — an accessible panel that slides in from a viewport edge.
  *
- * Handles the hard parts: a focus trap, `Escape` to dismiss, scroll-locking the
- * page, restoring focus to the trigger on close, and `role="dialog"` /
- * `aria-modal` wiring. No CDK or portal required — the overlay is fixed-position.
+ * Shares the Dialog's overlay machinery: focus trap, `Escape` to dismiss,
+ * scroll-locking and focus restoration, with `role="dialog"` + `aria-modal`.
  *
  * @example
  * ```html
- * <lui-dialog [(open)]="confirmOpen" heading="Delete item?">
- *   <p>This action cannot be undone.</p>
- *   <div dialogFooter>
- *     <button luiButton variant="ghost" (click)="confirmOpen.set(false)">Cancel</button>
- *     <button luiButton variant="danger" (click)="remove()">Delete</button>
- *   </div>
- * </lui-dialog>
+ * <lui-drawer [(open)]="navOpen" side="start" heading="Menu">…</lui-drawer>
  * ```
  */
 @Component({
-  selector: 'lui-dialog',
+  selector: 'lui-drawer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (open()) {
-      <div class="lui-dialog__backdrop" (click)="onBackdrop()"></div>
-      <div class="lui-dialog__viewport" (keydown)="onKeydown($event)">
+      <div class="lui-drawer__backdrop" (click)="onBackdrop()"></div>
+      <div
+        class="lui-drawer__viewport"
+        [attr.data-side]="side()"
+        (keydown)="onKeydown($event)"
+      >
         <div
           #panel
-          class="lui-dialog__panel"
+          class="lui-drawer__panel"
           role="dialog"
           aria-modal="true"
           tabindex="-1"
-          [attr.data-size]="size()"
+          [attr.data-side]="side()"
           [attr.aria-labelledby]="heading() ? titleId : null"
           [attr.aria-label]="!heading() ? ariaLabel() || null : null"
-          [attr.aria-describedby]="description() ? descId : null"
         >
           @if (heading() || dismissible()) {
-            <header class="lui-dialog__header">
+            <header class="lui-drawer__header">
               @if (heading()) {
-                <h2 class="lui-dialog__title" [id]="titleId">
+                <h2 class="lui-drawer__title" [id]="titleId">
                   {{ heading() }}
                 </h2>
               }
               @if (dismissible()) {
                 <button
                   type="button"
-                  class="lui-dialog__close"
-                  aria-label="Close dialog"
+                  class="lui-drawer__close"
+                  aria-label="Close drawer"
                   (click)="close()"
                 >
                   &times;
@@ -76,33 +71,25 @@ let nextId = 0;
               }
             </header>
           }
-          @if (description()) {
-            <p class="lui-dialog__desc" [id]="descId">{{ description() }}</p>
-          }
-          <div class="lui-dialog__body"><ng-content /></div>
-          <footer class="lui-dialog__footer">
-            <ng-content select="[dialogFooter]" />
-          </footer>
+          <div class="lui-drawer__body"><ng-content /></div>
         </div>
       </div>
     }
   `,
-  styleUrl: './dialog.css',
-  host: { class: 'lui-dialog' },
+  styleUrl: './drawer.css',
+  host: { class: 'lui-drawer' },
 })
-export class Dialog {
+export class Drawer {
   private readonly document = inject(DOCUMENT);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  private readonly id = `lui-dialog-${nextId++}`;
-  protected readonly titleId = `${this.id}-title`;
-  protected readonly descId = `${this.id}-desc`;
+  private readonly uid = `lui-drawer-${nextId++}`;
+  protected readonly titleId = `${this.uid}-title`;
 
   readonly open = model(false);
+  readonly side = input<DrawerSide>('end');
   readonly heading = input('');
-  readonly description = input('');
   readonly ariaLabel = input('');
-  readonly size = input<DialogSize>('md');
   readonly dismissible = input(true, { transform: booleanAttribute });
   readonly closeOnBackdrop = input(true, { transform: booleanAttribute });
   readonly closeOnEscape = input(true, { transform: booleanAttribute });
@@ -120,7 +107,6 @@ export class Dialog {
     });
   }
 
-  /** Programmatically close the dialog. */
   close(): void {
     if (this.open()) {
       this.open.set(false);
@@ -147,7 +133,6 @@ export class Dialog {
     this.triggerEl = this.document.activeElement as HTMLElement | null;
     this.previousOverflow = this.document.body.style.overflow;
     this.document.body.style.overflow = 'hidden';
-    // Defer until the panel has rendered, then move focus inside.
     setTimeout(() => {
       const root = this.panel()?.nativeElement;
       if (root) focusFirst(root, this.document);
