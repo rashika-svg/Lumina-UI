@@ -33,5 +33,9 @@ All notable changes to this project are documented here. The format is based on
   states) and a **Command Palette** (the ⌘K pattern: fuzzy search, keyboard navigation, ARIA
   combobox/listbox). Both ship unit tests and Storybook stories; the playground wires ⌘K / Ctrl+K to
   open the palette.
+- **Tree View & Kanban Board** (`@lumina/ui`) — an accessible **Tree** (WAI-ARIA tree with
+  expand/collapse, roving tabindex, full keyboard navigation and optional selection) and a **Kanban**
+  board (native HTML5 drag-and-drop with a Ctrl/⌘ + Arrow keyboard move fallback). Both ship unit
+  tests, Storybook stories and playground demos.
 - **Tooling** — ESLint (with module-boundary rules), Prettier, Husky, Commitlint, lint-staged, and a
   Nx-affected GitHub Actions CI pipeline.

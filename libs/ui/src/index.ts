@@ -23,3 +23,5 @@ export * from './lib/pagination/pagination';
 // Phase 3 — data & power-user
 export * from './lib/table/table';
 export * from './lib/command-palette/command-palette';
+export * from './lib/tree/tree';
+export * from './lib/kanban/kanban';

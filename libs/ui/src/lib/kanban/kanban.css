@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  font-family: var(--lui-font-family-sans);
+}
+
+.lui-kanban__board {
+  display: flex;
+  gap: var(--lui-space-4);
+  overflow-x: auto;
+  padding-block-end: var(--lui-space-2);
+}
+
+.lui-kanban__column {
+  flex: 0 0 16rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--lui-color-bg-subtle);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-lg);
+  padding: var(--lui-space-3);
+}
+
+.lui-kanban__col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--lui-space-3);
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-semibold);
+  color: var(--lui-color-fg-default);
+}
+.lui-kanban__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 1.25rem;
+  block-size: 1.25rem;
+  padding-inline: var(--lui-space-1-5);
+  border-radius: var(--lui-radius-full);
+  background: var(--lui-color-bg-emphasis);
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-xs);
+}
+
+.lui-kanban__cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--lui-space-2);
+  min-block-size: 2rem;
+  flex: 1;
+}
+
+.lui-kanban__card {
+  background: var(--lui-color-bg-surface);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-md);
+  padding: var(--lui-space-3);
+  box-shadow: var(--lui-shadow-xs);
+  cursor: grab;
+}
+.lui-kanban__card:active {
+  cursor: grabbing;
+}
+.lui-kanban__card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem var(--lui-color-accent-subtle);
+  border-color: var(--lui-color-accent-border);
+}
+
+.lui-kanban__card-title {
+  margin: 0;
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-medium);
+  color: var(--lui-color-fg-default);
+}
+.lui-kanban__card-desc {
+  margin: var(--lui-space-1) 0 0;
+  font-size: var(--lui-font-size-xs);
+  color: var(--lui-color-fg-muted);
+  line-height: var(--lui-font-line-height-snug);
+}
+
+.lui-kanban__empty {
+  padding: var(--lui-space-4);
+  text-align: center;
+  color: var(--lui-color-fg-subtle);
+  font-size: var(--lui-font-size-xs);
+  border: var(--lui-border-width-thin) dashed var(--lui-color-border-strong);
+  border-radius: var(--lui-radius-md);
+}

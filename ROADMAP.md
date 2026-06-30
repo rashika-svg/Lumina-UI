@@ -40,10 +40,10 @@ the [design principles](docs/DESIGN_PRINCIPLES.md) (a11y, theming, states, varia
 
 - [x] Data Table (generic, sortable, selectable, sticky header, loading/empty states)
 - [x] Command Palette (⌘K, fuzzy search, keyboard navigation)
+- [x] Tree View (ARIA tree, keyboard navigation, selection)
+- [x] Kanban Board (drag-and-drop + keyboard move)
 - [ ] Data Grid (virtualised, editable cells)
-- [ ] Tree View
 - [ ] File Explorer
-- [ ] Kanban Board
 
 ## ⬜ Phase 4 — Visualisation
 

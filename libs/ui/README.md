@@ -26,6 +26,8 @@ handling.
 | Pagination      | `lui-pagination`                       | page navigation with ellipsis truncation                       |
 | Table           | `lui-table`                            | generic data table: sort, selection, sticky header, states     |
 | Command Palette | `lui-command-palette`                  | ⌘K launcher: fuzzy search + keyboard navigation                |
+| Tree            | `lui-tree`                             | ARIA tree: expand/collapse, keyboard nav, selection            |
+| Kanban          | `lui-kanban`                           | drag-and-drop board with a keyboard move fallback              |
 
 ## Examples
 

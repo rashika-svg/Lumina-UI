@@ -227,6 +227,19 @@
       </p>
     </section>
 
+    <section class="card" aria-labelledby="s-tree">
+      <h2 id="s-tree">Tree View</h2>
+      <lui-tree [nodes]="treeNodes" selectable />
+    </section>
+
+    <section class="card" aria-labelledby="s-kanban">
+      <h2 id="s-kanban">Kanban Board</h2>
+      <p class="muted" style="margin-top: 0">
+        Drag cards, or focus a card and press Ctrl/⌘ + ← / →.
+      </p>
+      <lui-kanban [(columns)]="board" />
+    </section>
+
     <section class="card" aria-labelledby="s-cmdk">
       <h2 id="s-cmdk">Command Palette</h2>
       <div class="row">

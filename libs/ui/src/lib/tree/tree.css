@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  font-family: var(--lui-font-family-sans);
+}
+
+.lui-tree__node {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  padding-block: var(--lui-space-1-5);
+  padding-inline-end: var(--lui-space-2);
+  border-radius: var(--lui-radius-md);
+  color: var(--lui-color-fg-default);
+  font-size: var(--lui-font-size-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.lui-tree__node:hover {
+  background: var(--lui-color-bg-subtle);
+}
+.lui-tree__node--selected {
+  background: var(--lui-color-accent-subtle);
+  color: var(--lui-color-accent-default);
+}
+.lui-tree__node:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 0.125rem var(--lui-color-accent-default);
+}
+.lui-tree__node[aria-disabled='true'] {
+  color: var(--lui-color-fg-disabled);
+  cursor: not-allowed;
+}
+
+.lui-tree__chevron {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  flex: 0 0 auto;
+  border-inline-end: 0.125rem solid currentColor;
+  border-block-end: 0.125rem solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--lui-duration-fast) var(--lui-easing-standard);
+  opacity: var(--lui-opacity-muted);
+}
+.lui-tree__chevron--open {
+  transform: rotate(45deg);
+}
+.lui-tree__chevron--leaf {
+  border: 0;
+  opacity: 0;
+}
+
+.lui-tree__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-tree__chevron {
+    transition: none;
+  }
+}

@@ -17,6 +17,8 @@ import {
   Dialog,
   Drawer,
   InputField,
+  Kanban,
+  type KanbanColumn,
   Menu,
   MenuItem,
   MenuTrigger,
@@ -28,6 +30,8 @@ import {
   Tabs,
   ToastOutlet,
   ToastService,
+  Tree,
+  type TreeNode,
 } from '@lumina/ui';
 import { ThemeService, type ThemeMode } from '@lumina/theme';
 
@@ -67,6 +71,8 @@ interface TeamMember {
     Pagination,
     Table,
     CommandPalette,
+    Tree,
+    Kanban,
     ToastOutlet,
   ],
   templateUrl: './app.html',
@@ -142,6 +148,53 @@ export class App {
   ];
   protected readonly selectedRows = signal<TeamMember[]>([]);
   protected readonly byId = (m: TeamMember) => m.id;
+
+  // Tree
+  protected readonly treeNodes: TreeNode[] = [
+    {
+      id: 'src',
+      label: 'src',
+      children: [
+        {
+          id: 'app',
+          label: 'app',
+          children: [{ id: 'app.ts', label: 'app.ts' }],
+        },
+        { id: 'styles', label: 'styles.css' },
+      ],
+    },
+    {
+      id: 'libs',
+      label: 'libs',
+      children: [
+        { id: 'ui', label: 'ui' },
+        { id: 'tokens', label: 'tokens' },
+      ],
+    },
+    { id: 'readme', label: 'README.md' },
+  ];
+
+  // Kanban
+  protected readonly board = signal<KanbanColumn[]>([
+    {
+      id: 'todo',
+      title: 'To do',
+      cards: [
+        {
+          id: 'k1',
+          title: 'Tree View',
+          description: 'ARIA tree + keyboard nav',
+        },
+        { id: 'k2', title: 'Kanban Board' },
+      ],
+    },
+    {
+      id: 'doing',
+      title: 'In progress',
+      cards: [{ id: 'k3', title: 'AI playground' }],
+    },
+    { id: 'done', title: 'Done', cards: [{ id: 'k4', title: 'Data Table' }] },
+  ]);
 
   // Command palette (⌘K / Ctrl+K)
   protected readonly cmdkOpen = signal(false);
