@@ -32,11 +32,13 @@ const THEMES = [
  *  CSS-ready strings/numbers, so we deliberately avoid the default `css` group's
  *  numeric size/time transforms that would mangle pre-unitised values. */
 StyleDictionary.registerTransformGroup({
+  // Colors are authored in OKLCH (already valid CSS), so we deliberately omit
+  // `color/css` — its tinycolor normalisation does not understand oklch() and
+  // would mangle the values. Every other value is emitted verbatim.
   name: 'lumina/css',
   transforms: [
     'attribute/cti',
     'name/kebab',
-    'color/css',
     'cubicBezier/css',
     'fontFamily/css',
   ],
@@ -110,7 +112,8 @@ async function buildTheme({ name, selector }, { emitTs }) {
     log: { warnings: 'disabled' },
     source: [
       `${ROOT}/tokens/primitive/**/*.json`,
-      `${ROOT}/tokens/semantic/${name}.json`,
+      // `${name}.json` plus any sibling `${name}.*.json` layer files (e.g. surfaces).
+      `${ROOT}/tokens/semantic/${name}*.json`,
       `${ROOT}/tokens/component/**/*.json`,
     ],
     platforms: {

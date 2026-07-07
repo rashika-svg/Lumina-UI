@@ -7,6 +7,21 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Changed — Design Language Foundation (platform pivot)
+
+- **Product direction:** Lumina UI is now a **design system platform** (docs · tokens · components ·
+  playground · theme studio). Source of truth: [PLATFORM_STRATEGY.md](docs/PLATFORM_STRATEGY.md) and
+  [DESIGN_LANGUAGE.md](docs/DESIGN_LANGUAGE.md).
+- **OKLCH color model** — all primitive colors re-authored in `oklch()` for perceptual uniformity and
+  accessible, predictable ramps (foundation for single-seed theme generation).
+- **Surface system** — named tonal surfaces (`surface.canvas/default/raised/overlay/floating/dialog`)
+  that lighten with elevation in dark mode.
+- **Elevation system (0–5)** — composite `elevation.{n}.{shadow,border,surface}` tokens.
+- **State-layer system** — `currentColor` hover/pressed overlays that adapt to every variant.
+- **Typography roles** — `display / heading / body / caption / code` scale tokens.
+- **Flagship re-skin** — Button (elevation lift + press + state layers + outline focus ring), Input
+  (floating label + animated focus + character counter), Badge and Avatar upgraded to the new system.
+
 ### Added
 
 - **Monorepo foundation** — Nx workspace (Angular 21, TypeScript 5.9) with seven layered libraries

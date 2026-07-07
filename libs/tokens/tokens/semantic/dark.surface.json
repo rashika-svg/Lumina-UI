@@ -1,0 +1,15 @@
+{
+  "surface": {
+    "canvas": { "$type": "color", "$value": "{color.neutral.950}" },
+    "default": { "$type": "color", "$value": "{color.neutral.900}" },
+    "raised": { "$type": "color", "$value": "{color.neutral.800}" },
+    "overlay": { "$type": "color", "$value": "{color.neutral.800}" },
+    "floating": { "$type": "color", "$value": "{color.neutral.800}" },
+    "dialog": { "$type": "color", "$value": "{color.neutral.800}" }
+  },
+  "color": {
+    "border": {
+      "elevated": { "$type": "color", "$value": "oklch(1 0 0 / 0.1)" }
+    }
+  }
+}

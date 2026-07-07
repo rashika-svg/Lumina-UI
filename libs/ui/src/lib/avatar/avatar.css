@@ -18,6 +18,9 @@
   overflow: visible;
   user-select: none;
   flex: 0 0 auto;
+  box-shadow:
+    var(--lui-elevation-1-shadow),
+    inset 0 0 0 var(--lui-border-width-thin) var(--lui-color-border-elevated);
 }
 
 :host([data-shape='square']) {
@@ -75,7 +78,7 @@
   min-inline-size: 0.5rem;
   min-block-size: 0.5rem;
   border-radius: var(--lui-radius-full);
-  border: var(--lui-border-width-thick) solid var(--lui-color-bg-canvas);
+  border: var(--lui-border-width-thick) solid var(--lui-surface-default);
   background: var(--lui-color-fg-subtle);
 }
 .lui-avatar__status[data-status='online'] {

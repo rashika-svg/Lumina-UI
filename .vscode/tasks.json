@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "nx: serve playground",
+      "type": "shell",
+      "command": "npx nx serve playground",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "angular",
+        "source": "ng",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "(Building|Rebuilding|Watch mode enabled)",
+          "endsPattern": "(Application bundle generation complete|Local:\\s+http|localhost:\\d+)"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

@@ -1,62 +1,64 @@
 # Roadmap
 
-Lumina UI is built in phases. Each component is only considered complete when it meets every bar in
-the [design principles](docs/DESIGN_PRINCIPLES.md) (a11y, theming, states, variants, tests, docs).
+Lumina UI is a **design system platform** (see [PLATFORM_STRATEGY.md](./docs/PLATFORM_STRATEGY.md)
+and [DESIGN_LANGUAGE.md](./docs/DESIGN_LANGUAGE.md)). Angular is the V1 implementation; the
+foundation is framework-neutral so other frameworks can follow.
 
 ## ✅ Foundation (done)
 
-- [x] Nx monorepo with enforced layered architecture (7 libraries)
+- [x] Nx workspace, quality tooling (ESLint, Prettier, Husky, Commitlint, CI)
 - [x] DTCG design tokens → Style Dictionary → themed CSS variables + typed TS map
-- [x] Theme engine: light / dark / high-contrast, system resolution, reduced motion, custom themes, persistence, export/import
-- [x] Quality tooling: ESLint, Prettier, Husky, Commitlint, lint-staged, GitHub Actions CI
-- [x] Interactive playground with live theme switching
+- [x] Theme engine: light / dark / high-contrast, system resolution, reduced motion, custom themes
+- [x] 18 components built + tested (5 flagship + 13 extended) with Storybook stories
 
-## 🟡 Phase 1 — Core components (in progress)
+## 🟡 P1 — Design Language Foundation (current)
 
-- [x] Button
-- [x] Badge
-- [x] Avatar
-- [x] Input
-- [x] Switch
-- [ ] Textarea
-- [ ] Checkbox
-- [ ] Radio
-- [ ] Select
-- [ ] Tag
-- [ ] Tooltip
+Elevating the visual system to premium quality; validating before any structural migration.
 
-## ✅ Phase 2 — Composite & overlay (complete)
+- [ ] Colors authored in **OKLCH**
+- [ ] **Surface system** (canvas / default / raised / overlay / floating / dialog)
+- [ ] **Elevation system 0–5** (shadow + border + surface per level)
+- [ ] **State-layer system** (hover / focus / pressed / disabled)
+- [ ] **Typography roles** (display / heading / body / caption / code)
+- [ ] **Motion tokens** (durations + easings, purposeful)
+- [ ] Re-skin **Button · Input · Badge · Avatar** as proof of concept
 
-- [x] Tabs (ARIA tablist, roving tabindex)
-- [x] Accordion (single / multiple disclosure)
-- [x] Dialog / Modal (focus trap, scrim, Escape, scroll lock)
-- [x] Drawer (edge-anchored overlay, shared focus-trap)
-- [x] Dropdown / Menu (ARIA menu, keyboard nav, outside-click dismissal)
-- [x] Toast (injectable service + ARIA live region)
-- [x] Breadcrumb
-- [x] Pagination (with ellipsis truncation)
+## ⬜ P2 — Documentation Platform
 
-## 🟡 Phase 3 — Data & power-user (in progress)
+Docs shell (top nav · sidebar · TOC · search) · per-component doc standard · Getting Started,
+Design Principles, Accessibility, Tokens (live reference), Theming, Contributing, Roadmap, Changelog.
 
-- [x] Data Table (generic, sortable, selectable, sticky header, loading/empty states)
-- [x] Command Palette (⌘K, fuzzy search, keyboard navigation)
-- [x] Tree View (ARIA tree, keyboard navigation, selection)
-- [x] Kanban Board (drag-and-drop + keyboard move)
-- [ ] Data Grid (virtualised, editable cells)
-- [ ] File Explorer
+## ⬜ P3 — Flagship Components
 
-## ⬜ Phase 4 — Visualisation
+Button, Input, Badge, Avatar, **Card** to the exceptional bar, each fully documented.
 
-Charts · Dashboard Widgets · Analytics Cards · Timeline · Activity Feed
+## ⬜ P4 — Playground
 
-## ⬜ Platform features
+Live preview · property controls · theme + responsive + accessibility preview · code output.
 
-- [x] Storybook documentation site with interactive controls, a theme toolbar and the a11y addon
-- [ ] Expand Storybook with MDX docs pages and visual regression snapshots
-- [ ] Tailwind v4 token-mapped preset for application authors
-- [ ] Icon library (`@lumina/icons`)
-- [ ] AI playground — natural-language → UI generation (`@lumina/ai`)
-- [ ] CLI generators for scaffolding components and custom themes
-- [ ] Visual regression tests (Playwright snapshots)
-- [ ] Publishable packages via `nx release` with automated changelogs
-- [ ] Figma Tokens sync
+## ⬜ P5 — Theme Studio
+
+OKLCH seed → tonal palette → instant live update · typography / radius / spacing / shadow controls ·
+theme export / import / presets.
+
+## ⬜ P6 — Dashboard & Search
+
+Design-system metrics (components / tokens / themes / coverage) · ⌘K global search.
+
+## ⬜ P0 — Structural migration (deferred by design)
+
+Collapse Nx → single Angular app with the `src/` structure — executed **only after** the design
+language, tokens, component standards, and documentation structure are validated.
+
+## 🔭 Future (V2 / V3)
+
+- **V2:** AI playground (NL → UI) · document the extended component set · theme presets · ⌘K ·
+  automated a11y (axe) + visual regression · auto-generated API reference.
+- **V3:** headless behavior core · React / Vue / Svelte / Next / Nuxt adapters · Figma two-way sync ·
+  hosted theme sharing · versioned docs.
+
+## Component status
+
+**Flagship (P1/P3 focus):** Button · Input · Badge · Avatar · Card _(Card: not yet built)_
+**Extended (parked, documented in V2):** Switch · Tag · Tabs · Accordion · Dialog · Drawer · Menu ·
+Toast · Breadcrumb · Pagination · Table · Command Palette · Tree · Kanban

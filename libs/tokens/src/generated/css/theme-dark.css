@@ -3,6 +3,7 @@
  */
 
 [data-theme='dark'] {
+  --lui-color-border-elevated: oklch(1 0 0 / 0.1);
   --lui-color-overlay-scrim: rgba(2, 6, 23, 0.7);
   --lui-color-success-subtle: var(--lui-color-success-950);
   --lui-color-success-default: var(--lui-color-success-500);
@@ -47,8 +48,26 @@
   --lui-color-accent-fg: var(--lui-color-neutral-950);
   --lui-color-accent-border: var(--lui-color-brand-500);
   --lui-color-focus-ring: var(--lui-color-brand-400);
+  --lui-surface-canvas: var(--lui-color-neutral-950);
+  --lui-surface-default: var(--lui-color-neutral-900);
+  --lui-surface-raised: var(--lui-color-neutral-800);
+  --lui-surface-overlay: var(--lui-color-neutral-800);
+  --lui-surface-floating: var(--lui-color-neutral-800);
+  --lui-surface-dialog: var(--lui-color-neutral-800);
   --lui-button-radius: var(--lui-radius-md);
   --lui-button-font-weight: var(--lui-font-weight-medium);
+  --lui-elevation-0-shadow: var(--lui-shadow-none);
+  --lui-elevation-0-border: var(--lui-color-transparent);
+  --lui-elevation-1-shadow: var(--lui-shadow-xs);
+  --lui-elevation-1-border: var(--lui-color-border-elevated);
+  --lui-elevation-2-shadow: var(--lui-shadow-sm);
+  --lui-elevation-2-border: var(--lui-color-border-elevated);
+  --lui-elevation-3-shadow: var(--lui-shadow-md);
+  --lui-elevation-3-border: var(--lui-color-border-elevated);
+  --lui-elevation-4-shadow: var(--lui-shadow-lg);
+  --lui-elevation-4-border: var(--lui-color-border-elevated);
+  --lui-elevation-5-shadow: var(--lui-shadow-2xl);
+  --lui-elevation-5-border: var(--lui-color-border-elevated);
   --lui-field-radius: var(--lui-radius-md);
   --lui-button-focus-ring: var(--lui-color-focus-ring);
   --lui-button-primary-bg: var(--lui-color-accent-default);
@@ -66,6 +85,12 @@
   --lui-button-danger-bg: var(--lui-color-danger-default);
   --lui-button-danger-bg-hover: var(--lui-color-danger-hover);
   --lui-button-danger-fg: var(--lui-color-danger-fg);
+  --lui-elevation-0-surface: var(--lui-surface-canvas);
+  --lui-elevation-1-surface: var(--lui-surface-default);
+  --lui-elevation-2-surface: var(--lui-surface-raised);
+  --lui-elevation-3-surface: var(--lui-surface-overlay);
+  --lui-elevation-4-surface: var(--lui-surface-floating);
+  --lui-elevation-5-surface: var(--lui-surface-dialog);
   --lui-field-bg: var(--lui-color-bg-surface);
   --lui-field-bg-disabled: var(--lui-color-bg-subtle);
   --lui-field-fg: var(--lui-color-fg-default);

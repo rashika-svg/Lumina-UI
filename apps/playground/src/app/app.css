@@ -37,8 +37,10 @@
 }
 .brand__name {
   margin: 0;
-  font-size: var(--lui-font-size-xl);
-  font-weight: var(--lui-font-weight-bold);
+  font-size: var(--lui-type-heading-lg-size);
+  font-weight: var(--lui-type-heading-lg-weight);
+  letter-spacing: var(--lui-type-heading-lg-tracking);
+  line-height: var(--lui-type-heading-lg-line);
 }
 .brand__tag {
   margin: 0;
@@ -72,15 +74,17 @@
 
 .card {
   padding: var(--lui-space-6);
-  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border: var(--lui-border-width-thin) solid var(--lui-elevation-2-border);
   border-radius: var(--lui-radius-xl);
-  background: var(--lui-color-bg-surface);
-  box-shadow: var(--lui-shadow-sm);
+  background: var(--lui-elevation-2-surface);
+  box-shadow: var(--lui-elevation-2-shadow);
 }
 .card h2 {
   margin: 0 0 var(--lui-space-4);
-  font-size: var(--lui-font-size-lg);
-  font-weight: var(--lui-font-weight-semibold);
+  font-size: var(--lui-type-heading-md-size);
+  font-weight: var(--lui-type-heading-md-weight);
+  letter-spacing: var(--lui-type-heading-md-tracking);
+  line-height: var(--lui-type-heading-md-line);
 }
 
 .row {

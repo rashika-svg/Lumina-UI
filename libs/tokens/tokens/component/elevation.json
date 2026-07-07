@@ -1,0 +1,34 @@
+{
+  "elevation": {
+    "0": {
+      "shadow": { "$type": "shadow", "$value": "{shadow.none}" },
+      "border": { "$type": "color", "$value": "{color.transparent}" },
+      "surface": { "$type": "color", "$value": "{surface.canvas}" }
+    },
+    "1": {
+      "shadow": { "$type": "shadow", "$value": "{shadow.xs}" },
+      "border": { "$type": "color", "$value": "{color.border.elevated}" },
+      "surface": { "$type": "color", "$value": "{surface.default}" }
+    },
+    "2": {
+      "shadow": { "$type": "shadow", "$value": "{shadow.sm}" },
+      "border": { "$type": "color", "$value": "{color.border.elevated}" },
+      "surface": { "$type": "color", "$value": "{surface.raised}" }
+    },
+    "3": {
+      "shadow": { "$type": "shadow", "$value": "{shadow.md}" },
+      "border": { "$type": "color", "$value": "{color.border.elevated}" },
+      "surface": { "$type": "color", "$value": "{surface.overlay}" }
+    },
+    "4": {
+      "shadow": { "$type": "shadow", "$value": "{shadow.lg}" },
+      "border": { "$type": "color", "$value": "{color.border.elevated}" },
+      "surface": { "$type": "color", "$value": "{surface.floating}" }
+    },
+    "5": {
+      "shadow": { "$type": "shadow", "$value": "{shadow.2xl}" },
+      "border": { "$type": "color", "$value": "{color.border.elevated}" },
+      "surface": { "$type": "color", "$value": "{surface.dialog}" }
+    }
+  }
+}

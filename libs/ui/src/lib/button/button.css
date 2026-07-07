@@ -1,14 +1,17 @@
 :host {
   --_bg: transparent;
-  --_bg-hover: transparent;
-  --_bg-active: transparent;
   --_fg: var(--lui-color-fg-default);
   --_border: transparent;
+  --_elevation-rest: none;
+  --_elevation-hover: none;
+  --_lift: 0px;
   --_height: var(--lui-size-control-md);
   --_padding-x: var(--lui-space-4);
   --_font-size: var(--lui-font-size-sm);
   --_gap: var(--lui-space-2);
 
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -21,67 +24,92 @@
   color: var(--_fg);
   font-family: var(--lui-font-family-sans);
   font-size: var(--_font-size);
-  font-weight: var(--lui-button-font-weight);
+  font-weight: var(--lui-font-weight-medium);
   line-height: var(--lui-font-line-height-none);
+  letter-spacing: -0.006em;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--_elevation-rest);
   transition:
     background-color var(--lui-duration-fast) var(--lui-easing-standard),
     border-color var(--lui-duration-fast) var(--lui-easing-standard),
     color var(--lui-duration-fast) var(--lui-easing-standard),
-    box-shadow var(--lui-duration-fast) var(--lui-easing-standard);
+    box-shadow var(--lui-duration-normal) var(--lui-easing-emphasized),
+    transform var(--lui-duration-normal) var(--lui-easing-emphasized);
 }
 
+/* State layer — a currentColor overlay that adapts to every variant. */
+:host::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--lui-duration-fast) var(--lui-easing-standard);
+  pointer-events: none;
+}
+:host(:hover)::before {
+  opacity: var(--lui-state-hover);
+}
+:host(:active)::before {
+  opacity: var(--lui-state-pressed);
+}
+
+/* Elevation lift on hover, press depression. */
 :host(:hover) {
-  background: var(--_bg-hover);
+  box-shadow: var(--_elevation-hover);
+  transform: translateY(var(--_lift));
 }
 :host(:active) {
-  background: var(--_bg-active);
+  box-shadow: var(--_elevation-rest);
+  transform: translateY(0);
 }
 
-/* Keyboard focus only — never on mouse interaction. */
+/* Keyboard focus only — outline composes with elevation shadow. */
 :host(:focus-visible) {
-  outline: none;
-  box-shadow:
-    0 0 0 var(--lui-border-width-thin) var(--lui-color-bg-canvas),
-    0 0 0 calc(var(--lui-border-width-thin) + 0.125rem)
-      var(--lui-button-focus-ring);
+  outline: 2px solid var(--lui-button-focus-ring);
+  outline-offset: 2px;
 }
 
 :host([disabled]),
 :host([aria-disabled='true']) {
   cursor: not-allowed;
   opacity: var(--lui-opacity-disabled);
+  box-shadow: none;
+  transform: none;
   pointer-events: none;
 }
 
 /* ── Variants ──────────────────────────────────────────────────────────── */
 :host([data-variant='primary']) {
   --_bg: var(--lui-button-primary-bg);
-  --_bg-hover: var(--lui-button-primary-bgHover);
-  --_bg-active: var(--lui-button-primary-bgActive);
   --_fg: var(--lui-button-primary-fg);
+  --_elevation-rest: var(--lui-elevation-1-shadow);
+  --_elevation-hover: var(--lui-elevation-3-shadow);
+  --_lift: -1px;
 }
 :host([data-variant='secondary']) {
-  --_bg: var(--lui-button-secondary-bg);
-  --_bg-hover: var(--lui-button-secondary-bgHover);
-  --_bg-active: var(--lui-button-secondary-bgActive);
+  --_bg: var(--lui-surface-default);
   --_fg: var(--lui-button-secondary-fg);
-  --_border: var(--lui-button-secondary-border);
+  --_border: var(--lui-color-border-strong);
+  --_elevation-rest: var(--lui-elevation-1-shadow);
+  --_elevation-hover: var(--lui-elevation-2-shadow);
+  --_lift: -1px;
 }
 :host([data-variant='ghost']) {
-  --_bg-hover: var(--lui-button-ghost-bgHover);
-  --_bg-active: var(--lui-button-ghost-bgActive);
   --_fg: var(--lui-button-ghost-fg);
 }
 :host([data-variant='danger']) {
   --_bg: var(--lui-button-danger-bg);
-  --_bg-hover: var(--lui-button-danger-bgHover);
-  --_bg-active: var(--lui-button-danger-bgHover);
   --_fg: var(--lui-button-danger-fg);
+  --_elevation-rest: var(--lui-elevation-1-shadow);
+  --_elevation-hover: var(--lui-elevation-3-shadow);
+  --_lift: -1px;
 }
 :host([data-variant='link']) {
   --_fg: var(--lui-color-fg-link);
@@ -90,8 +118,12 @@
   block-size: auto;
   border: 0;
 }
+:host([data-variant='link'])::before {
+  display: none;
+}
 :host([data-variant='link']:hover) {
   text-decoration: underline;
+  transform: none;
 }
 
 /* ── Sizes ─────────────────────────────────────────────────────────────── */
@@ -146,10 +178,15 @@
   }
 }
 
-/* Honour reduced-motion (OS setting or the engine's forced attribute). */
 @media (prefers-reduced-motion: reduce) {
   :host {
-    transition: none;
+    transition:
+      background-color var(--lui-duration-fast) var(--lui-easing-standard),
+      color var(--lui-duration-fast) var(--lui-easing-standard);
+  }
+  :host(:hover),
+  :host(:active) {
+    transform: none;
   }
   .lui-button__spinner {
     animation-duration: 1.5s;

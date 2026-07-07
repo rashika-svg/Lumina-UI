@@ -13,8 +13,9 @@
   background: var(--_bg);
   color: var(--_fg);
   font-family: var(--lui-font-family-sans);
-  font-size: var(--lui-font-size-xs);
-  font-weight: var(--lui-font-weight-medium);
+  font-size: var(--lui-type-caption-size);
+  font-weight: var(--lui-type-caption-weight);
+  letter-spacing: var(--lui-type-caption-tracking);
   line-height: var(--lui-font-line-height-none);
   white-space: nowrap;
 }

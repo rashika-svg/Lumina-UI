@@ -1,0 +1,8 @@
+{
+  "state": {
+    "hover": { "$type": "number", "$value": 0.08 },
+    "pressed": { "$type": "number", "$value": 0.12 },
+    "selected": { "$type": "number", "$value": 0.1 },
+    "focus": { "$type": "number", "$value": 0.12 }
+  }
+}
