@@ -2,7 +2,7 @@
   "button": {
     "radius": {
       "$type": "dimension",
-      "$value": "{radius.md}"
+      "$value": "{radius.full}"
     },
     "font": {
       "weight": {
@@ -37,15 +37,15 @@
     "secondary": {
       "bg": {
         "$type": "color",
-        "$value": "{color.bg.surface}"
+        "$value": "{color.bg.muted}"
       },
       "bgHover": {
         "$type": "color",
-        "$value": "{color.bg.subtle}"
+        "$value": "{color.bg.emphasis}"
       },
       "bgActive": {
         "$type": "color",
-        "$value": "{color.bg.muted}"
+        "$value": "{color.bg.emphasis}"
       },
       "fg": {
         "$type": "color",
@@ -53,7 +53,7 @@
       },
       "border": {
         "$type": "color",
-        "$value": "{color.border.strong}"
+        "$value": "{color.transparent}"
       }
     },
     "ghost": {

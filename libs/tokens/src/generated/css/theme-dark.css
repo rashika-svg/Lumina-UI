@@ -54,8 +54,9 @@
   --lui-surface-overlay: var(--lui-color-neutral-800);
   --lui-surface-floating: var(--lui-color-neutral-800);
   --lui-surface-dialog: var(--lui-color-neutral-800);
-  --lui-button-radius: var(--lui-radius-md);
+  --lui-button-radius: var(--lui-radius-full);
   --lui-button-font-weight: var(--lui-font-weight-medium);
+  --lui-button-secondary-border: var(--lui-color-transparent);
   --lui-elevation-0-shadow: var(--lui-shadow-none);
   --lui-elevation-0-border: var(--lui-color-transparent);
   --lui-elevation-1-shadow: var(--lui-shadow-xs);
@@ -74,11 +75,10 @@
   --lui-button-primary-bg-hover: var(--lui-color-accent-hover);
   --lui-button-primary-bg-active: var(--lui-color-accent-active);
   --lui-button-primary-fg: var(--lui-color-accent-fg);
-  --lui-button-secondary-bg: var(--lui-color-bg-surface);
-  --lui-button-secondary-bg-hover: var(--lui-color-bg-subtle);
-  --lui-button-secondary-bg-active: var(--lui-color-bg-muted);
+  --lui-button-secondary-bg: var(--lui-color-bg-muted);
+  --lui-button-secondary-bg-hover: var(--lui-color-bg-emphasis);
+  --lui-button-secondary-bg-active: var(--lui-color-bg-emphasis);
   --lui-button-secondary-fg: var(--lui-color-fg-default);
-  --lui-button-secondary-border: var(--lui-color-border-strong);
   --lui-button-ghost-bg-hover: var(--lui-color-bg-subtle);
   --lui-button-ghost-bg-active: var(--lui-color-bg-muted);
   --lui-button-ghost-fg: var(--lui-color-fg-default);

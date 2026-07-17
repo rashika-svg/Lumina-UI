@@ -5,17 +5,17 @@
 
   display: inline-flex;
   align-items: center;
-  gap: var(--lui-space-1);
-  padding-inline: var(--lui-space-2);
-  block-size: var(--lui-space-5);
+  gap: var(--lui-space-1-5);
+  padding-inline: var(--lui-space-2-5);
+  block-size: 1.375rem;
   border: var(--lui-border-width-thin) solid var(--_border);
   border-radius: var(--lui-radius-full);
   background: var(--_bg);
   color: var(--_fg);
   font-family: var(--lui-font-family-sans);
   font-size: var(--lui-type-caption-size);
-  font-weight: var(--lui-type-caption-weight);
-  letter-spacing: var(--lui-type-caption-tracking);
+  font-weight: var(--lui-font-weight-semibold);
+  letter-spacing: 0.01em;
   line-height: var(--lui-font-line-height-none);
   white-space: nowrap;
 }
@@ -89,4 +89,9 @@
 }
 :host([data-appearance='outline'][data-variant='danger']) {
   --_fg: var(--lui-color-danger-text);
+}
+
+/* Crisp hairline on subtle badges, tinted to the badge's own colour. */
+:host([data-appearance='subtle']) {
+  --_border: color-mix(in oklab, currentColor 16%, transparent);
 }
