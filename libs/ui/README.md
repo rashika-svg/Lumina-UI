@@ -14,6 +14,7 @@ handling.
 | Button          | `button[luiButton]`, `a[luiButton]`    | variants, sizes, loading & disabled, native semantics          |
 | Badge           | `span[luiBadge]`, `div[luiBadge]`      | solid / subtle / outline appearances, status variants          |
 | Avatar          | `lui-avatar`                           | image with initials fallback, sizes, status dot                |
+| Card            | `lui-card`                             | elevated / outlined / filled, media/header/footer, interactive |
 | Input           | `lui-input`                            | label / hint / error, full ARIA wiring, `ControlValueAccessor` |
 | Switch          | `lui-switch`                           | WAI-ARIA `switch`, `ControlValueAccessor`                      |
 | Tabs            | `lui-tabs` + `lui-tab`                 | ARIA tablist, roving tabindex, arrow/Home/End keys             |

@@ -1,0 +1,107 @@
+:host {
+  --_lift: 0px;
+
+  position: relative;
+  display: block;
+  border-radius: var(--lui-radius-xl);
+  background: var(--lui-elevation-2-surface);
+  color: var(--lui-color-fg-default);
+  overflow: hidden;
+  transition:
+    box-shadow var(--lui-duration-normal) var(--lui-easing-emphasized),
+    border-color var(--lui-duration-fast) var(--lui-easing-standard),
+    transform var(--lui-duration-normal) var(--lui-easing-emphasized);
+}
+
+/* ── Variants ──────────────────────────────────────────────────────────── */
+:host([data-variant='elevated']) {
+  background: var(--lui-elevation-2-surface);
+  border: var(--lui-border-width-thin) solid var(--lui-elevation-2-border);
+  box-shadow: var(--lui-elevation-2-shadow);
+}
+:host([data-variant='outlined']) {
+  background: var(--lui-surface-default);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-strong);
+  box-shadow: none;
+}
+:host([data-variant='filled']) {
+  background: var(--lui-color-bg-muted);
+  border: var(--lui-border-width-thin) solid transparent;
+  box-shadow: none;
+}
+
+/* ── Interactive ───────────────────────────────────────────────────────── */
+:host(.lui-card--interactive) {
+  cursor: pointer;
+  --_lift: -2px;
+}
+:host(.lui-card--interactive)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--lui-duration-fast) var(--lui-easing-standard);
+  pointer-events: none;
+}
+:host(.lui-card--interactive:hover) {
+  box-shadow: var(--lui-elevation-4-shadow);
+  transform: translateY(var(--_lift));
+}
+:host(.lui-card--interactive:hover)::before {
+  opacity: 0.04;
+}
+:host(.lui-card--interactive:active) {
+  transform: translateY(0);
+}
+:host(.lui-card--interactive:focus-visible) {
+  outline: 2px solid var(--lui-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Regions ───────────────────────────────────────────────────────────── */
+.lui-card__content {
+  position: relative;
+  z-index: 1;
+  padding: var(--lui-space-5);
+}
+
+/* Media projected via [cardMedia] sits flush to the rounded top edge. */
+:host ::ng-deep [cardMedia] {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+}
+
+.lui-card__text {
+  font-size: var(--lui-type-body-md-size);
+  line-height: var(--lui-type-body-md-line);
+  color: var(--lui-color-fg-muted);
+}
+
+:host ::ng-deep [cardHeader] {
+  margin: 0 0 var(--lui-space-2);
+  font-size: var(--lui-type-heading-md-size);
+  font-weight: var(--lui-type-heading-md-weight);
+  letter-spacing: var(--lui-type-heading-md-tracking);
+  line-height: var(--lui-type-heading-md-line);
+  color: var(--lui-color-fg-default);
+}
+
+:host ::ng-deep [cardFooter] {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  margin-block-start: var(--lui-space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    transition: none;
+  }
+  :host(.lui-card--interactive:hover) {
+    transform: none;
+  }
+}

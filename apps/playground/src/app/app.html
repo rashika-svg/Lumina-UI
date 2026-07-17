@@ -88,6 +88,36 @@
       </div>
     </section>
 
+    <section class="card" aria-labelledby="s-cards">
+      <h2 id="s-cards">Cards</h2>
+      <div class="card-grid">
+        <lui-card variant="elevated">
+          <h3 cardHeader>Elevated</h3>
+          <p>Raised surface with a soft shadow and hairline border.</p>
+          <div cardFooter>
+            <button luiButton size="sm">Open</button>
+            <span luiBadge variant="success" appearance="subtle">Active</span>
+          </div>
+        </lui-card>
+
+        <lui-card variant="outlined">
+          <h3 cardHeader>Outlined</h3>
+          <p>A crisp bordered surface with no shadow.</p>
+          <div cardFooter>
+            <button luiButton variant="secondary" size="sm">Details</button>
+          </div>
+        </lui-card>
+
+        <lui-card variant="filled" interactive (cardClick)="notify('info')">
+          <h3 cardHeader>Interactive</h3>
+          <p>Filled tonal surface. Click or press Enter — it lifts on hover.</p>
+          <div cardFooter>
+            <span luiBadge variant="accent" appearance="subtle">Clickable</span>
+          </div>
+        </lui-card>
+      </div>
+    </section>
+
     <section class="card" aria-labelledby="s-forms">
       <h2 id="s-forms">Form controls</h2>
       <div class="form-grid">

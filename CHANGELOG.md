@@ -21,6 +21,9 @@ All notable changes to this project are documented here. The format is based on
 - **Typography roles** — `display / heading / body / caption / code` scale tokens.
 - **Flagship re-skin** — Button (elevation lift + press + state layers + outline focus ring), Input
   (floating label + animated focus + character counter), Badge and Avatar upgraded to the new system.
+- **Card** — the fifth flagship component: `elevated` / `outlined` / `filled` variants,
+  media / header / body / footer regions, and an accessible `interactive` mode (hover-elevation +
+  keyboard activation) — completing the MVP flagship set.
 
 ### Added
 

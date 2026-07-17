@@ -130,6 +130,9 @@ theme.registerTheme({
 
 - [Architecture](docs/ARCHITECTURE.md) — layers, dependency graph, token pipeline, theming model
 - [Design principles](docs/DESIGN_PRINCIPLES.md) — the rules every component follows
+- [Product plan](docs/PRODUCT_PLAN.md) — public site, documentation, adapter, and delivery strategy
+- [Component documentation standard](docs/COMPONENT_DOCUMENTATION_STANDARD.md) — the required page and example contract
+- [Test strategy](docs/TEST_STRATEGY.md) — acceptance cases and CI quality gates
 - [Contributing](CONTRIBUTING.md) — workflow, conventions, how to add a component
 - [Roadmap](ROADMAP.md) — phased component plan and platform features
 - [Changelog](CHANGELOG.md)

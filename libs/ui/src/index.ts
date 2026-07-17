@@ -1,9 +1,10 @@
-// Phase 1 — core
+// Phase 1 — core / flagship
 export * from './lib/button/button';
 export * from './lib/badge/badge';
 export * from './lib/avatar/avatar';
 export * from './lib/input/input';
 export * from './lib/switch/switch';
+export * from './lib/card/card';
 
 // Phase 2 — composite & overlay
 export * from './lib/tabs/tabs';

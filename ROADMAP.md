@@ -59,6 +59,6 @@ language, tokens, component standards, and documentation structure are validated
 
 ## Component status
 
-**Flagship (P1/P3 focus):** Button · Input · Badge · Avatar · Card _(Card: not yet built)_
+**Flagship (P1/P3 focus):** Button · Input · Badge · Avatar · Card — _all built to the design language_
 **Extended (parked, documented in V2):** Switch · Tag · Tabs · Accordion · Dialog · Drawer · Menu ·
 Toast · Breadcrumb · Pagination · Table · Command Palette · Tree · Kanban
