@@ -1,300 +1,71 @@
-<div class="page">
-  <header class="topbar">
-    <div class="brand">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="app-bar">
+  <div class="app-bar__inner">
+    <a class="brand" routerLink="/" (click)="closeNav()">
       <span class="brand__mark" aria-hidden="true">◇</span>
-      <div>
-        <h1 class="brand__name">Lumina UI</h1>
-        <p class="brand__tag">
-          Enterprise Angular design system — live playground
-        </p>
-      </div>
-    </div>
+      <span class="brand__name">Lumina UI</span>
+    </a>
 
-    <div class="theme-switcher" role="group" aria-label="Theme">
-      @for (option of themeOptions; track option.value) {
+    <nav class="app-nav" [class.is-open]="navOpen()" aria-label="Primary">
+      @for (item of nav; track item.path) {
+      <a
+        class="app-nav__link"
+        [routerLink]="item.path"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: !!item.exact }"
+        (click)="closeNav()"
+      >
+        {{ item.label }}
+      </a>
+      }
+    </nav>
+
+    <div class="app-bar__actions">
+      <div class="theme-toggle" role="group" aria-label="Theme">
+        @for (mode of themeModes; track mode.value) {
+        <button
+          type="button"
+          class="theme-toggle__btn"
+          [class.is-active]="theme.mode() === mode.value"
+          [attr.aria-pressed]="theme.mode() === mode.value"
+          [attr.aria-label]="mode.label"
+          (click)="setTheme(mode.value)"
+        >
+          {{ mode.icon }}
+        </button>
+        }
+      </div>
+
+      <a
+        class="app-bar__github"
+        href="https://github.com/rashika-svg/Lumina-UI"
+        target="_blank"
+        rel="noopener"
+      >
+        GitHub
+      </a>
+
       <button
-        luiButton
-        size="sm"
-        [variant]="theme.mode() === option.value ? 'primary' : 'ghost'"
-        [attr.aria-pressed]="theme.mode() === option.value"
-        (click)="setTheme(option.value)"
+        type="button"
+        class="app-bar__menu"
+        [attr.aria-expanded]="navOpen()"
+        aria-label="Toggle navigation"
+        (click)="toggleNav()"
       >
-        {{ option.label }}
+        <span aria-hidden="true">{{ navOpen() ? '✕' : '☰' }}</span>
       </button>
-      }
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="content">
-    <p class="resolved">
-      Active theme:
-      <span luiBadge variant="accent" appearance="subtle"
-        >{{ theme.resolvedTheme() }}</span
-      >
-      @if (theme.prefersReducedMotion()) {
-      <span luiBadge variant="warning" appearance="subtle">reduced motion</span>
-      }
-    </p>
+<main id="main" class="app-main">
+  <router-outlet />
+</main>
 
-    <section class="card" aria-labelledby="s-buttons">
-      <h2 id="s-buttons">Buttons</h2>
-      <div class="row">
-        @for (variant of buttonVariants; track variant) {
-        <button luiButton [variant]="variant">{{ variant }}</button>
-        }
-      </div>
-      <div class="row">
-        <button luiButton size="sm">Small</button>
-        <button luiButton size="md">Medium</button>
-        <button luiButton size="lg">Large</button>
-        <button luiButton disabled>Disabled</button>
-        <button luiButton [loading]="loadingDemo()" (click)="simulateLoad()">
-          {{ loadingDemo() ? 'Saving…' : 'Click to load' }}
-        </button>
-      </div>
-    </section>
-
-    <section class="card" aria-labelledby="s-badges">
-      <h2 id="s-badges">Badges</h2>
-      <div class="row">
-        @for (variant of badgeVariants; track variant) {
-        <span luiBadge [variant]="variant" appearance="subtle"
-          >{{ variant }}</span
-        >
-        }
-      </div>
-      <div class="row">
-        @for (variant of badgeVariants; track variant) {
-        <span luiBadge [variant]="variant" appearance="solid"
-          >{{ variant }}</span
-        >
-        }
-      </div>
-    </section>
-
-    <section class="card" aria-labelledby="s-avatars">
-      <h2 id="s-avatars">Avatars</h2>
-      <div class="row row--center">
-        <lui-avatar name="Ada Lovelace" size="xs" />
-        <lui-avatar name="Grace Hopper" size="sm" status="online" />
-        <lui-avatar name="Alan Turing" size="md" status="busy" />
-        <lui-avatar
-          name="Linus Torvalds"
-          size="lg"
-          shape="square"
-          status="away"
-        />
-        <lui-avatar name="Margaret Hamilton" size="xl" />
-      </div>
-    </section>
-
-    <section class="card" aria-labelledby="s-cards">
-      <h2 id="s-cards">Cards</h2>
-      <div class="card-grid">
-        <lui-card variant="elevated">
-          <h3 cardHeader>Elevated</h3>
-          <p>Raised surface with a soft shadow and hairline border.</p>
-          <div cardFooter>
-            <button luiButton size="sm">Open</button>
-            <span luiBadge variant="success" appearance="subtle">Active</span>
-          </div>
-        </lui-card>
-
-        <lui-card variant="outlined">
-          <h3 cardHeader>Outlined</h3>
-          <p>A crisp bordered surface with no shadow.</p>
-          <div cardFooter>
-            <button luiButton variant="secondary" size="sm">Details</button>
-          </div>
-        </lui-card>
-
-        <lui-card variant="filled" interactive (cardClick)="notify('info')">
-          <h3 cardHeader>Interactive</h3>
-          <p>Filled tonal surface. Click or press Enter — it lifts on hover.</p>
-          <div cardFooter>
-            <span luiBadge variant="accent" appearance="subtle">Clickable</span>
-          </div>
-        </lui-card>
-      </div>
-    </section>
-
-    <section class="card" aria-labelledby="s-forms">
-      <h2 id="s-forms">Form controls</h2>
-      <div class="form-grid">
-        <lui-input
-          label="Email address"
-          type="email"
-          placeholder="ada@lumina.dev"
-          hint="We'll never share your email."
-          [(ngModel)]="email"
-        />
-        <lui-input
-          label="Workspace"
-          placeholder="acme-inc"
-          [error]="'This workspace name is taken.'"
-        />
-      </div>
-      <div class="row">
-        <lui-switch label="Email notifications" [(ngModel)]="notifications" />
-        <lui-switch label="Disabled" disabled />
-      </div>
-      <p class="muted">
-        Email entered: {{ email() || '—' }} · Notifications: {{ notifications()
-        }}
-      </p>
-    </section>
-
-    <section class="card" aria-labelledby="s-tabs">
-      <h2 id="s-tabs">Tabs</h2>
-      <lui-tabs ariaLabel="Demo tabs">
-        <lui-tab label="Overview"
-          >Lumina components are accessible, themeable and
-          token-driven.</lui-tab
-        >
-        <lui-tab label="Keyboard"
-          >Use Arrow / Home / End to move between tabs; selection follows
-          focus.</lui-tab
-        >
-        <lui-tab label="Disabled" [disabled]="true"
-          >You shouldn't see this.</lui-tab
-        >
-        <lui-tab label="Theming"
-          >Every colour comes from a semantic design token.</lui-tab
-        >
-      </lui-tabs>
-    </section>
-
-    <section class="card" aria-labelledby="s-accordion">
-      <h2 id="s-accordion">Accordion</h2>
-      <lui-accordion>
-        <lui-accordion-item heading="Is it accessible?">
-          Yes — WAI-ARIA disclosure pattern with full keyboard support.
-        </lui-accordion-item>
-        <lui-accordion-item heading="Single or multiple?">
-          Single-open by default; set multiple to allow several.
-        </lui-accordion-item>
-        <lui-accordion-item heading="Themed?">
-          Entirely token-driven, like everything else.
-        </lui-accordion-item>
-      </lui-accordion>
-    </section>
-
-    <section class="card" aria-labelledby="s-overlay">
-      <h2 id="s-overlay">Dialog &amp; Toasts</h2>
-      <div class="row">
-        <button luiButton (click)="dialogOpen.set(true)">Open dialog</button>
-        <button luiButton variant="secondary" (click)="notify('info')">
-          Info toast
-        </button>
-        <button luiButton variant="secondary" (click)="notify('success')">
-          Success
-        </button>
-        <button luiButton variant="secondary" (click)="notify('warning')">
-          Warning
-        </button>
-        <button luiButton variant="secondary" (click)="notify('danger')">
-          Error
-        </button>
-      </div>
-
-      <lui-dialog
-        [(open)]="dialogOpen"
-        heading="Delete project?"
-        description="This permanently removes the project and all of its data."
-      >
-        <p>You can't undo this action. Please confirm you wish to continue.</p>
-        <div dialogFooter>
-          <button luiButton variant="ghost" (click)="dialogOpen.set(false)">
-            Cancel
-          </button>
-          <button luiButton variant="danger" (click)="dialogOpen.set(false)">
-            Delete
-          </button>
-        </div>
-      </lui-dialog>
-    </section>
-
-    <section class="card" aria-labelledby="s-menu">
-      <h2 id="s-menu">Drawer &amp; Menu</h2>
-      <div class="row">
-        <button luiButton variant="secondary" (click)="drawerOpen.set(true)">
-          Open drawer
-        </button>
-
-        <lui-menu>
-          <button luiButton variant="secondary" luiMenuTrigger>
-            Options ▾
-          </button>
-          <lui-menu-item (selected)="notify('info')">Edit</lui-menu-item>
-          <lui-menu-item (selected)="notify('success')"
-            >Duplicate</lui-menu-item
-          >
-          <lui-menu-item [disabled]="true">Archive</lui-menu-item>
-          <lui-menu-item (selected)="notify('danger')">Delete</lui-menu-item>
-        </lui-menu>
-      </div>
-
-      <lui-drawer [(open)]="drawerOpen" side="end" heading="Settings">
-        <p>
-          This panel slides in from the end edge with a focus trap and scroll
-          lock.
-        </p>
-        <p>Press Escape or click the backdrop to dismiss.</p>
-      </lui-drawer>
-    </section>
-
-    <section class="card" aria-labelledby="s-table">
-      <h2 id="s-table">Data Table</h2>
-      <lui-table
-        [columns]="tableColumns"
-        [data]="team"
-        selectable
-        [(selection)]="selectedRows"
-        [rowKey]="byId"
-      />
-      <p class="muted">
-        Selected: {{ selectedRows().length }} of {{ team.length }}
-      </p>
-    </section>
-
-    <section class="card" aria-labelledby="s-tree">
-      <h2 id="s-tree">Tree View</h2>
-      <lui-tree [nodes]="treeNodes" selectable />
-    </section>
-
-    <section class="card" aria-labelledby="s-kanban">
-      <h2 id="s-kanban">Kanban Board</h2>
-      <p class="muted" style="margin-top: 0">
-        Drag cards, or focus a card and press Ctrl/⌘ + ← / →.
-      </p>
-      <lui-kanban [(columns)]="board" />
-    </section>
-
-    <section class="card" aria-labelledby="s-cmdk">
-      <h2 id="s-cmdk">Command Palette</h2>
-      <div class="row">
-        <button luiButton variant="secondary" (click)="cmdkOpen.set(true)">
-          Open palette
-        </button>
-        <span luiBadge variant="neutral" appearance="outline">⌘K / Ctrl+K</span>
-      </div>
-      <p class="muted">Last command: {{ lastCommand() || '—' }}</p>
-      <lui-command-palette
-        [(open)]="cmdkOpen"
-        [commands]="commands"
-        (run)="runCommand($event)"
-      />
-    </section>
-
-    <section class="card" aria-labelledby="s-nav">
-      <h2 id="s-nav">Navigation</h2>
-      <lui-breadcrumb [items]="crumbs" />
-      <div style="margin-top: 1rem">
-        <lui-pagination [total]="12" [(page)]="page" />
-        <p class="muted">Current page: {{ page() }}</p>
-      </div>
-    </section>
-  </main>
-
-  <lui-toast-outlet position="bottom-end" />
-</div>
+<footer class="app-footer">
+  <div class="app-footer__inner">
+    <span>Lumina UI — an enterprise Angular design system platform.</span>
+    <span class="app-footer__meta">Angular 21 · OKLCH design tokens · MIT</span>
+  </div>
+</footer>

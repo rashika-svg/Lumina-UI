@@ -1,0 +1,68 @@
+<section class="hero">
+  <p class="hero__eyebrow">Enterprise Angular design system platform</p>
+  <h1 class="hero__title">
+    One visual &amp; accessibility contract.<br />
+    <span class="hero__accent">Every framework you ship in.</span>
+  </h1>
+  <p class="hero__lead">
+    Lumina UI helps product teams build consistent, accessible interfaces
+    without giving up their framework, theme, or Tailwind workflow — a
+    design-system platform with tokens, theming, live documentation and a
+    component laboratory.
+  </p>
+
+  <div class="hero__actions">
+    <a luiButton variant="primary" size="lg" routerLink="/docs">Get started</a>
+    <a luiButton variant="secondary" size="lg" routerLink="/components"
+      >Browse components</a
+    >
+  </div>
+
+  <div class="install" aria-label="Install command">
+    <code class="install__code"
+      ><span class="install__prompt">$</span> npm install &#64;lumina/ui
+      &#64;lumina/tokens &#64;lumina/theme</code
+    >
+  </div>
+
+  <ul class="frameworks" aria-label="Framework support">
+    @for (fw of frameworks; track fw.name) {
+    <li>
+      <span
+        luiBadge
+        [variant]="fw.status === 'available' ? 'success' : 'neutral'"
+        appearance="subtle"
+      >
+        {{ fw.name }} · {{ fw.status === 'available' ? 'available' : 'planned'
+        }}
+      </span>
+    </li>
+    }
+  </ul>
+</section>
+
+<section class="features" aria-label="Platform foundations">
+  @for (feature of features; track feature.title) {
+  <lui-card variant="elevated">
+    <h2 cardHeader>{{ feature.title }}</h2>
+    <p>{{ feature.body }}</p>
+  </lui-card>
+  }
+</section>
+
+<section class="cta">
+  <lui-card variant="filled">
+    <h2 cardHeader>See it in motion</h2>
+    <p>
+      Explore every component live in the playground, or read the documentation
+      to learn the token architecture, theming model and accessibility
+      standards.
+    </p>
+    <div cardFooter>
+      <a luiButton variant="primary" routerLink="/playground"
+        >Open the playground</a
+      >
+      <a luiButton variant="ghost" routerLink="/docs">Read the docs</a>
+    </div>
+  </lui-card>
+</section>

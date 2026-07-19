@@ -1,0 +1,88 @@
+:host {
+  display: block;
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  padding: var(--lui-space-4);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.hero {
+  padding-block: var(--lui-space-16) var(--lui-space-12);
+  max-inline-size: 48rem;
+}
+.hero__eyebrow {
+  margin: 0 0 var(--lui-space-4);
+  font-size: var(--lui-type-caption-size);
+  font-weight: var(--lui-font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lui-color-accent-default);
+}
+.hero__title {
+  margin: 0 0 var(--lui-space-5);
+  font-size: var(--lui-type-display-md-size);
+  font-weight: var(--lui-type-display-md-weight);
+  letter-spacing: var(--lui-type-display-md-tracking);
+  line-height: var(--lui-type-display-md-line);
+}
+.hero__accent {
+  color: var(--lui-color-accent-default);
+}
+.hero__lead {
+  margin: 0 0 var(--lui-space-6);
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-type-body-lg-size);
+  line-height: var(--lui-type-body-lg-line);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lui-space-3);
+  margin-block-end: var(--lui-space-6);
+}
+
+.install {
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  padding: var(--lui-space-3) var(--lui-space-4);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-lg);
+  background: var(--lui-surface-default);
+  box-shadow: var(--lui-elevation-1-shadow);
+}
+.install__code {
+  font-family: var(--lui-font-family-mono);
+  font-size: var(--lui-type-code-size);
+  color: var(--lui-color-fg-default);
+  white-space: nowrap;
+}
+.install__prompt {
+  color: var(--lui-color-fg-subtle);
+  margin-inline-end: var(--lui-space-2);
+  user-select: none;
+}
+
+.frameworks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lui-space-2);
+  margin: var(--lui-space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ── Feature grid ──────────────────────────────────────────────────────── */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--lui-space-4);
+  padding-block-end: var(--lui-space-10);
+}
+.features p {
+  margin: 0;
+}
+
+.cta {
+  padding-block-end: var(--lui-space-16);
+}
