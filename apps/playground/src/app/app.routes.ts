@@ -3,6 +3,7 @@ import { Route } from '@angular/router';
 export const appRoutes: Route[] = [
   {
     path: '',
+    pathMatch: 'full',
     title: 'Lumina UI — enterprise Angular design system platform',
     loadComponent: () =>
       import('./pages/landing/landing').then((m) => m.LandingPage),
@@ -12,17 +13,11 @@ export const appRoutes: Route[] = [
     title: 'Getting started · Lumina UI',
     loadComponent: () => import('./pages/docs/docs').then((m) => m.DocsPage),
   },
+  { path: 'components', pathMatch: 'full', redirectTo: 'components/button' },
   {
-    path: 'components',
-    title: 'Components · Lumina UI',
-    loadComponent: () =>
-      import('./pages/components/components').then((m) => m.ComponentsPage),
-  },
-  {
-    path: 'playground',
-    title: 'Playground · Lumina UI',
-    loadComponent: () =>
-      import('./pages/showcase/showcase').then((m) => m.ShowcasePage),
+    path: 'components/:slug',
+    title: 'Component Lab · Lumina UI',
+    loadComponent: () => import('./pages/lab/lab').then((m) => m.LabPage),
   },
   { path: '**', redirectTo: '' },
 ];

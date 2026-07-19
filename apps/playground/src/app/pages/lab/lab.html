@@ -1,0 +1,142 @@
+<div class="lab">
+  <aside class="lab__sidebar">
+    <p class="lab__sidebar-title">Flagship components</p>
+    <nav class="lab__nav" aria-label="Components">
+      @for (item of items; track item.slug) {
+      <a
+        class="lab__nav-link"
+        [routerLink]="['/components', item.slug]"
+        routerLinkActive="is-active"
+      >
+        {{ item.name }}
+      </a>
+      }
+    </nav>
+  </aside>
+
+  <div class="lab__main">
+    <header class="lab__head">
+      <h1 class="lab__title">{{ def().name }}</h1>
+      <p class="lab__tagline">{{ def().tagline }}</p>
+    </header>
+
+    <div class="lab__toolbar">
+      <div class="viewport" role="group" aria-label="Preview width">
+        @for (vp of viewports; track vp.id) {
+        <button
+          type="button"
+          class="viewport__btn"
+          [class.is-active]="viewport() === vp.id"
+          [attr.aria-pressed]="viewport() === vp.id"
+          (click)="viewport.set(vp.id)"
+        >
+          {{ vp.label }}
+        </button>
+        }
+      </div>
+    </div>
+
+    <div class="preview">
+      <div class="preview__frame" [style.max-inline-size]="frameWidth()">
+        @switch (def().slug) { @case ('button') {
+        <button
+          luiButton
+          [variant]="$any(val('variant'))"
+          [size]="$any(val('size'))"
+          [disabled]="bool('disabled')"
+          [loading]="bool('loading')"
+        >
+          {{ val('label') }}
+        </button>
+        } @case ('input') {
+        <div class="preview__constrained">
+          <lui-input
+            [label]="val('label')"
+            [placeholder]="val('placeholder')"
+            [hint]="val('hint')"
+            [error]="val('error')"
+            [size]="$any(val('size'))"
+            [disabled]="bool('disabled')"
+          />
+        </div>
+        } @case ('badge') {
+        <span
+          luiBadge
+          [variant]="$any(val('variant'))"
+          [appearance]="$any(val('appearance'))"
+          [size]="$any(val('size'))"
+          >{{ val('text') }}</span
+        >
+        } @case ('avatar') {
+        <lui-avatar
+          [name]="val('name')"
+          [size]="$any(val('size'))"
+          [shape]="$any(val('shape'))"
+          [status]="$any(val('status') === 'none' ? null : val('status'))"
+        />
+        } @case ('card') {
+        <div class="preview__constrained">
+          <lui-card
+            [variant]="$any(val('variant'))"
+            [interactive]="bool('interactive')"
+          >
+            <h3 cardHeader>{{ val('title') }}</h3>
+            <p>{{ val('body') }}</p>
+          </lui-card>
+        </div>
+        } }
+      </div>
+    </div>
+
+    <div class="panel">
+      <section class="panel__controls" aria-label="Controls">
+        <h2 class="panel__title">Controls</h2>
+        <div class="controls">
+          @for (control of def().controls; track control.name) {
+          <div class="control">
+            <label class="control__label" [attr.for]="'ctl-' + control.name">
+              {{ control.label }}
+            </label>
+            @switch (control.type) { @case ('select') {
+            <select
+              class="control__select"
+              [id]="'ctl-' + control.name"
+              [value]="val(control.name)"
+              (change)="setValue(control.name, $any($event.target).value)"
+            >
+              @for (opt of control.options; track opt) {
+              <option [value]="opt">{{ opt }}</option>
+              }
+            </select>
+            } @case ('boolean') {
+            <lui-switch
+              [checked]="bool(control.name)"
+              (checkedChange)="setValue(control.name, $event)"
+              [ariaLabel]="control.label"
+            />
+            } @case ('text') {
+            <input
+              class="control__input"
+              type="text"
+              [id]="'ctl-' + control.name"
+              [value]="val(control.name)"
+              (input)="setValue(control.name, $any($event.target).value)"
+            />
+            } }
+          </div>
+          }
+        </div>
+      </section>
+
+      <section class="panel__code" aria-label="Code">
+        <div class="code-head">
+          <span class="panel__title">Code</span>
+          <button type="button" class="copy" (click)="copy()">
+            {{ copied() ? 'Copied ✓' : 'Copy' }}
+          </button>
+        </div>
+        <pre class="code"><code>{{ code() }}</code></pre>
+      </section>
+    </div>
+  </div>
+</div>

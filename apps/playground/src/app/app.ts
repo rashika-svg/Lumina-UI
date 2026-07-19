@@ -38,7 +38,6 @@ export class App {
     { label: 'Home', path: '/', exact: true },
     { label: 'Docs', path: '/docs' },
     { label: 'Components', path: '/components' },
-    { label: 'Playground', path: '/playground' },
   ];
 
   protected readonly themeModes: readonly ThemeMode3[] = [

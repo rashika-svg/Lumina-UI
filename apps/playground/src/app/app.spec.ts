@@ -24,12 +24,12 @@ describe('App (platform shell)', () => {
     expect(brand?.textContent).toContain('Lumina UI');
   });
 
-  it('renders the four primary nav links', () => {
+  it('renders the primary nav links', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     expect(
       fixture.nativeElement.querySelectorAll('.app-nav__link').length,
-    ).toBe(4);
+    ).toBe(3);
   });
 
   it('exposes a three-mode theme toggle', () => {
