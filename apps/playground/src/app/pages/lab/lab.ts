@@ -10,7 +10,16 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { map } from 'rxjs';
-import { Avatar, Badge, Button, Card, InputField, Switch } from '@lumina/ui';
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  InputField,
+  Skeleton,
+  Spinner,
+  Switch,
+} from '@lumina/ui';
 import { LAB, type ControlValue } from './lab-registry';
 
 type Viewport = 'full' | 'tablet' | 'mobile';
@@ -31,6 +40,8 @@ type Viewport = 'full' | 'tablet' | 'mobile';
     Avatar,
     Card,
     Switch,
+    Spinner,
+    Skeleton,
   ],
   templateUrl: './lab.html',
   styleUrl: './lab.css',

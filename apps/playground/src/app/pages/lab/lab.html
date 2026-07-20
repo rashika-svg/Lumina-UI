@@ -84,6 +84,20 @@
             <p>{{ val('body') }}</p>
           </lui-card>
         </div>
+        } @case ('spinner') {
+        <lui-spinner
+          [size]="$any(val('size'))"
+          [tone]="$any(val('tone'))"
+          [label]="val('label')"
+        />
+        } @case ('skeleton') {
+        <div class="preview__constrained">
+          <lui-skeleton
+            [variant]="$any(val('variant'))"
+            [animation]="$any(val('animation'))"
+            [lines]="$any(val('lines'))"
+          />
+        </div>
         } }
       </div>
     </div>

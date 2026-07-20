@@ -190,4 +190,62 @@ export const LAB: readonly LabDef[] = [
       `<lui-card variant="${attr(v, 'variant')}"${on(v, 'interactive') ? ' interactive' : ''}>\n` +
       `  <h3 cardHeader>${attr(v, 'title')}</h3>\n  <p>${attr(v, 'body')}</p>\n</lui-card>`,
   },
+  {
+    slug: 'spinner',
+    name: 'Spinner',
+    tagline:
+      'An accessible, indeterminate loading indicator with a live-region label.',
+    controls: [
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['xs', 'sm', 'md', 'lg', 'xl'],
+        default: 'lg',
+      },
+      {
+        name: 'tone',
+        label: 'Tone',
+        type: 'select',
+        options: ['accent', 'neutral', 'current'],
+        default: 'accent',
+      },
+      { name: 'label', label: 'Label', type: 'text', default: 'Loading' },
+    ],
+    code: (v) =>
+      `<lui-spinner size="${attr(v, 'size')}" tone="${attr(v, 'tone')}" label="${attr(v, 'label')}" />`,
+  },
+  {
+    slug: 'skeleton',
+    name: 'Skeleton',
+    tagline:
+      'A token-driven placeholder that mirrors content shape while it loads.',
+    controls: [
+      {
+        name: 'variant',
+        label: 'Variant',
+        type: 'select',
+        options: ['text', 'circular', 'rectangular'],
+        default: 'text',
+      },
+      {
+        name: 'animation',
+        label: 'Animation',
+        type: 'select',
+        options: ['shimmer', 'pulse', 'none'],
+        default: 'shimmer',
+      },
+      {
+        name: 'lines',
+        label: 'Lines',
+        type: 'select',
+        options: ['1', '2', '3', '4', '5'],
+        default: '3',
+      },
+    ],
+    code: (v) =>
+      attr(v, 'variant') === 'text'
+        ? `<lui-skeleton [lines]="${attr(v, 'lines')}" animation="${attr(v, 'animation')}" />`
+        : `<lui-skeleton variant="${attr(v, 'variant')}" animation="${attr(v, 'animation')}" />`,
+  },
 ];
