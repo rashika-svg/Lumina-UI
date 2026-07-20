@@ -21,3 +21,14 @@
 - The `nx-generate` skill handles generator discovery internally - don't call nx_docs just to look up generator syntax
 
 <!-- nx configuration end-->
+
+# Lumina UI
+
+Read **[docs/WORKSPACE_CONVENTIONS.md](docs/WORKSPACE_CONVENTIONS.md)** before
+making changes. It covers how to run checks, why the Vitest test targets are
+wired the way they are (do not "simplify" them — it breaks every suite on
+Windows), the token workflow, the component definition of done, commit rules,
+and how to work safely alongside the other assistant in this repo.
+
+Product direction lives in `docs/PRODUCT_PLAN.md`,
+`docs/COMPONENT_DOCUMENTATION_STANDARD.md` and `docs/TEST_STRATEGY.md`.
