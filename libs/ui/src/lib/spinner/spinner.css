@@ -1,0 +1,89 @@
+:host {
+  /* Diameter of the spinner; per-size overrides below. */
+  --_size: 1.25rem;
+  /* Stroke width scales with the diameter for a consistent visual weight. */
+  --_stroke: 2.25;
+  --_arc: var(--lui-color-accent-default);
+  --_track: var(--lui-color-border-muted);
+
+  display: inline-flex;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  vertical-align: text-bottom;
+}
+
+/* ── Tones ─────────────────────────────────────────────────────────────── */
+:host([data-tone='neutral']) {
+  --_arc: var(--lui-color-fg-muted);
+}
+:host([data-tone='current']) {
+  --_arc: currentColor;
+  /* Inherit within tinted contexts (e.g. buttons) — a faint track. */
+  --_track: color-mix(in oklab, currentColor 24%, transparent);
+}
+
+/* ── Sizes ─────────────────────────────────────────────────────────────── */
+:host([data-size='xs']) {
+  --_size: 0.875rem;
+  --_stroke: 3;
+}
+:host([data-size='sm']) {
+  --_size: 1rem;
+  --_stroke: 2.75;
+}
+:host([data-size='md']) {
+  --_size: 1.25rem;
+}
+:host([data-size='lg']) {
+  --_size: 1.75rem;
+  --_stroke: 2;
+}
+:host([data-size='xl']) {
+  --_size: 2.5rem;
+  --_stroke: 1.75;
+}
+
+.lui-spinner__svg {
+  inline-size: 100%;
+  block-size: 100%;
+  animation: lui-spinner-rotate 0.8s var(--lui-easing-linear, linear) infinite;
+}
+
+.lui-spinner__track {
+  stroke: var(--_track);
+  stroke-width: var(--_stroke);
+}
+
+.lui-spinner__arc {
+  stroke: var(--_arc);
+  stroke-width: var(--_stroke);
+  stroke-linecap: round;
+  /* ~25% of the circumference (2πr, r=9 ≈ 56.5). */
+  stroke-dasharray: 42 100;
+  transform-origin: center;
+}
+
+.lui-spinner__label {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes lui-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lui-spinner__svg {
+    /* Keep a slow, gentle rotation rather than a jarring spin. */
+    animation-duration: 2s;
+  }
+}

@@ -1,0 +1,93 @@
+:host {
+  --_base: var(--lui-color-bg-muted);
+  --_highlight: color-mix(
+    in oklab,
+    var(--lui-color-fg-default) 8%,
+    var(--_base)
+  );
+
+  display: block;
+}
+
+/* Shared placeholder surface for every shape. */
+.lui-skeleton__line,
+.lui-skeleton__block {
+  display: block;
+  background-color: var(--_base);
+  border-radius: var(--_radius, var(--lui-radius-sm));
+}
+
+/* ── Text ──────────────────────────────────────────────────────────────── */
+.lui-skeleton__line {
+  block-size: var(--_h, 0.7em);
+  inline-size: var(--_w, 100%);
+  border-radius: var(--_radius, var(--lui-radius-xs));
+}
+.lui-skeleton__line:not(:last-child) {
+  margin-block-end: 0.55em;
+}
+.lui-skeleton__line--last {
+  inline-size: 60%;
+}
+
+/* ── Block shapes ──────────────────────────────────────────────────────── */
+:host([data-variant='circular']) {
+  display: inline-block;
+}
+:host([data-variant='circular']) .lui-skeleton__block {
+  inline-size: var(--_w, 2.5rem);
+  block-size: var(--_h, var(--_w, 2.5rem));
+  border-radius: var(--_radius, var(--lui-radius-full));
+}
+
+:host([data-variant='rectangular']) .lui-skeleton__block {
+  inline-size: var(--_w, 100%);
+  block-size: var(--_h, 6rem);
+  border-radius: var(--_radius, var(--lui-radius-md));
+}
+
+/* ── Animations ────────────────────────────────────────────────────────── */
+:host([data-animation='shimmer']) .lui-skeleton__line,
+:host([data-animation='shimmer']) .lui-skeleton__block {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--_highlight) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: lui-skeleton-shimmer 1.4s var(--lui-easing-standard, ease) infinite;
+}
+
+:host([data-animation='pulse']) .lui-skeleton__line,
+:host([data-animation='pulse']) .lui-skeleton__block {
+  animation: lui-skeleton-pulse 1.6s var(--lui-easing-standard, ease) infinite;
+}
+
+@keyframes lui-skeleton-shimmer {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -80% 0;
+  }
+}
+
+@keyframes lui-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host([data-animation]) .lui-skeleton__line,
+  :host([data-animation]) .lui-skeleton__block {
+    animation: none;
+    background-image: none;
+  }
+}

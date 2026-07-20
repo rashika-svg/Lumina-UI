@@ -6,6 +6,10 @@ export * from './lib/input/input';
 export * from './lib/switch/switch';
 export * from './lib/card/card';
 
+// Feedback — async state primitives
+export * from './lib/spinner/spinner';
+export * from './lib/skeleton/skeleton';
+
 // Phase 2 — composite & overlay
 export * from './lib/tabs/tabs';
 export * from './lib/tabs/tab';
