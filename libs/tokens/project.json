@@ -5,6 +5,20 @@
   "projectType": "library",
   "tags": ["type:tokens"],
   "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        { "externalDependencies": ["vitest"] }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/tokens"],
+      "options": {
+        "cwd": "libs/tokens",
+        "command": "node ../../tools/nx-vitest.mjs"
+      }
+    },
     "tokens": {
       "executor": "nx:run-commands",
       "cache": true,

@@ -6,6 +6,20 @@
   "projectType": "library",
   "tags": ["type:ui"],
   "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        { "externalDependencies": ["vitest"] }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/ui"],
+      "options": {
+        "cwd": "libs/ui",
+        "command": "node ../../tools/nx-vitest.mjs"
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },

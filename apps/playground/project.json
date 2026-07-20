@@ -6,6 +6,20 @@
   "sourceRoot": "apps/playground/src",
   "tags": ["type:app"],
   "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        { "externalDependencies": ["vitest"] }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/apps/playground"],
+      "options": {
+        "cwd": "apps/playground",
+        "command": "node ../../tools/nx-vitest.mjs"
+      }
+    },
     "build": {
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
