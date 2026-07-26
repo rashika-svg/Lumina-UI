@@ -18,7 +18,7 @@ import {
   Spinner,
   Switch,
 } from '@lumina/ui';
-import { findDoc } from './docs-registry';
+import { findDoc, type DocEntry } from './docs-registry';
 
 /** Renders a single documentation entry (component or foundation) by slug. */
 @Component({
@@ -48,6 +48,11 @@ export class DocPage {
   protected readonly doc = computed(() => findDoc(this.slug()));
 
   protected readonly copied = signal(false);
+
+  /** The import statement shown in the Installation section. */
+  protected importLine(d: DocEntry): string {
+    return `import { ${d.className ?? d.title} } from '@lumina/ui';`;
+  }
 
   protected copy(text: string): void {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {

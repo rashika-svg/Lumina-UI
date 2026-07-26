@@ -72,6 +72,24 @@
       } }
     </div>
   </section>
+  } @if (d.selector) {
+  <section class="doc__section">
+    <h2 class="doc__h2">Installation</h2>
+    <p class="doc__prose">
+      Every Lumina component is standalone — import it and add it to your
+      component's <code>imports</code>.
+    </p>
+    <div class="code-block">
+      <button
+        type="button"
+        class="code-block__copy"
+        (click)="copy(importLine(d))"
+      >
+        {{ copied() ? 'Copied ✓' : 'Copy' }}
+      </button>
+      <pre class="code-block__pre"><code>{{ importLine(d) }}</code></pre>
+    </div>
+  </section>
   } @if (d.usage; as usage) {
   <section class="doc__section">
     <h2 class="doc__h2">Usage</h2>
@@ -129,6 +147,31 @@
       <li>{{ note }}</li>
       }
     </ul>
+  </section>
+  } @if (d.dos || d.donts) {
+  <section class="doc__section">
+    <h2 class="doc__h2">Guidelines</h2>
+    <div class="doc__guide">
+      @if (d.dos; as dos) {
+      <div class="doc__guide-col doc__guide-col--do">
+        <p class="doc__guide-head">Do</p>
+        <ul class="doc__guide-list">
+          @for (item of dos; track item) {
+          <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+      } @if (d.donts; as donts) {
+      <div class="doc__guide-col doc__guide-col--dont">
+        <p class="doc__guide-head">Don't</p>
+        <ul class="doc__guide-list">
+          @for (item of donts; track item) {
+          <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+      }
+    </div>
   </section>
   }
 

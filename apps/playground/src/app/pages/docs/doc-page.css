@@ -197,6 +197,76 @@
   line-height: var(--lui-type-body-md-line);
 }
 
+/* ── Guidelines (do / don't) ───────────────────────────────────────────── */
+.doc__guide {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--lui-space-4);
+}
+.doc__guide-col {
+  padding: var(--lui-space-4) var(--lui-space-5);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-block-start: 0.1875rem solid var(--lui-color-border-strong);
+  border-radius: var(--lui-radius-lg);
+  background: var(--lui-surface-default);
+}
+.doc__guide-col--do {
+  border-block-start-color: var(--lui-color-success-default);
+}
+.doc__guide-col--dont {
+  border-block-start-color: var(--lui-color-danger-default);
+}
+.doc__guide-head {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  margin: 0 0 var(--lui-space-3);
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.doc__guide-head::before {
+  display: grid;
+  place-items: center;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--lui-radius-full);
+  font-size: 0.75rem;
+}
+.doc__guide-col--do .doc__guide-head {
+  color: var(--lui-color-success-text);
+}
+.doc__guide-col--do .doc__guide-head::before {
+  content: '✓';
+  background: var(--lui-color-success-subtle);
+  color: var(--lui-color-success-text);
+}
+.doc__guide-col--dont .doc__guide-head {
+  color: var(--lui-color-danger-text);
+}
+.doc__guide-col--dont .doc__guide-head::before {
+  content: '✕';
+  background: var(--lui-color-danger-subtle);
+  color: var(--lui-color-danger-text);
+}
+.doc__guide-list {
+  margin: 0;
+  padding-inline-start: var(--lui-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--lui-space-2);
+  color: var(--lui-color-fg-muted);
+  font-size: var(--lui-font-size-sm);
+  line-height: var(--lui-type-body-md-line);
+}
+
+@media (max-width: 40rem) {
+  .doc__guide {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Footer ────────────────────────────────────────────────────────────── */
 .doc__foot {
   display: flex;

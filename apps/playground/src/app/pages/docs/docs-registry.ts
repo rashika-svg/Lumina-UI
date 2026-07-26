@@ -35,8 +35,12 @@ export interface DocEntry {
   /** Present for component pages — enables the live preview + API sections. */
   readonly selector?: string;
   readonly usage?: string;
+  /** Exported class name, for the installation snippet. Defaults to the title. */
+  readonly className?: string;
   readonly api?: readonly ApiRow[];
   readonly a11y?: readonly string[];
+  readonly dos?: readonly string[];
+  readonly donts?: readonly string[];
   readonly related?: readonly DocLink[];
   /** Present for foundation/prose pages. */
   readonly body?: readonly DocProse[];
@@ -183,6 +187,14 @@ export const DOCS: readonly DocEntry[] = [
       'A loading button sets aria-busy and stays focusable while blocking clicks.',
       'Icon-only buttons must be given an accessible name via aria-label.',
     ],
+    dos: [
+      'Use one primary button per view to signal the main action.',
+      'Write labels as verbs — “Save changes”, not “OK”.',
+    ],
+    donts: [
+      'Do not use a link-style button for a primary destructive action.',
+      'Avoid disabling a button without making it clear why.',
+    ],
     related: [
       { label: 'Badge', slug: 'badge' },
       { label: 'Spinner', slug: 'spinner' },
@@ -196,6 +208,7 @@ export const DOCS: readonly DocEntry[] = [
       'An accessible text field with label, hint, validation message and a character counter.',
     status: 'stable',
     selector: 'lui-input',
+    className: 'InputField',
     lab: 'input',
     usage: `<lui-input\n  label="Email address"\n  placeholder="ada@lumina.dev"\n  hint="We'll never share it."\n/>`,
     api: [
@@ -246,6 +259,14 @@ export const DOCS: readonly DocEntry[] = [
       'The label, hint and error are associated with the input via aria-describedby / aria-invalid.',
       'Implements ControlValueAccessor, so it works with Angular forms and their validation.',
     ],
+    dos: [
+      'Always pair an input with a visible label.',
+      'Use the hint for format guidance and the error for what went wrong.',
+    ],
+    donts: [
+      'Do not use placeholder text as the only label.',
+      'Avoid showing validation errors before the field has been touched.',
+    ],
     related: [
       { label: 'Switch', slug: 'switch' },
       { label: 'Button', slug: 'button' },
@@ -282,6 +303,14 @@ export const DOCS: readonly DocEntry[] = [
     ],
     a11y: [
       'A badge is decorative text; when it conveys a live status, describe that status in nearby content rather than colour alone.',
+    ],
+    dos: [
+      'Keep badge text to a word or two.',
+      'Match the variant to the meaning — success for healthy, danger for errors.',
+    ],
+    donts: [
+      'Do not rely on colour alone to convey status.',
+      'Avoid putting interactive controls inside a badge.',
     ],
     related: [
       { label: 'Avatar', slug: 'avatar' },
@@ -333,6 +362,14 @@ export const DOCS: readonly DocEntry[] = [
       'The image carries the name as alt text; the initials fallback exposes the same name to screen readers.',
       'The presence dot is decorative — pair it with text if the status matters.',
     ],
+    dos: [
+      'Provide the full name so initials and the accessible label are correct.',
+      'Use the status dot only where presence is meaningful.',
+    ],
+    donts: [
+      'Do not use an avatar as the only way to identify a user.',
+      'Avoid distorting non-square images — they are cropped to fit.',
+    ],
     related: [
       { label: 'Badge', slug: 'badge' },
       { label: 'Skeleton', slug: 'skeleton' },
@@ -382,6 +419,14 @@ export const DOCS: readonly DocEntry[] = [
       'Exposes role="switch" with aria-checked and is fully keyboard operable (Space / Enter).',
       'Provide a label or ariaLabel — never rely on surrounding layout alone.',
     ],
+    dos: [
+      'Use a switch for settings that apply immediately.',
+      'Give every switch a label or ariaLabel.',
+    ],
+    donts: [
+      'Do not use a switch where a form checkbox is expected.',
+      'Avoid requiring a separate “Save” step after a switch is toggled.',
+    ],
     related: [
       { label: 'Input', slug: 'input' },
       { label: 'Button', slug: 'button' },
@@ -420,6 +465,14 @@ export const DOCS: readonly DocEntry[] = [
     a11y: [
       'An interactive card gets role="button", a tabindex and Enter/Space activation.',
       'Do not nest focusable controls inside an interactive card — use a static card with inner buttons instead.',
+    ],
+    dos: [
+      'Use an interactive card when the whole surface navigates somewhere.',
+      'Keep a consistent variant within a single grid.',
+    ],
+    donts: [
+      'Do not place buttons or links inside an interactive card.',
+      'Avoid mixing elevated and outlined cards in the same list.',
     ],
     related: [
       { label: 'Button', slug: 'button' },
@@ -462,6 +515,14 @@ export const DOCS: readonly DocEntry[] = [
       'The host is a live region (role="status", aria-live="polite") so the label is announced.',
       'The rotating artwork is aria-hidden; the label carries the meaning.',
       'Rotation slows under prefers-reduced-motion rather than stopping abruptly.',
+    ],
+    dos: [
+      'Give the spinner a label describing what is loading.',
+      'Use tone="current" inside buttons so it matches the text.',
+    ],
+    donts: [
+      'Do not show a spinner for loads under ~300ms — it reads as a flash.',
+      'Avoid a spinner where a skeleton better represents the incoming content.',
     ],
     related: [
       { label: 'Skeleton', slug: 'skeleton' },
@@ -507,6 +568,14 @@ export const DOCS: readonly DocEntry[] = [
     a11y: [
       'Skeletons are decorative (aria-hidden); pair them with a status message so assistive technology is told content is loading.',
       'The shimmer/pulse animation is removed under prefers-reduced-motion.',
+    ],
+    dos: [
+      'Match the skeleton shape to the content it replaces.',
+      'Pair skeletons with a screen-reader status message.',
+    ],
+    donts: [
+      'Do not use skeletons for very fast loads — they add perceived latency.',
+      'Avoid a single generic bar where the real layout has distinct regions.',
     ],
     related: [
       { label: 'Spinner', slug: 'spinner' },
