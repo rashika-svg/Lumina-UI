@@ -8,7 +8,7 @@
   position: absolute;
   inset-block-start: -3rem;
   inset-inline-start: var(--lui-space-4);
-  z-index: var(--lui-zIndex-tooltip);
+  z-index: var(--lui-z-index-tooltip);
   padding: var(--lui-space-2) var(--lui-space-3);
   border-radius: var(--lui-radius-md);
   background: var(--lui-color-accent-default);
@@ -24,8 +24,12 @@
 .app-bar {
   position: sticky;
   inset-block-start: 0;
-  z-index: var(--lui-zIndex-sticky);
-  background: color-mix(in oklab, var(--lui-surface-canvas) 82%, transparent);
+  z-index: var(--lui-z-index-sticky);
+  /* Near-opaque so hero content never bleeds through when scrolled under it;
+     the blur is a subtle glass enhancement on top, not the thing doing the
+     hiding (blur alone is too weak, especially for dark-on-dark). */
+  background: color-mix(in oklab, var(--lui-surface-canvas) 93%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
   backdrop-filter: saturate(180%) blur(12px);
   border-block-end: var(--lui-border-width-thin) solid
     var(--lui-color-border-default);
@@ -56,9 +60,17 @@
   inline-size: 1.75rem;
   block-size: 1.75rem;
   border-radius: var(--lui-radius-md);
-  background: var(--lui-color-accent-default);
+  background: linear-gradient(
+    140deg,
+    var(--lui-color-accent-hover),
+    var(--lui-color-accent-default)
+  );
   color: var(--lui-color-accent-fg);
   font-size: 1rem;
+  box-shadow:
+    0 0 0 0.0625rem
+      color-mix(in oklab, var(--lui-color-accent-default) 40%, transparent),
+    var(--lui-elevation-1-shadow);
 }
 
 .app-nav {

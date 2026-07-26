@@ -1,49 +1,122 @@
 <section class="hero">
-  <p class="hero__eyebrow">Enterprise Angular design system platform</p>
-  <h1 class="hero__title">
-    One visual &amp; accessibility contract.<br />
-    <span class="hero__accent">Every framework you ship in.</span>
-  </h1>
-  <p class="hero__lead">
-    Lumina UI helps product teams build consistent, accessible interfaces
-    without giving up their framework, theme, or Tailwind workflow — a
-    design-system platform with tokens, theming, live documentation and a
-    component laboratory.
-  </p>
+  <div class="hero__glow" aria-hidden="true"></div>
 
-  <div class="hero__actions">
-    <a luiButton variant="primary" size="lg" routerLink="/docs">Get started</a>
-    <a luiButton variant="secondary" size="lg" routerLink="/components"
-      >Browse components</a
-    >
-  </div>
+  <div class="hero__content">
+    <p class="hero__eyebrow">
+      <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+      Enterprise Angular design system platform
+    </p>
+    <h1 class="hero__title">
+      One visual &amp; accessibility contract.<br />
+      <span class="hero__accent">Every framework you ship in.</span>
+    </h1>
+    <p class="hero__lead">
+      Lumina UI helps product teams build consistent, accessible interfaces
+      without giving up their framework, theme, or Tailwind workflow — a
+      design-system platform with tokens, theming, live documentation and a
+      component laboratory.
+    </p>
 
-  <div class="install" aria-label="Install command">
-    <code class="install__code"
-      ><span class="install__prompt">$</span> npm install &#64;lumina/ui
-      &#64;lumina/tokens &#64;lumina/theme</code
-    >
-  </div>
-
-  <ul class="frameworks" aria-label="Framework support">
-    @for (fw of frameworks; track fw.name) {
-    <li>
-      <span
-        luiBadge
-        [variant]="fw.status === 'available' ? 'success' : 'neutral'"
-        appearance="subtle"
+    <div class="hero__actions">
+      <a luiButton variant="primary" size="lg" routerLink="/docs"
+        >Get started</a
       >
-        {{ fw.name }} · {{ fw.status === 'available' ? 'available' : 'planned'
-        }}
-      </span>
-    </li>
-    }
-  </ul>
+      <a luiButton variant="secondary" size="lg" routerLink="/components"
+        >Browse components</a
+      >
+    </div>
+
+    <div class="install" aria-label="Install command">
+      <code class="install__code"
+        ><span class="install__prompt">$</span> npm install &#64;lumina/ui
+        &#64;lumina/tokens &#64;lumina/theme</code
+      >
+    </div>
+
+    <ul class="frameworks" aria-label="Framework support">
+      @for (fw of frameworks; track fw.name) {
+      <li>
+        <span
+          luiBadge
+          [variant]="fw.status === 'available' ? 'success' : 'neutral'"
+          appearance="subtle"
+        >
+          {{ fw.name }} · {{ fw.status === 'available' ? 'available' : 'planned'
+          }}
+        </span>
+      </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Live proof: real, themed components rendered straight from @lumina/ui. -->
+  <div class="showcase" aria-label="Live component preview">
+    <div class="showcase__bar" aria-hidden="true">
+      <span class="showcase__dot"></span>
+      <span class="showcase__dot"></span>
+      <span class="showcase__dot"></span>
+      <span class="showcase__label">&#64;lumina/ui</span>
+    </div>
+    <div class="showcase__stage">
+      <div class="showcase__row">
+        <button luiButton variant="primary" size="sm">Primary</button>
+        <button luiButton variant="secondary" size="sm">Secondary</button>
+        <button luiButton variant="ghost" size="sm">Ghost</button>
+      </div>
+      <div class="showcase__row">
+        <span luiBadge variant="success" appearance="subtle">Stable</span>
+        <span luiBadge variant="accent" appearance="solid">New</span>
+        <span luiBadge variant="warning" appearance="outline">Beta</span>
+        <lui-spinner size="sm" label="Loading preview" />
+      </div>
+      <div class="showcase__row showcase__row--split">
+        <lui-avatar name="Ada Lovelace" size="md" status="online" />
+        <div class="showcase__lines">
+          <lui-skeleton [lines]="2" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-label="At a glance">
+  @for (stat of stats; track stat.label) {
+  <div class="stat">
+    <div class="stat__value">{{ stat.value }}</div>
+    <div class="stat__label">{{ stat.label }}</div>
+  </div>
+  }
 </section>
 
 <section class="features" aria-label="Platform foundations">
   @for (feature of features; track feature.title) {
-  <lui-card variant="elevated">
+  <lui-card variant="outlined">
+    <span class="feature__icon" aria-hidden="true">
+      @switch (feature.key) { @case ('tokens') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+        <path d="m2 12 10 5 10-5" />
+        <path d="m2 17 10 5 10-5" />
+      </svg>
+      } @case ('theming') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor" />
+      </svg>
+      } @case ('a11y') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none" />
+        <path d="M4 8h16M12 8v6m0 0-3 6m3-6 3 6" />
+      </svg>
+      } @case ('contract') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+      </svg>
+      } }
+    </span>
     <h2 cardHeader>{{ feature.title }}</h2>
     <p>{{ feature.body }}</p>
   </lui-card>
@@ -52,17 +125,21 @@
 
 <section class="cta">
   <lui-card variant="filled">
-    <h2 cardHeader>See it in motion</h2>
-    <p>
-      Explore every component live in the playground, or read the documentation
-      to learn the token architecture, theming model and accessibility
-      standards.
-    </p>
-    <div cardFooter>
-      <a luiButton variant="primary" routerLink="/components"
-        >Open the Component Lab</a
-      >
-      <a luiButton variant="ghost" routerLink="/docs">Read the docs</a>
+    <div class="cta__inner">
+      <div class="cta__copy">
+        <h2 cardHeader>See it in motion</h2>
+        <p>
+          Explore every component live in the Component Lab, or read the
+          documentation to learn the token architecture, theming model and
+          accessibility standards.
+        </p>
+      </div>
+      <div class="cta__actions" cardFooter>
+        <a luiButton variant="primary" routerLink="/components"
+          >Open the Component Lab</a
+        >
+        <a luiButton variant="ghost" routerLink="/docs">Read the docs</a>
+      </div>
     </div>
   </lui-card>
 </section>

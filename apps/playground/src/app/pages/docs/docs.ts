@@ -125,13 +125,37 @@ bootstrapApplication(App, {{ '{' }}
       letter-spacing: var(--lui-type-heading-lg-tracking);
     }
     .code {
+      position: relative;
       margin: 0 0 var(--lui-space-3);
-      padding: var(--lui-space-4);
+      padding: calc(var(--lui-space-4) + 1.75rem) var(--lui-space-4)
+        var(--lui-space-4);
       border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
       border-radius: var(--lui-radius-lg);
-      background: var(--lui-surface-default);
+      background: var(--lui-elevation-2-surface);
       box-shadow: var(--lui-elevation-1-shadow);
       overflow-x: auto;
+    }
+    /* Terminal-window chrome: three dots + a hairline under the title bar. */
+    .code::before {
+      content: '';
+      position: absolute;
+      inset-block-start: 1rem;
+      inset-inline-start: var(--lui-space-4);
+      inline-size: 0.5rem;
+      block-size: 0.5rem;
+      border-radius: var(--lui-radius-full);
+      background: var(--lui-color-border-strong);
+      box-shadow:
+        0.75rem 0 var(--lui-color-border-strong),
+        1.5rem 0 var(--lui-color-border-strong);
+    }
+    .code::after {
+      content: '';
+      position: absolute;
+      inset-block-start: 2.5rem;
+      inset-inline: 0;
+      border-block-start: var(--lui-border-width-thin) solid
+        var(--lui-color-border-muted);
     }
     .code code {
       font-family: var(--lui-font-family-mono);
