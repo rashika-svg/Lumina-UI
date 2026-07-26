@@ -2,14 +2,14 @@
   position: fixed;
   inset: 0;
   background: var(--lui-color-overlay-scrim);
-  z-index: var(--lui-zIndex-modal);
+  z-index: var(--lui-z-index-modal);
   animation: lui-drawer-fade var(--lui-duration-fast) var(--lui-easing-standard);
 }
 
 .lui-drawer__viewport {
   position: fixed;
   inset: 0;
-  z-index: var(--lui-zIndex-modal);
+  z-index: var(--lui-z-index-modal);
   display: flex;
   pointer-events: none;
 }

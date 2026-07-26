@@ -12,7 +12,7 @@
   border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
   border-radius: var(--lui-radius-lg);
   box-shadow: var(--lui-shadow-lg);
-  z-index: var(--lui-zIndex-dropdown);
+  z-index: var(--lui-z-index-dropdown);
   font-family: var(--lui-font-family-sans);
   animation: lui-menu-in var(--lui-duration-fast) var(--lui-easing-standard);
 }

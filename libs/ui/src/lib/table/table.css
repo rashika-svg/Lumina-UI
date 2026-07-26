@@ -39,7 +39,7 @@
 .lui-table--sticky .lui-table__head .lui-table__cell {
   position: sticky;
   inset-block-start: 0;
-  z-index: var(--lui-zIndex-docked);
+  z-index: var(--lui-z-index-docked);
 }
 
 .lui-table__cell--check {

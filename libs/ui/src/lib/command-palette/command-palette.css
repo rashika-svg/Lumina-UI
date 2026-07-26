@@ -2,13 +2,13 @@
   position: fixed;
   inset: 0;
   background: var(--lui-color-overlay-scrim);
-  z-index: var(--lui-zIndex-modal);
+  z-index: var(--lui-z-index-modal);
 }
 
 .lui-cmdk__viewport {
   position: fixed;
   inset: 0;
-  z-index: var(--lui-zIndex-modal);
+  z-index: var(--lui-z-index-modal);
   display: flex;
   justify-content: center;
   align-items: flex-start;

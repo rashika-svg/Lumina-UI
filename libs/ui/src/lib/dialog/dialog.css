@@ -2,14 +2,14 @@
   position: fixed;
   inset: 0;
   background: var(--lui-color-overlay-scrim);
-  z-index: var(--lui-zIndex-modal);
+  z-index: var(--lui-z-index-modal);
   animation: lui-dialog-fade var(--lui-duration-fast) var(--lui-easing-standard);
 }
 
 .lui-dialog__viewport {
   position: fixed;
   inset: 0;
-  z-index: var(--lui-zIndex-modal);
+  z-index: var(--lui-z-index-modal);
   display: flex;
   align-items: center;
   justify-content: center;
