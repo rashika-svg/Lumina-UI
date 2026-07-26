@@ -28,7 +28,13 @@ export const appRoutes: Route[] = [
       },
     ],
   },
-  { path: 'components', pathMatch: 'full', redirectTo: 'components/button' },
+  {
+    path: 'components',
+    pathMatch: 'full',
+    title: 'Components · Lumina UI',
+    loadComponent: () =>
+      import('./pages/catalogue/catalogue').then((m) => m.CataloguePage),
+  },
   {
     path: 'components/:slug',
     title: 'Component Lab · Lumina UI',

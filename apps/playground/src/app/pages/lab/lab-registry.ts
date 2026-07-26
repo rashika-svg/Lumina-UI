@@ -191,6 +191,31 @@ export const LAB: readonly LabDef[] = [
       `  <h3 cardHeader>${attr(v, 'title')}</h3>\n  <p>${attr(v, 'body')}</p>\n</lui-card>`,
   },
   {
+    slug: 'switch',
+    name: 'Switch',
+    tagline: 'A binary on/off toggle for instantly-applied settings.',
+    controls: [
+      {
+        name: 'label',
+        label: 'Label',
+        type: 'text',
+        default: 'Email notifications',
+      },
+      {
+        name: 'size',
+        label: 'Size',
+        type: 'select',
+        options: ['sm', 'md'],
+        default: 'md',
+      },
+      { name: 'checked', label: 'Checked', type: 'boolean', default: true },
+      { name: 'disabled', label: 'Disabled', type: 'boolean', default: false },
+    ],
+    code: (v) =>
+      `<lui-switch label="${attr(v, 'label')}" size="${attr(v, 'size')}"` +
+      `${on(v, 'checked') ? ' [checked]="true"' : ''}${on(v, 'disabled') ? ' disabled' : ''} />`,
+  },
+  {
     slug: 'spinner',
     name: 'Spinner',
     tagline:

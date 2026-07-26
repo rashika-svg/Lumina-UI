@@ -84,6 +84,13 @@
             <p>{{ val('body') }}</p>
           </lui-card>
         </div>
+        } @case ('switch') {
+        <lui-switch
+          [label]="val('label')"
+          [size]="$any(val('size'))"
+          [checked]="bool('checked')"
+          [disabled]="bool('disabled')"
+        />
         } @case ('spinner') {
         <lui-spinner
           [size]="$any(val('size'))"

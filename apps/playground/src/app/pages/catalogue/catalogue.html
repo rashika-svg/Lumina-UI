@@ -1,0 +1,68 @@
+<header class="cat-head">
+  <p class="cat-head__eyebrow">Components</p>
+  <h1 class="cat-head__title">The catalogue</h1>
+  <p class="cat-head__lead">
+    Every flagship component — accessible, token-driven and themed. Open any one
+    in the Component Lab to tweak its props live and copy the generated code.
+  </p>
+</header>
+
+<section class="cat-grid" aria-label="Components">
+  @for (c of components; track c.slug) {
+  <article class="cat-card">
+    <div class="cat-card__preview" aria-hidden="true">
+      @switch (c.slug) { @case ('button') {
+      <button luiButton variant="primary" size="sm">Primary</button>
+      <button luiButton variant="secondary" size="sm">Secondary</button>
+      } @case ('input') {
+      <div class="cat-card__field">
+        <lui-input label="Email" placeholder="ada@lumina.dev" size="sm" />
+      </div>
+      } @case ('badge') {
+      <span luiBadge variant="success">Active</span>
+      <span luiBadge variant="accent" appearance="solid">New</span>
+      <span luiBadge variant="warning" appearance="outline">Beta</span>
+      } @case ('avatar') {
+      <lui-avatar name="Ada Lovelace" size="md" status="online" />
+      <lui-avatar name="Grace Hopper" size="md" shape="square" />
+      <lui-avatar name="Alan Turing" size="md" status="busy" />
+      } @case ('switch') {
+      <lui-switch ariaLabel="On" [checked]="true" />
+      <lui-switch ariaLabel="Off" [checked]="false" />
+      } @case ('card') {
+      <lui-card variant="elevated">
+        <h3 cardHeader>Card</h3>
+        <p>A surface with elevation.</p>
+      </lui-card>
+      } @case ('spinner') {
+      <lui-spinner size="sm" />
+      <lui-spinner size="md" />
+      <lui-spinner size="lg" />
+      } @case ('skeleton') {
+      <div class="cat-card__field">
+        <lui-skeleton [lines]="3" />
+      </div>
+      } }
+    </div>
+
+    <div class="cat-card__body">
+      <div class="cat-card__row">
+        <h2 class="cat-card__title">
+          <a class="cat-card__link" [routerLink]="['/components', c.slug]"
+            >{{ c.title }}</a
+          >
+        </h2>
+        @if (c.status) {
+        <span
+          luiBadge
+          size="sm"
+          [variant]="c.status === 'stable' ? 'success' : 'neutral'"
+          >{{ c.status }}</span
+        >
+        }
+      </div>
+      <p class="cat-card__summary">{{ c.summary }}</p>
+    </div>
+  </article>
+  }
+</section>
