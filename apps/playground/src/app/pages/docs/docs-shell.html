@@ -1,0 +1,42 @@
+<div class="docs">
+  <button
+    type="button"
+    class="docs__toggle"
+    [attr.aria-expanded]="navOpen()"
+    (click)="toggleNav()"
+  >
+    <span aria-hidden="true">{{ navOpen() ? '✕' : '☰' }}</span>
+    Documentation menu
+  </button>
+
+  <aside class="docs__sidebar" [class.is-open]="navOpen()">
+    <nav class="docs__nav" aria-label="Documentation">
+      <a
+        class="docs__link"
+        routerLink="/docs"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeNav()"
+      >
+        Getting started
+      </a>
+
+      @for (group of groups; track group.label) {
+      <p class="docs__group">{{ group.label }}</p>
+      @for (item of group.items; track item.slug) {
+      <a
+        class="docs__link"
+        [routerLink]="['/docs', item.slug]"
+        routerLinkActive="is-active"
+        (click)="closeNav()"
+      >
+        {{ item.title }}
+      </a>
+      } }
+    </nav>
+  </aside>
+
+  <div class="docs__content">
+    <router-outlet />
+  </div>
+</div>

@@ -1,0 +1,158 @@
+@if (doc(); as d) {
+<article class="doc">
+  <header class="doc__head">
+    <p class="doc__eyebrow">{{ d.group }}</p>
+    <div class="doc__title-row">
+      <h1 class="doc__title">{{ d.title }}</h1>
+      @if (d.status) {
+      <span
+        luiBadge
+        size="sm"
+        [variant]="
+              d.status === 'stable'
+                ? 'success'
+                : d.status === 'beta'
+                  ? 'warning'
+                  : 'neutral'
+            "
+        >{{ d.status }}</span
+      >
+      }
+    </div>
+    <p class="doc__summary">{{ d.summary }}</p>
+    @if (d.selector) {
+    <code class="doc__selector">{{ d.selector }}</code>
+    }
+  </header>
+
+  @if (d.selector) {
+  <section class="doc__section">
+    <h2 class="doc__h2">Preview</h2>
+    <div class="doc__preview">
+      @switch (d.slug) { @case ('button') {
+      <button luiButton variant="primary">Primary</button>
+      <button luiButton variant="secondary">Secondary</button>
+      <button luiButton variant="ghost">Ghost</button>
+      <button luiButton variant="danger">Danger</button>
+      } @case ('input') {
+      <div class="doc__preview-field">
+        <lui-input
+          label="Email address"
+          placeholder="ada@lumina.dev"
+          hint="We'll never share it."
+        />
+      </div>
+      } @case ('badge') {
+      <span luiBadge variant="success">Active</span>
+      <span luiBadge variant="accent" appearance="solid">New</span>
+      <span luiBadge variant="warning" appearance="outline">Beta</span>
+      <span luiBadge variant="danger">Error</span>
+      } @case ('avatar') {
+      <lui-avatar name="Ada Lovelace" size="lg" status="online" />
+      <lui-avatar name="Grace Hopper" size="lg" shape="square" />
+      <lui-avatar name="Alan Turing" size="lg" status="busy" />
+      } @case ('switch') {
+      <lui-switch label="Email notifications" [checked]="true" />
+      <lui-switch label="Disabled" [disabled]="true" />
+      } @case ('card') {
+      <div class="doc__preview-field">
+        <lui-card variant="elevated">
+          <h3 cardHeader>Project Lumina</h3>
+          <p>A premium, token-driven design system platform.</p>
+        </lui-card>
+      </div>
+      } @case ('spinner') {
+      <lui-spinner size="sm" />
+      <lui-spinner size="md" />
+      <lui-spinner size="lg" />
+      <lui-spinner size="lg" tone="neutral" />
+      } @case ('skeleton') {
+      <lui-avatar name="A B" size="md" />
+      <div class="doc__preview-field"><lui-skeleton [lines]="3" /></div>
+      } }
+    </div>
+  </section>
+  } @if (d.usage; as usage) {
+  <section class="doc__section">
+    <h2 class="doc__h2">Usage</h2>
+    <div class="code-block">
+      <button type="button" class="code-block__copy" (click)="copy(usage)">
+        {{ copied() ? 'Copied ✓' : 'Copy' }}
+      </button>
+      <pre class="code-block__pre"><code>{{ usage }}</code></pre>
+    </div>
+  </section>
+  } @if (d.body) { @for (block of d.body; track block.heading) {
+  <section class="doc__section">
+    <h2 class="doc__h2">{{ block.heading }}</h2>
+    <p class="doc__prose">{{ block.text }}</p>
+    @if (block.code; as code) {
+    <div class="code-block">
+      <button type="button" class="code-block__copy" (click)="copy(code)">
+        {{ copied() ? 'Copied ✓' : 'Copy' }}
+      </button>
+      <pre class="code-block__pre"><code>{{ code }}</code></pre>
+    </div>
+    }
+  </section>
+  } } @if (d.api; as api) {
+  <section class="doc__section">
+    <h2 class="doc__h2">API</h2>
+    <div class="doc__table-wrap">
+      <table class="doc__table">
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of api; track row.name) {
+          <tr>
+            <td><code class="doc__prop">{{ row.name }}</code></td>
+            <td><code class="doc__type">{{ row.type }}</code></td>
+            <td><code>{{ row.default }}</code></td>
+            <td>{{ row.description }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  } @if (d.a11y; as a11y) {
+  <section class="doc__section">
+    <h2 class="doc__h2">Accessibility</h2>
+    <ul class="doc__list">
+      @for (note of a11y; track note) {
+      <li>{{ note }}</li>
+      }
+    </ul>
+  </section>
+  }
+
+  <footer class="doc__foot">
+    @if (d.lab) {
+    <a luiButton variant="secondary" [routerLink]="['/components', d.lab]"
+      >Open in Component Lab →</a
+    >
+    } @if (d.related; as related) {
+    <div class="doc__related">
+      <span class="doc__related-label">Related</span>
+      @for (rel of related; track rel.slug) {
+      <a class="doc__related-link" [routerLink]="['/docs', rel.slug]"
+        >{{ rel.label }}</a
+      >
+      }
+    </div>
+    }
+  </footer>
+</article>
+} @else {
+<div class="doc__missing">
+  <h1 class="doc__title">Page not found</h1>
+  <p class="doc__summary">No documentation exists for “{{ slug() }}”.</p>
+  <a luiButton variant="primary" routerLink="/docs">Back to docs</a>
+</div>
+}

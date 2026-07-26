@@ -10,8 +10,23 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'docs',
-    title: 'Getting started · Lumina UI',
-    loadComponent: () => import('./pages/docs/docs').then((m) => m.DocsPage),
+    loadComponent: () =>
+      import('./pages/docs/docs-shell').then((m) => m.DocsShell),
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        title: 'Getting started · Lumina UI',
+        loadComponent: () =>
+          import('./pages/docs/docs-home').then((m) => m.DocsHome),
+      },
+      {
+        path: ':slug',
+        title: 'Documentation · Lumina UI',
+        loadComponent: () =>
+          import('./pages/docs/doc-page').then((m) => m.DocPage),
+      },
+    ],
   },
   { path: 'components', pathMatch: 'full', redirectTo: 'components/button' },
   {

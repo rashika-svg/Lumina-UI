@@ -1,0 +1,106 @@
+:host {
+  display: block;
+}
+
+.docs {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--lui-space-8);
+  max-inline-size: 78rem;
+  margin-inline: auto;
+  padding-inline: var(--lui-space-4);
+}
+
+/* ── Sidebar ───────────────────────────────────────────────────────────── */
+.docs__sidebar {
+  align-self: start;
+  position: sticky;
+  inset-block-start: 4.5rem;
+  max-block-size: calc(100vh - 6rem);
+  overflow-y: auto;
+  padding-block: var(--lui-space-8);
+}
+.docs__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.docs__group {
+  margin: var(--lui-space-5) 0 var(--lui-space-1);
+  padding-inline: var(--lui-space-3);
+  font-size: var(--lui-type-caption-size);
+  font-weight: var(--lui-font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lui-color-fg-subtle);
+}
+.docs__link {
+  padding: var(--lui-space-2) var(--lui-space-3);
+  border-radius: var(--lui-radius-md);
+  color: var(--lui-color-fg-muted);
+  text-decoration: none;
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-medium);
+  transition:
+    color var(--lui-duration-fast) var(--lui-easing-standard),
+    background-color var(--lui-duration-fast) var(--lui-easing-standard);
+}
+.docs__link:hover {
+  color: var(--lui-color-fg-default);
+  background: var(--lui-color-bg-subtle);
+}
+.docs__link.is-active {
+  color: var(--lui-color-accent-default);
+  background: var(--lui-color-accent-subtle);
+  font-weight: var(--lui-font-weight-semibold);
+}
+
+.docs__content {
+  min-inline-size: 0;
+  padding-block: var(--lui-space-8) var(--lui-space-16);
+}
+
+/* ── Mobile disclosure ─────────────────────────────────────────────────── */
+.docs__toggle {
+  display: none;
+  align-items: center;
+  gap: var(--lui-space-2);
+  margin-block-start: var(--lui-space-4);
+  padding: var(--lui-space-2) var(--lui-space-3);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-md);
+  background: var(--lui-surface-default);
+  color: var(--lui-color-fg-default);
+  font: inherit;
+  font-size: var(--lui-font-size-sm);
+  font-weight: var(--lui-font-weight-medium);
+  cursor: pointer;
+}
+
+@media (max-width: 52rem) {
+  .docs {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .docs__toggle {
+    display: inline-flex;
+  }
+  .docs__sidebar {
+    position: static;
+    max-block-size: none;
+    padding-block: var(--lui-space-3) 0;
+    display: none;
+  }
+  .docs__sidebar.is-open {
+    display: block;
+  }
+  .docs__content {
+    padding-block-start: var(--lui-space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .docs__link {
+    transition: none;
+  }
+}
