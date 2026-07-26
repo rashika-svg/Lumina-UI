@@ -1,357 +1,380 @@
 @if (doc(); as d) {
-<article class="doc">
-  <header class="doc__head">
-    <p class="doc__eyebrow">{{ d.group }}</p>
-    <div class="doc__title-row">
-      <h1 class="doc__title">{{ d.title }}</h1>
-      @if (d.status) {
-      <span
-        luiBadge
-        size="sm"
-        [variant]="
+<div class="doc-layout">
+  <article class="doc">
+    <header class="doc__head">
+      <p class="doc__eyebrow">{{ d.group }}</p>
+      <div class="doc__title-row">
+        <h1 class="doc__title">{{ d.title }}</h1>
+        @if (d.status) {
+        <span
+          luiBadge
+          size="sm"
+          [variant]="
               d.status === 'stable'
                 ? 'success'
                 : d.status === 'beta'
                   ? 'warning'
                   : 'neutral'
             "
-        >{{ d.status }}</span
-      >
+          >{{ d.status }}</span
+        >
+        }
+      </div>
+      <p class="doc__summary">{{ d.summary }}</p>
+      @if (d.selector) {
+      <code class="doc__selector">{{ d.selector }}</code>
       }
-    </div>
-    <p class="doc__summary">{{ d.summary }}</p>
-    @if (d.selector) {
-    <code class="doc__selector">{{ d.selector }}</code>
-    }
-  </header>
+    </header>
 
-  @if (d.selector) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Preview</h2>
-    <div class="doc__preview">
-      @switch (d.slug) { @case ('button') {
-      <button luiButton variant="primary">Primary</button>
-      <button luiButton variant="secondary">Secondary</button>
-      <button luiButton variant="ghost">Ghost</button>
-      <button luiButton variant="danger">Danger</button>
-      } @case ('input') {
-      <div class="doc__preview-field">
-        <lui-input
-          label="Email address"
-          placeholder="ada@lumina.dev"
-          hint="We'll never share it."
-        />
-      </div>
-      } @case ('badge') {
-      <span luiBadge variant="success">Active</span>
-      <span luiBadge variant="accent" appearance="solid">New</span>
-      <span luiBadge variant="warning" appearance="outline">Beta</span>
-      <span luiBadge variant="danger">Error</span>
-      } @case ('avatar') {
-      <lui-avatar name="Ada Lovelace" size="lg" status="online" />
-      <lui-avatar name="Grace Hopper" size="lg" shape="square" />
-      <lui-avatar name="Alan Turing" size="lg" status="busy" />
-      } @case ('switch') {
-      <lui-switch label="Email notifications" [checked]="true" />
-      <lui-switch label="Disabled" [disabled]="true" />
-      } @case ('card') {
-      <div class="doc__preview-field">
-        <lui-card variant="elevated">
-          <h3 cardHeader>Project Lumina</h3>
-          <p>A premium, token-driven design system platform.</p>
-        </lui-card>
-      </div>
-      } @case ('spinner') {
-      <lui-spinner size="sm" />
-      <lui-spinner size="md" />
-      <lui-spinner size="lg" />
-      <lui-spinner size="lg" tone="neutral" />
-      } @case ('skeleton') {
-      <lui-avatar name="A B" size="md" />
-      <div class="doc__preview-field"><lui-skeleton [lines]="3" /></div>
-      } }
-    </div>
-  </section>
-  } @if (d.selector) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Installation</h2>
-    <p class="doc__prose">
-      Every Lumina component is standalone — import it and add it to your
-      component's <code>imports</code>.
-    </p>
-    <div class="code-block">
-      <button
-        type="button"
-        class="code-block__copy"
-        (click)="copy(importLine(d))"
-      >
-        {{ copied() ? 'Copied ✓' : 'Copy' }}
-      </button>
-      <pre class="code-block__pre"><code>{{ importLine(d) }}</code></pre>
-    </div>
-  </section>
-  } @if (d.usage; as usage) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Usage</h2>
-    <div class="code-block">
-      <button type="button" class="code-block__copy" (click)="copy(usage)">
-        {{ copied() ? 'Copied ✓' : 'Copy' }}
-      </button>
-      <pre class="code-block__pre"><code>{{ usage }}</code></pre>
-    </div>
-  </section>
-  } @if (d.selector) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Variants &amp; states</h2>
-    <div class="doc__specimens">
-      @switch (d.slug) { @case ('button') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <button luiButton variant="primary">Primary</button>
-          <button luiButton variant="secondary">Secondary</button>
-          <button luiButton variant="ghost">Ghost</button>
-          <button luiButton variant="danger">Danger</button>
-          <button luiButton variant="link">Link</button>
-        </div>
-        <span class="doc__specimen-label">variant</span>
-      </div>
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <button luiButton [loading]="true">Loading</button>
-          <button luiButton [disabled]="true">Disabled</button>
-          <button luiButton size="sm">Small</button>
-          <button luiButton size="lg">Large</button>
-        </div>
-        <span class="doc__specimen-label">states &amp; sizes</span>
-      </div>
-      } @case ('input') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage doc__specimen-stage--col">
-          <lui-input label="Email" placeholder="ada@lumina.dev" />
-          <lui-input label="With hint" hint="We'll never share it." />
-          <lui-input label="With error" error="Enter a valid email." />
-          <lui-input label="Disabled" [disabled]="true" />
-        </div>
-        <span class="doc__specimen-label">states</span>
-      </div>
-      } @case ('badge') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <span luiBadge variant="accent" appearance="subtle">Subtle</span>
-          <span luiBadge variant="accent" appearance="solid">Solid</span>
-          <span luiBadge variant="accent" appearance="outline">Outline</span>
-        </div>
-        <span class="doc__specimen-label">appearance</span>
-      </div>
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <span luiBadge variant="neutral">Neutral</span>
-          <span luiBadge variant="success">Success</span>
-          <span luiBadge variant="warning">Warning</span>
-          <span luiBadge variant="danger">Danger</span>
-          <span luiBadge variant="info">Info</span>
-        </div>
-        <span class="doc__specimen-label">variant</span>
-      </div>
-      } @case ('avatar') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-avatar name="A B" size="xs" />
-          <lui-avatar name="A B" size="sm" />
-          <lui-avatar name="A B" size="md" />
-          <lui-avatar name="A B" size="lg" />
-          <lui-avatar name="A B" size="xl" />
-        </div>
-        <span class="doc__specimen-label">size</span>
-      </div>
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-avatar name="On" size="lg" status="online" />
-          <lui-avatar name="Bs" size="lg" status="busy" />
-          <lui-avatar name="Aw" size="lg" status="away" />
-          <lui-avatar name="Sq" size="lg" shape="square" />
-        </div>
-        <span class="doc__specimen-label">status &amp; shape</span>
-      </div>
-      } @case ('switch') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-switch ariaLabel="On" [checked]="true" />
-          <lui-switch ariaLabel="Off" [checked]="false" />
-          <lui-switch ariaLabel="Disabled" [disabled]="true" [checked]="true" />
-          <lui-switch ariaLabel="Small" size="sm" [checked]="true" />
-        </div>
-        <span class="doc__specimen-label">states &amp; sizes</span>
-      </div>
-      } @case ('card') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage doc__specimen-stage--cards">
-          <lui-card variant="elevated"><h3 cardHeader>Elevated</h3></lui-card>
-          <lui-card variant="outlined"><h3 cardHeader>Outlined</h3></lui-card>
-          <lui-card variant="filled"><h3 cardHeader>Filled</h3></lui-card>
-        </div>
-        <span class="doc__specimen-label">variant</span>
-      </div>
-      } @case ('spinner') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-spinner size="xs" />
-          <lui-spinner size="sm" />
-          <lui-spinner size="md" />
-          <lui-spinner size="lg" />
-          <lui-spinner size="xl" />
-        </div>
-        <span class="doc__specimen-label">size</span>
-      </div>
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-spinner size="lg" tone="accent" />
-          <lui-spinner size="lg" tone="neutral" />
-        </div>
-        <span class="doc__specimen-label">tone</span>
-      </div>
-      } @case ('skeleton') {
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-skeleton variant="circular" width="2.5rem" height="2.5rem" />
-          <lui-skeleton variant="rectangular" width="8rem" height="4rem" />
-          <div style="inline-size: 10rem"><lui-skeleton [lines]="2" /></div>
-        </div>
-        <span class="doc__specimen-label">variant</span>
-      </div>
-      <div class="doc__specimen">
-        <div class="doc__specimen-stage">
-          <lui-skeleton
-            variant="rectangular"
-            width="7rem"
-            height="2.5rem"
-            animation="shimmer"
-          />
-          <lui-skeleton
-            variant="rectangular"
-            width="7rem"
-            height="2.5rem"
-            animation="pulse"
-          />
-          <lui-skeleton
-            variant="rectangular"
-            width="7rem"
-            height="2.5rem"
-            animation="none"
+    @if (d.selector) {
+    <section class="doc__section" id="preview">
+      <h2 class="doc__h2">Preview</h2>
+      <div class="doc__preview">
+        @switch (d.slug) { @case ('button') {
+        <button luiButton variant="primary">Primary</button>
+        <button luiButton variant="secondary">Secondary</button>
+        <button luiButton variant="ghost">Ghost</button>
+        <button luiButton variant="danger">Danger</button>
+        } @case ('input') {
+        <div class="doc__preview-field">
+          <lui-input
+            label="Email address"
+            placeholder="ada@lumina.dev"
+            hint="We'll never share it."
           />
         </div>
-        <span class="doc__specimen-label">animation</span>
+        } @case ('badge') {
+        <span luiBadge variant="success">Active</span>
+        <span luiBadge variant="accent" appearance="solid">New</span>
+        <span luiBadge variant="warning" appearance="outline">Beta</span>
+        <span luiBadge variant="danger">Error</span>
+        } @case ('avatar') {
+        <lui-avatar name="Ada Lovelace" size="lg" status="online" />
+        <lui-avatar name="Grace Hopper" size="lg" shape="square" />
+        <lui-avatar name="Alan Turing" size="lg" status="busy" />
+        } @case ('switch') {
+        <lui-switch label="Email notifications" [checked]="true" />
+        <lui-switch label="Disabled" [disabled]="true" />
+        } @case ('card') {
+        <div class="doc__preview-field">
+          <lui-card variant="elevated">
+            <h3 cardHeader>Project Lumina</h3>
+            <p>A premium, token-driven design system platform.</p>
+          </lui-card>
+        </div>
+        } @case ('spinner') {
+        <lui-spinner size="sm" />
+        <lui-spinner size="md" />
+        <lui-spinner size="lg" />
+        <lui-spinner size="lg" tone="neutral" />
+        } @case ('skeleton') {
+        <lui-avatar name="A B" size="md" />
+        <div class="doc__preview-field"><lui-skeleton [lines]="3" /></div>
+        } }
       </div>
-      } }
-    </div>
-  </section>
-  } @if (d.body) { @for (block of d.body; track block.heading) {
-  <section class="doc__section">
-    <h2 class="doc__h2">{{ block.heading }}</h2>
-    <p class="doc__prose">{{ block.text }}</p>
-    @if (block.code; as code) {
-    <div class="code-block">
-      <button type="button" class="code-block__copy" (click)="copy(code)">
-        {{ copied() ? 'Copied ✓' : 'Copy' }}
-      </button>
-      <pre class="code-block__pre"><code>{{ code }}</code></pre>
-    </div>
-    }
-  </section>
-  } } @if (d.api; as api) {
-  <section class="doc__section">
-    <h2 class="doc__h2">API</h2>
-    <div class="doc__table-wrap">
-      <table class="doc__table">
-        <thead>
-          <tr>
-            <th>Prop</th>
-            <th>Type</th>
-            <th>Default</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (row of api; track row.name) {
-          <tr>
-            <td><code class="doc__prop">{{ row.name }}</code></td>
-            <td><code class="doc__type">{{ row.type }}</code></td>
-            <td><code>{{ row.default }}</code></td>
-            <td>{{ row.description }}</td>
-          </tr>
-          }
-        </tbody>
-      </table>
-    </div>
-  </section>
-  } @if (d.a11y; as a11y) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Accessibility</h2>
-    <ul class="doc__list">
-      @for (note of a11y; track note) {
-      <li>{{ note }}</li>
-      }
-    </ul>
-  </section>
-  } @if (d.examples; as examples) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Examples</h2>
-    @for (ex of examples; track ex.title) {
-    <div class="doc__example">
-      <p class="doc__example-title">{{ ex.title }}</p>
+    </section>
+    } @if (d.selector) {
+    <section class="doc__section" id="installation">
+      <h2 class="doc__h2">Installation</h2>
+      <p class="doc__prose">
+        Every Lumina component is standalone — import it and add it to your
+        component's <code>imports</code>.
+      </p>
       <div class="code-block">
-        <button type="button" class="code-block__copy" (click)="copy(ex.code)">
+        <button
+          type="button"
+          class="code-block__copy"
+          (click)="copy(importLine(d))"
+        >
           {{ copied() ? 'Copied ✓' : 'Copy' }}
         </button>
-        <pre class="code-block__pre"><code>{{ ex.code }}</code></pre>
+        <pre class="code-block__pre"><code>{{ importLine(d) }}</code></pre>
       </div>
-    </div>
-    }
-  </section>
-  } @if (d.dos || d.donts) {
-  <section class="doc__section">
-    <h2 class="doc__h2">Guidelines</h2>
-    <div class="doc__guide">
-      @if (d.dos; as dos) {
-      <div class="doc__guide-col doc__guide-col--do">
-        <p class="doc__guide-head">Do</p>
-        <ul class="doc__guide-list">
-          @for (item of dos; track item) {
-          <li>{{ item }}</li>
-          }
-        </ul>
+    </section>
+    } @if (d.usage; as usage) {
+    <section class="doc__section" id="usage">
+      <h2 class="doc__h2">Usage</h2>
+      <div class="code-block">
+        <button type="button" class="code-block__copy" (click)="copy(usage)">
+          {{ copied() ? 'Copied ✓' : 'Copy' }}
+        </button>
+        <pre class="code-block__pre"><code>{{ usage }}</code></pre>
       </div>
-      } @if (d.donts; as donts) {
-      <div class="doc__guide-col doc__guide-col--dont">
-        <p class="doc__guide-head">Don't</p>
-        <ul class="doc__guide-list">
-          @for (item of donts; track item) {
-          <li>{{ item }}</li>
-          }
-        </ul>
+    </section>
+    } @if (d.selector) {
+    <section class="doc__section" id="variants">
+      <h2 class="doc__h2">Variants &amp; states</h2>
+      <div class="doc__specimens">
+        @switch (d.slug) { @case ('button') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <button luiButton variant="primary">Primary</button>
+            <button luiButton variant="secondary">Secondary</button>
+            <button luiButton variant="ghost">Ghost</button>
+            <button luiButton variant="danger">Danger</button>
+            <button luiButton variant="link">Link</button>
+          </div>
+          <span class="doc__specimen-label">variant</span>
+        </div>
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <button luiButton [loading]="true">Loading</button>
+            <button luiButton [disabled]="true">Disabled</button>
+            <button luiButton size="sm">Small</button>
+            <button luiButton size="lg">Large</button>
+          </div>
+          <span class="doc__specimen-label">states &amp; sizes</span>
+        </div>
+        } @case ('input') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage doc__specimen-stage--col">
+            <lui-input label="Email" placeholder="ada@lumina.dev" />
+            <lui-input label="With hint" hint="We'll never share it." />
+            <lui-input label="With error" error="Enter a valid email." />
+            <lui-input label="Disabled" [disabled]="true" />
+          </div>
+          <span class="doc__specimen-label">states</span>
+        </div>
+        } @case ('badge') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <span luiBadge variant="accent" appearance="subtle">Subtle</span>
+            <span luiBadge variant="accent" appearance="solid">Solid</span>
+            <span luiBadge variant="accent" appearance="outline">Outline</span>
+          </div>
+          <span class="doc__specimen-label">appearance</span>
+        </div>
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <span luiBadge variant="neutral">Neutral</span>
+            <span luiBadge variant="success">Success</span>
+            <span luiBadge variant="warning">Warning</span>
+            <span luiBadge variant="danger">Danger</span>
+            <span luiBadge variant="info">Info</span>
+          </div>
+          <span class="doc__specimen-label">variant</span>
+        </div>
+        } @case ('avatar') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-avatar name="A B" size="xs" />
+            <lui-avatar name="A B" size="sm" />
+            <lui-avatar name="A B" size="md" />
+            <lui-avatar name="A B" size="lg" />
+            <lui-avatar name="A B" size="xl" />
+          </div>
+          <span class="doc__specimen-label">size</span>
+        </div>
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-avatar name="On" size="lg" status="online" />
+            <lui-avatar name="Bs" size="lg" status="busy" />
+            <lui-avatar name="Aw" size="lg" status="away" />
+            <lui-avatar name="Sq" size="lg" shape="square" />
+          </div>
+          <span class="doc__specimen-label">status &amp; shape</span>
+        </div>
+        } @case ('switch') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-switch ariaLabel="On" [checked]="true" />
+            <lui-switch ariaLabel="Off" [checked]="false" />
+            <lui-switch
+              ariaLabel="Disabled"
+              [disabled]="true"
+              [checked]="true"
+            />
+            <lui-switch ariaLabel="Small" size="sm" [checked]="true" />
+          </div>
+          <span class="doc__specimen-label">states &amp; sizes</span>
+        </div>
+        } @case ('card') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage doc__specimen-stage--cards">
+            <lui-card variant="elevated"><h3 cardHeader>Elevated</h3></lui-card>
+            <lui-card variant="outlined"><h3 cardHeader>Outlined</h3></lui-card>
+            <lui-card variant="filled"><h3 cardHeader>Filled</h3></lui-card>
+          </div>
+          <span class="doc__specimen-label">variant</span>
+        </div>
+        } @case ('spinner') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-spinner size="xs" />
+            <lui-spinner size="sm" />
+            <lui-spinner size="md" />
+            <lui-spinner size="lg" />
+            <lui-spinner size="xl" />
+          </div>
+          <span class="doc__specimen-label">size</span>
+        </div>
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-spinner size="lg" tone="accent" />
+            <lui-spinner size="lg" tone="neutral" />
+          </div>
+          <span class="doc__specimen-label">tone</span>
+        </div>
+        } @case ('skeleton') {
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-skeleton variant="circular" width="2.5rem" height="2.5rem" />
+            <lui-skeleton variant="rectangular" width="8rem" height="4rem" />
+            <div style="inline-size: 10rem"><lui-skeleton [lines]="2" /></div>
+          </div>
+          <span class="doc__specimen-label">variant</span>
+        </div>
+        <div class="doc__specimen">
+          <div class="doc__specimen-stage">
+            <lui-skeleton
+              variant="rectangular"
+              width="7rem"
+              height="2.5rem"
+              animation="shimmer"
+            />
+            <lui-skeleton
+              variant="rectangular"
+              width="7rem"
+              height="2.5rem"
+              animation="pulse"
+            />
+            <lui-skeleton
+              variant="rectangular"
+              width="7rem"
+              height="2.5rem"
+              animation="none"
+            />
+          </div>
+          <span class="doc__specimen-label">animation</span>
+        </div>
+        } }
+      </div>
+    </section>
+    } @if (d.body) { @for (block of d.body; track block.heading) {
+    <section class="doc__section" [id]="sectionId(block.heading)">
+      <h2 class="doc__h2">{{ block.heading }}</h2>
+      <p class="doc__prose">{{ block.text }}</p>
+      @if (block.code; as code) {
+      <div class="code-block">
+        <button type="button" class="code-block__copy" (click)="copy(code)">
+          {{ copied() ? 'Copied ✓' : 'Copy' }}
+        </button>
+        <pre class="code-block__pre"><code>{{ code }}</code></pre>
       </div>
       }
-    </div>
-  </section>
-  }
+    </section>
+    } } @if (d.api; as api) {
+    <section class="doc__section" id="api">
+      <h2 class="doc__h2">API</h2>
+      <div class="doc__table-wrap">
+        <table class="doc__table">
+          <thead>
+            <tr>
+              <th>Prop</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of api; track row.name) {
+            <tr>
+              <td><code class="doc__prop">{{ row.name }}</code></td>
+              <td><code class="doc__type">{{ row.type }}</code></td>
+              <td><code>{{ row.default }}</code></td>
+              <td>{{ row.description }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+    } @if (d.a11y; as a11y) {
+    <section class="doc__section" id="accessibility">
+      <h2 class="doc__h2">Accessibility</h2>
+      <ul class="doc__list">
+        @for (note of a11y; track note) {
+        <li>{{ note }}</li>
+        }
+      </ul>
+    </section>
+    } @if (d.examples; as examples) {
+    <section class="doc__section" id="examples">
+      <h2 class="doc__h2">Examples</h2>
+      @for (ex of examples; track ex.title) {
+      <div class="doc__example">
+        <p class="doc__example-title">{{ ex.title }}</p>
+        <div class="code-block">
+          <button
+            type="button"
+            class="code-block__copy"
+            (click)="copy(ex.code)"
+          >
+            {{ copied() ? 'Copied ✓' : 'Copy' }}
+          </button>
+          <pre class="code-block__pre"><code>{{ ex.code }}</code></pre>
+        </div>
+      </div>
+      }
+    </section>
+    } @if (d.dos || d.donts) {
+    <section class="doc__section" id="guidelines">
+      <h2 class="doc__h2">Guidelines</h2>
+      <div class="doc__guide">
+        @if (d.dos; as dos) {
+        <div class="doc__guide-col doc__guide-col--do">
+          <p class="doc__guide-head">Do</p>
+          <ul class="doc__guide-list">
+            @for (item of dos; track item) {
+            <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+        } @if (d.donts; as donts) {
+        <div class="doc__guide-col doc__guide-col--dont">
+          <p class="doc__guide-head">Don't</p>
+          <ul class="doc__guide-list">
+            @for (item of donts; track item) {
+            <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+        }
+      </div>
+    </section>
+    }
 
-  <footer class="doc__foot">
-    @if (d.lab) {
-    <a luiButton variant="secondary" [routerLink]="['/components', d.lab]"
-      >Open in Component Lab →</a
-    >
-    } @if (d.related; as related) {
-    <div class="doc__related">
-      <span class="doc__related-label">Related</span>
-      @for (rel of related; track rel.slug) {
-      <a class="doc__related-link" [routerLink]="['/docs', rel.slug]"
-        >{{ rel.label }}</a
+    <footer class="doc__foot">
+      @if (d.lab) {
+      <a luiButton variant="secondary" [routerLink]="['/components', d.lab]"
+        >Open in Component Lab →</a
       >
+      } @if (d.related; as related) {
+      <div class="doc__related">
+        <span class="doc__related-label">Related</span>
+        @for (rel of related; track rel.slug) {
+        <a class="doc__related-link" [routerLink]="['/docs', rel.slug]"
+          >{{ rel.label }}</a
+        >
+        }
+      </div>
       }
-    </div>
-    }
-  </footer>
-</article>
+    </footer>
+  </article>
+
+  @if (toc().length) {
+  <nav class="doc-toc" aria-label="On this page">
+    <p class="doc-toc__title">On this page</p>
+    <ul class="doc-toc__list">
+      @for (item of toc(); track item.id) {
+      <li>
+        <a class="doc-toc__link" [href]="'#' + item.id">{{ item.label }}</a>
+      </li>
+      }
+    </ul>
+  </nav>
+  }
+</div>
 } @else {
 <div class="doc__missing">
   <h1 class="doc__title">Page not found</h1>

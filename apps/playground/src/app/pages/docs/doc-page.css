@@ -2,6 +2,12 @@
   display: block;
 }
 
+.doc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 11rem;
+  gap: var(--lui-space-8);
+  align-items: start;
+}
 .doc {
   max-inline-size: 48rem;
 }
@@ -48,6 +54,54 @@
 /* ── Sections ──────────────────────────────────────────────────────────── */
 .doc__section {
   margin-block-start: var(--lui-space-8);
+  scroll-margin-block-start: 5rem;
+}
+
+/* ── On-this-page rail ─────────────────────────────────────────────────── */
+.doc-toc {
+  position: sticky;
+  inset-block-start: 5rem;
+  align-self: start;
+  max-block-size: calc(100vh - 7rem);
+  overflow-y: auto;
+}
+.doc-toc__title {
+  margin: 0 0 var(--lui-space-3);
+  font-size: var(--lui-type-caption-size);
+  font-weight: var(--lui-font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lui-color-fg-subtle);
+}
+.doc-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-inline-start: var(--lui-border-width-thin) solid
+    var(--lui-color-border-default);
+}
+.doc-toc__link {
+  display: block;
+  padding: var(--lui-space-1) var(--lui-space-3);
+  margin-inline-start: -1px;
+  border-inline-start: 2px solid transparent;
+  color: var(--lui-color-fg-muted);
+  text-decoration: none;
+  font-size: var(--lui-font-size-sm);
+  line-height: 1.4;
+}
+.doc-toc__link:hover {
+  color: var(--lui-color-fg-default);
+  border-inline-start-color: var(--lui-color-border-strong);
+}
+
+@media (max-width: 64rem) {
+  .doc-layout {
+    grid-template-columns: 1fr;
+  }
+  .doc-toc {
+    display: none;
+  }
 }
 .doc__h2 {
   margin: 0 0 var(--lui-space-4);

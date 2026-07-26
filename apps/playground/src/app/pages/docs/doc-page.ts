@@ -20,6 +20,17 @@ import {
 } from '@lumina/ui';
 import { findDoc, type DocEntry } from './docs-registry';
 
+interface TocItem {
+  readonly id: string;
+  readonly label: string;
+}
+
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
 /** Renders a single documentation entry (component or foundation) by slug. */
 @Component({
   selector: 'lpg-doc',
@@ -47,7 +58,29 @@ export class DocPage {
   );
   protected readonly doc = computed(() => findDoc(this.slug()));
 
+  /** Sections actually present on the page, for the "On this page" rail. */
+  protected readonly toc = computed<TocItem[]>(() => {
+    const d = this.doc();
+    if (!d) return [];
+    const items: TocItem[] = [];
+    if (d.selector) items.push({ id: 'preview', label: 'Preview' });
+    if (d.selector) items.push({ id: 'installation', label: 'Installation' });
+    if (d.usage) items.push({ id: 'usage', label: 'Usage' });
+    if (d.selector) items.push({ id: 'variants', label: 'Variants & states' });
+    for (const b of d.body ?? [])
+      items.push({ id: slugify(b.heading), label: b.heading });
+    if (d.api) items.push({ id: 'api', label: 'API' });
+    if (d.a11y) items.push({ id: 'accessibility', label: 'Accessibility' });
+    if (d.examples) items.push({ id: 'examples', label: 'Examples' });
+    if (d.dos || d.donts) items.push({ id: 'guidelines', label: 'Guidelines' });
+    return items;
+  });
+
   protected readonly copied = signal(false);
+
+  protected sectionId(heading: string): string {
+    return slugify(heading);
+  }
 
   /** The import statement shown in the Installation section. */
   protected importLine(d: DocEntry): string {
