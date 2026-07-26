@@ -293,6 +293,21 @@
       }
     </ul>
   </section>
+  } @if (d.examples; as examples) {
+  <section class="doc__section">
+    <h2 class="doc__h2">Examples</h2>
+    @for (ex of examples; track ex.title) {
+    <div class="doc__example">
+      <p class="doc__example-title">{{ ex.title }}</p>
+      <div class="code-block">
+        <button type="button" class="code-block__copy" (click)="copy(ex.code)">
+          {{ copied() ? 'Copied ✓' : 'Copy' }}
+        </button>
+        <pre class="code-block__pre"><code>{{ ex.code }}</code></pre>
+      </div>
+    </div>
+    }
+  </section>
   } @if (d.dos || d.donts) {
   <section class="doc__section">
     <h2 class="doc__h2">Guidelines</h2>

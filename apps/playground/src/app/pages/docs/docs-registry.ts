@@ -25,6 +25,11 @@ export interface DocProse {
   readonly code?: string;
 }
 
+export interface DocExample {
+  readonly title: string;
+  readonly code: string;
+}
+
 export interface DocEntry {
   readonly slug: string;
   readonly title: string;
@@ -39,6 +44,7 @@ export interface DocEntry {
   readonly className?: string;
   readonly api?: readonly ApiRow[];
   readonly a11y?: readonly string[];
+  readonly examples?: readonly DocExample[];
   readonly dos?: readonly string[];
   readonly donts?: readonly string[];
   readonly related?: readonly DocLink[];
@@ -187,6 +193,12 @@ export const DOCS: readonly DocEntry[] = [
       'A loading button sets aria-busy and stays focusable while blocking clicks.',
       'Icon-only buttons must be given an accessible name via aria-label.',
     ],
+    examples: [
+      {
+        title: 'Submit with a loading state',
+        code: `<button luiButton variant="primary" [loading]="saving()" (click)="save()">\n  Save changes\n</button>`,
+      },
+    ],
     dos: [
       'Use one primary button per view to signal the main action.',
       'Write labels as verbs — “Save changes”, not “OK”.',
@@ -259,6 +271,12 @@ export const DOCS: readonly DocEntry[] = [
       'The label, hint and error are associated with the input via aria-describedby / aria-invalid.',
       'Implements ControlValueAccessor, so it works with Angular forms and their validation.',
     ],
+    examples: [
+      {
+        title: 'Reactive form field',
+        code: `<lui-input\n  label="Email"\n  [formControl]="email"\n  [error]="email.touched && email.invalid ? 'Enter a valid email.' : ''"\n/>`,
+      },
+    ],
     dos: [
       'Always pair an input with a visible label.',
       'Use the hint for format guidance and the error for what went wrong.',
@@ -303,6 +321,12 @@ export const DOCS: readonly DocEntry[] = [
     ],
     a11y: [
       'A badge is decorative text; when it conveys a live status, describe that status in nearby content rather than colour alone.',
+    ],
+    examples: [
+      {
+        title: 'Status beside a title',
+        code: `<div class="row">\n  <h3>Production</h3>\n  <span luiBadge variant="success">Live</span>\n</div>`,
+      },
     ],
     dos: [
       'Keep badge text to a word or two.',
@@ -362,6 +386,12 @@ export const DOCS: readonly DocEntry[] = [
       'The image carries the name as alt text; the initials fallback exposes the same name to screen readers.',
       'The presence dot is decorative — pair it with text if the status matters.',
     ],
+    examples: [
+      {
+        title: 'Identity row',
+        code: `<div class="row">\n  <lui-avatar name="Ada Lovelace" status="online" />\n  <div>\n    <strong>Ada Lovelace</strong>\n    <div class="muted">Engineering</div>\n  </div>\n</div>`,
+      },
+    ],
     dos: [
       'Provide the full name so initials and the accessible label are correct.',
       'Use the status dot only where presence is meaningful.',
@@ -419,6 +449,12 @@ export const DOCS: readonly DocEntry[] = [
       'Exposes role="switch" with aria-checked and is fully keyboard operable (Space / Enter).',
       'Provide a label or ariaLabel — never rely on surrounding layout alone.',
     ],
+    examples: [
+      {
+        title: 'Bound to a setting',
+        code: `<lui-switch\n  label="Email notifications"\n  [(checked)]="settings.notify"\n/>`,
+      },
+    ],
     dos: [
       'Use a switch for settings that apply immediately.',
       'Give every switch a label or ariaLabel.',
@@ -465,6 +501,12 @@ export const DOCS: readonly DocEntry[] = [
     a11y: [
       'An interactive card gets role="button", a tabindex and Enter/Space activation.',
       'Do not nest focusable controls inside an interactive card — use a static card with inner buttons instead.',
+    ],
+    examples: [
+      {
+        title: 'Media card with actions',
+        code: `<lui-card variant="elevated">\n  <img cardMedia src="cover.jpg" alt="" />\n  <h3 cardHeader>Mountain retreat</h3>\n  <p>Three nights, breakfast included.</p>\n  <div cardFooter>\n    <button luiButton size="sm">Book</button>\n    <button luiButton size="sm" variant="ghost">Details</button>\n  </div>\n</lui-card>`,
+      },
     ],
     dos: [
       'Use an interactive card when the whole surface navigates somewhere.',
@@ -515,6 +557,12 @@ export const DOCS: readonly DocEntry[] = [
       'The host is a live region (role="status", aria-live="polite") so the label is announced.',
       'The rotating artwork is aria-hidden; the label carries the meaning.',
       'Rotation slows under prefers-reduced-motion rather than stopping abruptly.',
+    ],
+    examples: [
+      {
+        title: 'Centered panel loading',
+        code: `@if (loading()) {\n  <div class="panel-center">\n    <lui-spinner size="lg" label="Loading results" />\n  </div>\n}`,
+      },
     ],
     dos: [
       'Give the spinner a label describing what is loading.',
@@ -568,6 +616,12 @@ export const DOCS: readonly DocEntry[] = [
     a11y: [
       'Skeletons are decorative (aria-hidden); pair them with a status message so assistive technology is told content is loading.',
       'The shimmer/pulse animation is removed under prefers-reduced-motion.',
+    ],
+    examples: [
+      {
+        title: 'Card placeholder while loading',
+        code: `@if (loading()) {\n  <lui-card>\n    <lui-skeleton variant="rectangular" height="9rem" />\n    <div class="row">\n      <lui-skeleton variant="circular" width="2.5rem" height="2.5rem" />\n      <lui-skeleton [lines]="2" />\n    </div>\n  </lui-card>\n}`,
+      },
     ],
     dos: [
       'Match the skeleton shape to the content it replaces.',
