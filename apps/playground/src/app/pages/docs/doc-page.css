@@ -94,6 +94,11 @@
   color: var(--lui-color-fg-default);
   border-inline-start-color: var(--lui-color-border-strong);
 }
+.doc-toc__link.is-active {
+  color: var(--lui-color-accent-default);
+  border-inline-start-color: var(--lui-color-accent-default);
+  font-weight: var(--lui-font-weight-medium);
+}
 
 @media (max-width: 64rem) {
   .doc-layout {
@@ -404,6 +409,42 @@
 }
 .doc__related-link:hover {
   text-decoration: underline;
+}
+
+/* ── Prev / next pager ─────────────────────────────────────────────────── */
+.doc-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--lui-space-4);
+  margin-block-start: var(--lui-space-8);
+}
+.doc-pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lui-space-1);
+  padding: var(--lui-space-4) var(--lui-space-5);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-lg);
+  text-decoration: none;
+  transition:
+    border-color var(--lui-duration-fast) var(--lui-easing-standard),
+    background-color var(--lui-duration-fast) var(--lui-easing-standard);
+}
+.doc-pager__link:hover {
+  border-color: var(--lui-color-border-strong);
+  background: var(--lui-color-bg-subtle);
+}
+.doc-pager__link--next {
+  grid-column: 2;
+  text-align: end;
+}
+.doc-pager__dir {
+  font-size: var(--lui-font-size-sm);
+  color: var(--lui-color-fg-subtle);
+}
+.doc-pager__title {
+  font-weight: var(--lui-font-weight-semibold);
+  color: var(--lui-color-accent-default);
 }
 
 .doc__missing {

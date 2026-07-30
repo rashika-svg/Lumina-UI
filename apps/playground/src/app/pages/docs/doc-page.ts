@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  ElementRef,
   inject,
   signal,
 } from '@angular/core';
@@ -18,7 +20,7 @@ import {
   Spinner,
   Switch,
 } from '@lumina/ui';
-import { findDoc, type DocEntry } from './docs-registry';
+import { DOCS, findDoc, type DocEntry } from './docs-registry';
 
 interface TocItem {
   readonly id: string;
@@ -51,6 +53,7 @@ const slugify = (s: string) =>
 })
 export class DocPage {
   private readonly route = inject(ActivatedRoute);
+  private readonly el = inject(ElementRef);
 
   protected readonly slug = toSignal(
     this.route.paramMap.pipe(map((p) => p.get('slug') ?? '')),
@@ -76,7 +79,57 @@ export class DocPage {
     return items;
   });
 
+  /** Previous / next entry in registry order, for sequential navigation. */
+  protected readonly pager = computed(() => {
+    const i = DOCS.findIndex((d) => d.slug === this.slug());
+    return {
+      prev: i > 0 ? DOCS[i - 1] : null,
+      next: i >= 0 && i < DOCS.length - 1 ? DOCS[i + 1] : null,
+    };
+  });
+
+  /** The section currently scrolled into view, for the on-this-page rail. */
+  protected readonly activeId = signal('');
+
   protected readonly copied = signal(false);
+
+  constructor() {
+    // Highlight the section in view as the reader scrolls. Re-runs when the
+    // page (and therefore its sections) changes; guarded so SSR/jsdom no-op.
+    effect((onCleanup) => {
+      const items = this.toc();
+      if (typeof IntersectionObserver === 'undefined' || !items.length) return;
+
+      let observer: IntersectionObserver | undefined;
+      const host = this.el.nativeElement as HTMLElement;
+      // Wait a frame so the new page's sections are in the DOM.
+      const raf = requestAnimationFrame(() => {
+        const sections = items
+          .map((i) => host.querySelector<HTMLElement>(`[id="${i.id}"]`))
+          .filter((s): s is HTMLElement => s !== null);
+        if (!sections.length) return;
+
+        const visible = new Set<string>();
+        observer = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) visible.add(e.target.id);
+              else visible.delete(e.target.id);
+            }
+            const active = items.find((i) => visible.has(i.id));
+            if (active) this.activeId.set(active.id);
+          },
+          { rootMargin: '-88px 0px -66% 0px', threshold: 0 },
+        );
+        sections.forEach((s) => observer!.observe(s));
+      });
+
+      onCleanup(() => {
+        cancelAnimationFrame(raf);
+        observer?.disconnect();
+      });
+    });
+  }
 
   protected sectionId(heading: string): string {
     return slugify(heading);

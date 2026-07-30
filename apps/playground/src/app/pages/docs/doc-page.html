@@ -360,6 +360,30 @@
       </div>
       }
     </footer>
+
+    @if (pager(); as p) { @if (p.prev || p.next) {
+    <nav class="doc-pager" aria-label="Related pages">
+      @if (p.prev; as prev) {
+      <a
+        class="doc-pager__link doc-pager__link--prev"
+        [routerLink]="['/docs', prev.slug]"
+      >
+        <span class="doc-pager__dir">← Previous</span>
+        <span class="doc-pager__title">{{ prev.title }}</span>
+      </a>
+      } @else {
+      <span></span>
+      } @if (p.next; as next) {
+      <a
+        class="doc-pager__link doc-pager__link--next"
+        [routerLink]="['/docs', next.slug]"
+      >
+        <span class="doc-pager__dir">Next →</span>
+        <span class="doc-pager__title">{{ next.title }}</span>
+      </a>
+      }
+    </nav>
+    } }
   </article>
 
   @if (toc().length) {
@@ -368,7 +392,12 @@
     <ul class="doc-toc__list">
       @for (item of toc(); track item.id) {
       <li>
-        <a class="doc-toc__link" [href]="'#' + item.id">{{ item.label }}</a>
+        <a
+          class="doc-toc__link"
+          [class.is-active]="activeId() === item.id"
+          [href]="'#' + item.id"
+          >{{ item.label }}</a
+        >
       </li>
       }
     </ul>
