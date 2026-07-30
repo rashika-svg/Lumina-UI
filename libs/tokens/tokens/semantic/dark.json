@@ -3,23 +3,23 @@
     "bg": {
       "canvas": {
         "$type": "color",
-        "$value": "{color.neutral.950}"
+        "$value": "oklch(0.145 0.006 264)"
       },
       "surface": {
         "$type": "color",
-        "$value": "{color.neutral.900}"
+        "$value": "oklch(0.185 0.007 264)"
       },
       "subtle": {
         "$type": "color",
-        "$value": "{color.neutral.800}"
+        "$value": "oklch(0.215 0.008 264)"
       },
       "muted": {
         "$type": "color",
-        "$value": "{color.neutral.800}"
+        "$value": "oklch(0.215 0.008 264)"
       },
       "emphasis": {
         "$type": "color",
-        "$value": "{color.neutral.700}"
+        "$value": "oklch(0.29 0.008 264)"
       },
       "inverse": {
         "$type": "color",
@@ -55,15 +55,15 @@
     "border": {
       "default": {
         "$type": "color",
-        "$value": "{color.neutral.800}"
+        "$value": "oklch(0.275 0.007 264)"
       },
       "muted": {
         "$type": "color",
-        "$value": "{color.neutral.800}"
+        "$value": "oklch(0.235 0.006 264)"
       },
       "strong": {
         "$type": "color",
-        "$value": "{color.neutral.700}"
+        "$value": "oklch(0.335 0.009 264)"
       }
     },
     "accent": {
