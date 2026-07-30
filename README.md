@@ -27,26 +27,27 @@ Google, Microsoft or Atlassian would approach the problem.
 
 ## ✨ Highlights
 
-| Area              | What's inside                                                                                                                                                                                                                                        |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Design tokens** | Three-tier architecture (primitive → semantic → component) authored in the [DTCG](https://tr.designtokens.org/) standard and compiled by **Style Dictionary** to themed CSS variables **and** a fully typed TypeScript token map.                    |
-| **Theming**       | A signal-based **theme engine** with light, dark and high-contrast themes, OS `prefers-color-scheme` resolution, reduced-motion awareness, runtime **custom themes**, persistence and export/import — all via CSS variables with zero re-paint cost. |
-| **Components**    | Accessible, OnPush, signal-first Angular 21 components. Native-semantics attribute selectors (`button[luiButton]`), full `ControlValueAccessor` form integration, and self-contained token-driven styles.                                            |
-| **Accessibility** | WCAG 2.2 AA as the baseline: keyboard support, focus-visible rings, ARIA wiring, reduced-motion handling, and a dedicated high-contrast theme.                                                                                                       |
-| **Architecture**  | An Nx monorepo with a strictly enforced, acyclic dependency graph (ESLint module boundaries) across seven libraries.                                                                                                                                 |
-| **Quality**       | Vitest + Angular testing patterns, Playwright E2E, ESLint, Prettier, Husky, Commitlint and a Nx-affected GitHub Actions pipeline.                                                                                                                    |
+| Area              | What's inside                                                                                                                                                                                                                                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Design tokens** | Three-tier architecture (primitive → semantic → component) authored in the [DTCG](https://tr.designtokens.org/) standard and compiled by **Style Dictionary** to themed CSS variables **and** a fully typed TypeScript token map.                                                                                               |
+| **Theming**       | A signal-based **theme engine** with light, dark and high-contrast themes, OS `prefers-color-scheme` resolution, reduced-motion awareness, runtime **custom themes**, persistence and export/import — all via CSS variables with zero re-paint cost.                                                                            |
+| **Components**    | Accessible, OnPush, signal-first Angular 21 components. Native-semantics attribute selectors (`button[luiButton]`), full `ControlValueAccessor` form integration, and self-contained token-driven styles.                                                                                                                       |
+| **Documentation** | A public documentation platform in the playground — a landing page, a component catalogue, an interactive **Component Lab**, and per-component pages built to the [documentation standard](docs/COMPONENT_DOCUMENTATION_STANDARD.md) (preview · usage · API · a11y · variants · examples · do/don't) with an on-this-page rail. |
+| **Accessibility** | WCAG 2.2 AA as the baseline: keyboard support, focus-visible rings, ARIA wiring, reduced-motion handling, and a dedicated high-contrast theme.                                                                                                                                                                                  |
+| **Architecture**  | An Nx monorepo with a strictly enforced, acyclic dependency graph (ESLint module boundaries) across seven libraries.                                                                                                                                                                                                            |
+| **Quality**       | Vitest + Angular testing patterns, Playwright E2E, ESLint, Prettier, Husky, Commitlint and a Nx-affected GitHub Actions pipeline.                                                                                                                                                                                               |
 
 ## 🧱 Monorepo structure
 
 ```
 lumina-ui/
 ├── apps/
-│   ├── playground/        Interactive showcase + theme switcher (live integration)
+│   ├── playground/        Public site — landing, component catalogue, live Component Lab & docs platform
 │   └── playground-e2e/    Playwright end-to-end tests
 └── libs/
     ├── tokens/            DTCG token source + Style Dictionary build → CSS vars & typed TS
     ├── theme/             Runtime theme engine (ThemeService, provideLuminaTheme)
-    ├── ui/                Angular components (Button, Badge, Avatar, Input, Switch, …)
+    ├── ui/                Components — Button, Card, Input, Switch, Badge, Avatar, Spinner, Skeleton, Tabs, Dialog, Menu, Table, …
     ├── icons/             Icon set (scaffolded)
     ├── utilities/         Framework-agnostic helpers (scaffolded)
     ├── ai/                AI-assisted UI generation (scaffolded)
@@ -139,9 +140,13 @@ theme.registerTheme({
 
 ## 🗺️ Status
 
-Phase 1 foundation is implemented and tested: token pipeline, theme engine, the
-Button / Badge / Avatar / Input / Switch components, a live playground, and a Storybook with a
-theme toolbar and accessibility addon. See the [roadmap](ROADMAP.md) for what's next.
+The foundation and public platform are implemented and tested: the token pipeline, theme engine,
+the flagship components (Button, Card, Input, Switch, Badge, Avatar) and async-feedback primitives
+(Spinner, Skeleton) alongside phase-2/3 composites, plus a public site — a landing page, a component
+catalogue, an interactive Component Lab, and a documentation platform where every flagship page
+meets the [component documentation standard](docs/COMPONENT_DOCUMENTATION_STANDARD.md). A Storybook
+with a theme toolbar and accessibility addon backs the library. See the [roadmap](ROADMAP.md) for
+what's next.
 
 ## 📄 License
 
