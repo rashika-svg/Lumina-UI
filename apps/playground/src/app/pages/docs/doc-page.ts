@@ -27,6 +27,18 @@ interface TocItem {
   readonly label: string;
 }
 
+/** Slugs that have a hand-authored live preview + variants gallery. */
+const PREVIEWABLE = new Set([
+  'button',
+  'input',
+  'badge',
+  'avatar',
+  'switch',
+  'card',
+  'spinner',
+  'skeleton',
+]);
+
 const slugify = (s: string) =>
   s
     .toLowerCase()
@@ -66,10 +78,11 @@ export class DocPage {
     const d = this.doc();
     if (!d) return [];
     const items: TocItem[] = [];
-    if (d.selector) items.push({ id: 'preview', label: 'Preview' });
+    const canPreview = PREVIEWABLE.has(d.slug);
+    if (canPreview) items.push({ id: 'preview', label: 'Preview' });
     if (d.selector) items.push({ id: 'installation', label: 'Installation' });
     if (d.usage) items.push({ id: 'usage', label: 'Usage' });
-    if (d.selector) items.push({ id: 'variants', label: 'Variants & states' });
+    if (canPreview) items.push({ id: 'variants', label: 'Variants & states' });
     for (const b of d.body ?? [])
       items.push({ id: slugify(b.heading), label: b.heading });
     if (d.api) items.push({ id: 'api', label: 'API' });
@@ -133,6 +146,10 @@ export class DocPage {
 
   protected sectionId(heading: string): string {
     return slugify(heading);
+  }
+
+  protected hasPreview(slug: string): boolean {
+    return PREVIEWABLE.has(slug);
   }
 
   /** The import statement shown in the Installation section. */

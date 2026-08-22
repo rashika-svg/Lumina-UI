@@ -4,7 +4,7 @@
  * from one registry so a new page is a single entry.
  */
 
-export type DocGroup = 'Foundations' | 'Components' | 'Feedback';
+export type DocGroup = 'Foundations' | 'Components' | 'Feedback' | 'Composites';
 export type DocStatus = 'stable' | 'beta' | 'planned';
 
 export interface ApiRow {
@@ -636,12 +636,521 @@ export const DOCS: readonly DocEntry[] = [
       { label: 'Card', slug: 'card' },
     ],
   },
+
+  // ── Composites ───────────────────────────────────────────────────────────
+  {
+    slug: 'tabs',
+    title: 'Tabs',
+    group: 'Composites',
+    summary: 'Switch between related panels within a shared context.',
+    status: 'stable',
+    selector: 'lui-tabs',
+    className: 'Tabs',
+    usage: `<lui-tabs [(selectedIndex)]="index">\n  <lui-tab label="Overview">…</lui-tab>\n  <lui-tab label="Specifications">…</lui-tab>\n</lui-tabs>`,
+    api: [
+      {
+        name: 'selectedIndex',
+        type: 'model<number>',
+        default: '0',
+        description: 'Active tab, two-way bound.',
+      },
+      {
+        name: 'align',
+        type: `'start' | 'center' | 'stretch'`,
+        default: `'start'`,
+        description: 'Tab-strip alignment.',
+      },
+      {
+        name: 'ariaLabel',
+        type: 'string',
+        default: `''`,
+        description: 'Accessible name for the tab list.',
+      },
+      {
+        name: 'lui-tab › label',
+        type: 'string (required)',
+        default: '—',
+        description: 'Label for each tab; `disabled` is also supported.',
+      },
+    ],
+    a11y: [
+      'Implements the ARIA tabs pattern — role tablist / tab / tabpanel with a roving tabindex.',
+      'Arrow keys move between tabs; each panel is linked with aria-controls / aria-labelledby.',
+    ],
+    related: [
+      { label: 'Accordion', slug: 'accordion' },
+      { label: 'Card', slug: 'card' },
+    ],
+  },
+  {
+    slug: 'accordion',
+    title: 'Accordion',
+    group: 'Composites',
+    summary:
+      'Collapsible sections that expand one panel — or many — at a time.',
+    status: 'stable',
+    selector: 'lui-accordion',
+    className: 'Accordion',
+    usage: `<lui-accordion [multiple]="false">\n  <lui-accordion-item heading="Shipping">…</lui-accordion-item>\n  <lui-accordion-item heading="Returns">…</lui-accordion-item>\n</lui-accordion>`,
+    api: [
+      {
+        name: 'multiple',
+        type: 'boolean',
+        default: 'false',
+        description: 'Allow more than one item open at once.',
+      },
+      {
+        name: 'lui-accordion-item › heading',
+        type: 'string (required)',
+        default: '—',
+        description:
+          'Header text; `expanded` is a two-way model, `disabled` supported.',
+      },
+    ],
+    a11y: [
+      'Each header is a button with aria-expanded controlling its region.',
+      'Fully keyboard operable; collapsed panels are removed from the tab order.',
+    ],
+    related: [
+      { label: 'Tabs', slug: 'tabs' },
+      { label: 'Card', slug: 'card' },
+    ],
+  },
+  {
+    slug: 'dialog',
+    title: 'Dialog',
+    group: 'Composites',
+    summary: 'A modal surface for focused tasks and confirmations.',
+    status: 'stable',
+    selector: 'lui-dialog',
+    className: 'Dialog',
+    usage: `<button luiButton (click)="open.set(true)">Delete</button>\n<lui-dialog [(open)]="open" heading="Delete project?" size="sm">\n  <p>This cannot be undone.</p>\n</lui-dialog>`,
+    api: [
+      {
+        name: 'open',
+        type: 'model<boolean>',
+        default: 'false',
+        description: 'Visibility, two-way bound.',
+      },
+      {
+        name: 'heading / description',
+        type: 'string',
+        default: `''`,
+        description: 'Title and supporting text, wired as the accessible name.',
+      },
+      {
+        name: 'size',
+        type: `'sm' | 'md' | 'lg'`,
+        default: `'md'`,
+        description: 'Dialog width.',
+      },
+      {
+        name: 'dismissible',
+        type: 'boolean',
+        default: 'true',
+        description: 'Show the close affordance.',
+      },
+      {
+        name: 'closeOnBackdrop / closeOnEscape',
+        type: 'boolean',
+        default: 'true',
+        description: 'Light-dismiss behaviours.',
+      },
+      {
+        name: 'closed',
+        type: 'output<void>',
+        default: '—',
+        description: 'Emitted after the dialog closes.',
+      },
+    ],
+    a11y: [
+      'role="dialog" with aria-modal; focus is trapped inside and restored to the trigger on close.',
+      'Escape closes it (unless disabled); the backdrop scrim blocks the page behind.',
+    ],
+    related: [
+      { label: 'Drawer', slug: 'drawer' },
+      { label: 'Button', slug: 'button' },
+    ],
+  },
+  {
+    slug: 'drawer',
+    title: 'Drawer',
+    group: 'Composites',
+    summary: 'A panel that slides in from an edge for navigation or detail.',
+    status: 'stable',
+    selector: 'lui-drawer',
+    className: 'Drawer',
+    usage: `<lui-drawer [(open)]="open" side="end" heading="Filters">\n  …\n</lui-drawer>`,
+    api: [
+      {
+        name: 'open',
+        type: 'model<boolean>',
+        default: 'false',
+        description: 'Visibility, two-way bound.',
+      },
+      {
+        name: 'side',
+        type: `'start' | 'end' | 'top' | 'bottom'`,
+        default: `'end'`,
+        description: 'Edge the drawer enters from.',
+      },
+      {
+        name: 'heading',
+        type: 'string',
+        default: `''`,
+        description: 'Title / accessible name.',
+      },
+      {
+        name: 'dismissible / closeOnBackdrop / closeOnEscape',
+        type: 'boolean',
+        default: 'true',
+        description: 'Close affordance and light-dismiss behaviours.',
+      },
+      {
+        name: 'closed',
+        type: 'output<void>',
+        default: '—',
+        description: 'Emitted after the drawer closes.',
+      },
+    ],
+    a11y: [
+      'role="dialog" with aria-modal, a focus trap and focus restoration, like Dialog.',
+      'Escape and backdrop dismiss are configurable.',
+    ],
+    related: [
+      { label: 'Dialog', slug: 'dialog' },
+      { label: 'Menu', slug: 'menu' },
+    ],
+  },
+  {
+    slug: 'menu',
+    title: 'Menu',
+    group: 'Composites',
+    summary: 'A popover list of actions anchored to a trigger.',
+    status: 'stable',
+    selector: 'lui-menu',
+    className: 'Menu',
+    usage: `<button luiButton [luiMenuTrigger]="menu">Actions</button>\n<lui-menu #menu align="end">\n  <button luiMenuItem>Edit</button>\n  <button luiMenuItem>Delete</button>\n</lui-menu>`,
+    api: [
+      {
+        name: 'open',
+        type: 'model<boolean>',
+        default: 'false',
+        description: 'Open state (usually driven by the trigger).',
+      },
+      {
+        name: 'align',
+        type: `'start' | 'end'`,
+        default: `'start'`,
+        description: 'Alignment to the trigger.',
+      },
+      {
+        name: '[luiMenuTrigger]',
+        type: 'directive',
+        default: '—',
+        description: 'Attach to the button that opens a menu.',
+      },
+    ],
+    a11y: [
+      'role="menu" / "menuitem"; opens on click or Enter/Space and is arrow-key navigable.',
+      'Escape closes and returns focus to the trigger; focus is managed within the menu.',
+    ],
+    related: [
+      { label: 'Command Palette', slug: 'command-palette' },
+      { label: 'Button', slug: 'button' },
+    ],
+  },
+  {
+    slug: 'toast',
+    title: 'Toast',
+    group: 'Composites',
+    summary: 'Transient, non-blocking notifications triggered imperatively.',
+    status: 'stable',
+    selector: 'lui-toast-outlet',
+    className: 'ToastService',
+    usage: `<!-- mount the outlet once, in the app shell -->\n<lui-toast-outlet position="bottom-end" />\n\n// then show toasts from anywhere\nprivate toast = inject(ToastService);\nthis.toast.success('Saved', 'Your changes are live.');`,
+    api: [
+      {
+        name: 'position',
+        type: `'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' (+ centre variants)`,
+        default: `'bottom-end'`,
+        description: 'Where toasts stack (on lui-toast-outlet).',
+      },
+      {
+        name: 'ToastService.show',
+        type: '(options) => number',
+        default: '—',
+        description: 'Full control; returns the toast id.',
+      },
+      {
+        name: '.success / .error / .warning / .info',
+        type: '(message, title?, duration?) => number',
+        default: '—',
+        description: 'Convenience helpers per variant.',
+      },
+    ],
+    a11y: [
+      'The outlet is a polite live region, so new toasts are announced without stealing focus.',
+      'Toasts auto-dismiss on a timer and can be dismissed manually.',
+    ],
+    related: [
+      { label: 'Spinner', slug: 'spinner' },
+      { label: 'Dialog', slug: 'dialog' },
+    ],
+  },
+  {
+    slug: 'breadcrumb',
+    title: 'Breadcrumb',
+    group: 'Composites',
+    summary:
+      'Shows the path to the current page and lets users step back up it.',
+    status: 'stable',
+    selector: 'lui-breadcrumb',
+    className: 'Breadcrumb',
+    usage: `<lui-breadcrumb [items]="[\n  { label: 'Docs', href: '/docs' },\n  { label: 'Components', href: '/components' },\n  { label: 'Breadcrumb' },\n]" />`,
+    api: [
+      {
+        name: 'items',
+        type: 'BreadcrumbItem[] (required)',
+        default: '—',
+        description: 'Each item has a label and optional href / routerLink.',
+      },
+      {
+        name: 'ariaLabel',
+        type: 'string',
+        default: `'Breadcrumb'`,
+        description: 'Accessible name for the nav landmark.',
+      },
+    ],
+    a11y: [
+      'Rendered as a nav landmark; the final item is marked aria-current="page".',
+    ],
+    related: [
+      { label: 'Pagination', slug: 'pagination' },
+      { label: 'Tabs', slug: 'tabs' },
+    ],
+  },
+  {
+    slug: 'pagination',
+    title: 'Pagination',
+    group: 'Composites',
+    summary: 'Navigate large result sets one page at a time.',
+    status: 'stable',
+    selector: 'lui-pagination',
+    className: 'Pagination',
+    usage: `<lui-pagination [total]="120" [pageSize]="10" [(page)]="page" />`,
+    api: [
+      {
+        name: 'total',
+        type: 'number (required)',
+        default: '—',
+        description: 'Total number of items.',
+      },
+      {
+        name: 'page',
+        type: 'model<number>',
+        default: '1',
+        description: 'Current page, two-way bound.',
+      },
+      {
+        name: 'siblingCount',
+        type: 'number',
+        default: '1',
+        description: 'Page links shown either side of the current page.',
+      },
+      {
+        name: 'pageChange',
+        type: 'output<number>',
+        default: '—',
+        description: 'Emitted when the page changes.',
+      },
+    ],
+    a11y: [
+      'A nav landmark; the active page is aria-current and the ends disable at the bounds.',
+    ],
+    related: [
+      { label: 'Table', slug: 'table' },
+      { label: 'Breadcrumb', slug: 'breadcrumb' },
+    ],
+  },
+  {
+    slug: 'table',
+    title: 'Table',
+    group: 'Composites',
+    summary: 'A typed data table with sorting, selection and loading states.',
+    status: 'stable',
+    selector: 'lui-table',
+    className: 'Table',
+    usage: `<lui-table\n  [columns]="columns"\n  [data]="rows"\n  selectable\n  [(selection)]="selected"\n/>`,
+    api: [
+      {
+        name: 'columns',
+        type: 'TableColumn<T>[] (required)',
+        default: '—',
+        description: 'Column defs — header, accessor, alignment, sort.',
+      },
+      {
+        name: 'data',
+        type: 'T[] (required)',
+        default: '—',
+        description: 'Row data.',
+      },
+      {
+        name: 'selectable',
+        type: 'boolean',
+        default: 'false',
+        description: 'Enable row-selection checkboxes.',
+      },
+      {
+        name: 'stickyHeader',
+        type: 'boolean',
+        default: 'true',
+        description: 'Keep the header visible while scrolling.',
+      },
+      {
+        name: 'loading',
+        type: 'boolean',
+        default: 'false',
+        description:
+          'Show a loading state; emptyMessage covers the empty case.',
+      },
+      {
+        name: 'selection',
+        type: 'model<T[]>',
+        default: '[]',
+        description: 'Selected rows, two-way bound.',
+      },
+    ],
+    a11y: [
+      'Semantic table markup; sortable headers expose aria-sort and are keyboard operable.',
+      'Selection checkboxes are individually labelled.',
+    ],
+    related: [
+      { label: 'Pagination', slug: 'pagination' },
+      { label: 'Skeleton', slug: 'skeleton' },
+    ],
+  },
+  {
+    slug: 'command-palette',
+    title: 'Command palette',
+    group: 'Composites',
+    summary: 'A searchable overlay for running commands from the keyboard.',
+    status: 'stable',
+    selector: 'lui-command-palette',
+    className: 'CommandPalette',
+    usage: `<lui-command-palette\n  [(open)]="open"\n  [commands]="commands"\n  (run)="execute($event)"\n/>`,
+    api: [
+      {
+        name: 'open',
+        type: 'model<boolean>',
+        default: 'false',
+        description: 'Visibility, two-way bound (open it on Ctrl/Cmd-K).',
+      },
+      {
+        name: 'commands',
+        type: 'Command[] (required)',
+        default: '—',
+        description: 'Available commands — id, label, group, keywords.',
+      },
+      {
+        name: 'placeholder',
+        type: 'string',
+        default: `'Type a command or search…'`,
+        description: 'Search-input placeholder.',
+      },
+      {
+        name: 'run',
+        type: 'output<Command>',
+        default: '—',
+        description: 'Emitted when a command is chosen.',
+      },
+    ],
+    a11y: [
+      'Implements the combobox/listbox pattern; results are arrow-key navigable.',
+      'Escape closes it and focus returns to where it was opened from.',
+    ],
+    related: [
+      { label: 'Menu', slug: 'menu' },
+      { label: 'Input', slug: 'input' },
+    ],
+  },
+  {
+    slug: 'tree',
+    title: 'Tree',
+    group: 'Composites',
+    summary: 'A collapsible hierarchy for files, categories or nested data.',
+    status: 'stable',
+    selector: 'lui-tree',
+    className: 'Tree',
+    usage: `<lui-tree [nodes]="nodes" selectable [(selectedId)]="selectedId" />`,
+    api: [
+      {
+        name: 'nodes',
+        type: 'TreeNode[] (required)',
+        default: '—',
+        description: 'Hierarchical nodes — id, label, children.',
+      },
+      {
+        name: 'selectable',
+        type: 'boolean',
+        default: 'false',
+        description: 'Allow a node to be selected.',
+      },
+      {
+        name: 'selectedId',
+        type: 'model<string | null>',
+        default: 'null',
+        description: 'Selected node id, two-way bound.',
+      },
+    ],
+    a11y: [
+      'Implements the ARIA tree pattern — role tree / treeitem with aria-expanded.',
+      'Arrow keys expand, collapse and move through the hierarchy.',
+    ],
+    related: [
+      { label: 'Table', slug: 'table' },
+      { label: 'Accordion', slug: 'accordion' },
+    ],
+  },
+  {
+    slug: 'kanban',
+    title: 'Kanban',
+    group: 'Composites',
+    summary: 'A board of columns with movable cards for status workflows.',
+    status: 'stable',
+    selector: 'lui-kanban',
+    className: 'Kanban',
+    usage: `<lui-kanban [(columns)]="columns" (cardMoved)="onCardMoved($event)" />`,
+    api: [
+      {
+        name: 'columns',
+        type: 'model<KanbanColumn[]>',
+        default: '[]',
+        description: 'Board columns and their cards, two-way bound.',
+      },
+      {
+        name: 'cardMoved',
+        type: 'output<CardMovedEvent>',
+        default: '—',
+        description: 'Emitted with the from/to column and index on a move.',
+      },
+    ],
+    a11y: [
+      'Cards can be moved with the keyboard, not only by pointer drag.',
+      'Column regions are labelled so assistive tech can announce moves.',
+    ],
+    related: [
+      { label: 'Card', slug: 'card' },
+      { label: 'Table', slug: 'table' },
+    ],
+  },
 ];
 
 export const DOC_GROUPS: readonly DocGroup[] = [
   'Foundations',
   'Components',
   'Feedback',
+  'Composites',
 ];
 
 export function findDoc(slug: string): DocEntry | undefined {

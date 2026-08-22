@@ -84,6 +84,16 @@
 .cat-card__field {
   inline-size: min(16rem, 100%);
 }
+/* Generic preview for composite components that have no inline live demo. */
+.cat-card__glyph {
+  padding: var(--lui-space-2) var(--lui-space-4);
+  border: var(--lui-border-width-thin) solid var(--lui-color-border-default);
+  border-radius: var(--lui-radius-md);
+  background: var(--lui-surface-default);
+  font-family: var(--lui-font-family-mono);
+  font-size: var(--lui-font-size-sm);
+  color: var(--lui-color-fg-muted);
+}
 
 .cat-card__body {
   padding: var(--lui-space-4) var(--lui-space-5) var(--lui-space-5);

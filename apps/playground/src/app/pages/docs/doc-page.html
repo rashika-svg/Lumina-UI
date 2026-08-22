@@ -26,7 +26,7 @@
       }
     </header>
 
-    @if (d.selector) {
+    @if (hasPreview(d.slug)) {
     <section class="doc__section" id="preview">
       <h2 class="doc__h2">Preview</h2>
       <div class="doc__preview">
@@ -101,7 +101,7 @@
         <pre class="code-block__pre"><code>{{ usage }}</code></pre>
       </div>
     </section>
-    } @if (d.selector) {
+    } @if (hasPreview(d.slug)) {
     <section class="doc__section" id="variants">
       <h2 class="doc__h2">Variants &amp; states</h2>
       <div class="doc__specimens">

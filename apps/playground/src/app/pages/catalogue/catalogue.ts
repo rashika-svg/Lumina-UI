@@ -31,7 +31,5 @@ import { DOCS } from '../docs/docs-registry';
   styleUrl: './catalogue.css',
 })
 export class CataloguePage {
-  protected readonly components = DOCS.filter(
-    (d) => d.group === 'Components' || d.group === 'Feedback',
-  );
+  protected readonly components = DOCS.filter((d) => d.group !== 'Foundations');
 }

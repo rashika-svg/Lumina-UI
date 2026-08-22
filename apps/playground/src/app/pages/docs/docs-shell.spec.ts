@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideLuminaTheme } from '@lumina/theme';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { DocsShell } from './docs-shell';
+import { DOC_GROUPS, DOCS } from './docs-registry';
 
 describe('DocsShell', () => {
   beforeEach(async () => {
@@ -23,10 +24,10 @@ describe('DocsShell', () => {
     const groups = Array.from(el.querySelectorAll('.docs__group')).map((g) =>
       g.textContent?.trim(),
     );
-    expect(groups).toEqual(['Foundations', 'Components', 'Feedback']);
+    expect(groups).toEqual([...DOC_GROUPS]);
 
-    // Getting started + 11 registry entries.
-    expect(el.querySelectorAll('.docs__link')).toHaveLength(12);
+    // Getting started + one link per registry entry.
+    expect(el.querySelectorAll('.docs__link')).toHaveLength(DOCS.length + 1);
     expect(el.querySelector('.docs__link')?.textContent).toContain(
       'Getting started',
     );
