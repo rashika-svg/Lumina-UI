@@ -59,4 +59,21 @@ describe('Drawer', () => {
     expect(fixture.componentInstance.open()).toBe(false);
     expect(document.body.style.overflow).toBe('');
   });
+
+  it('moves focus into the drawer and restores it to the trigger on close', async () => {
+    const trigger = document.createElement('button');
+    document.body.appendChild(trigger);
+    trigger.focus();
+
+    fixture.componentInstance.open.set(true);
+    fixture.detectChanges();
+    await new Promise((resolve) => setTimeout(resolve));
+    expect(dialog()!.contains(document.activeElement)).toBe(true);
+
+    fixture.componentInstance.open.set(false);
+    fixture.detectChanges();
+    expect(document.activeElement).toBe(trigger);
+
+    trigger.remove();
+  });
 });

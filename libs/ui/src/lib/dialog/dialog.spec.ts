@@ -61,4 +61,22 @@ describe('Dialog', () => {
     fixture.detectChanges();
     expect(fixture.componentInstance.open()).toBe(false);
   });
+
+  it('moves focus into the dialog and restores it to the trigger on close', async () => {
+    const trigger = document.createElement('button');
+    document.body.appendChild(trigger);
+    trigger.focus();
+
+    fixture.componentInstance.open.set(true);
+    fixture.detectChanges();
+    // Focus is moved inside after the panel renders (deferred a frame).
+    await new Promise((resolve) => setTimeout(resolve));
+    expect(dialog()!.contains(document.activeElement)).toBe(true);
+
+    fixture.componentInstance.open.set(false);
+    fixture.detectChanges();
+    expect(document.activeElement).toBe(trigger);
+
+    trigger.remove();
+  });
 });
