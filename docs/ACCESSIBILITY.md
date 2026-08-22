@@ -56,6 +56,10 @@ Last reviewed: 2026-08-22.
 
 ## How it's tested
 
+- **Automated axe-core** — a Vitest spec ([libs/ui/src/lib/a11y.spec.ts](../libs/ui/src/lib/a11y.spec.ts))
+  renders the flagship components and asserts **zero WCAG A/AA violations** on
+  every run. (`color-contrast` is disabled there because jsdom has no layout
+  engine; contrast is covered by the token ramps.)
 - **Unit tests** assert the accessibility contract directly — e.g. the Spinner's
   `role="status"`, the Skeleton's `aria-hidden`, the Badge's reflected
   attributes, the Input's label/description wiring.
@@ -64,9 +68,10 @@ Last reviewed: 2026-08-22.
 
 ## Known gaps & roadmap
 
-- **Automated axe-core checks** are not yet wired into CI. Adding
-  `@axe-core/playwright` assertions to the e2e suite (and per-component checks in
-  the unit tests) is the next step and would make regressions impossible to miss.
+- **Extend automated axe** — the axe spec covers the flagship components today;
+  the composites (which need input fixtures to render) and full-page scans via
+  `@axe-core/playwright` in the e2e suite are the next step, so contrast and
+  integration issues are caught too.
 - **Manual screen-reader passes** (NVDA + VoiceOver) have not been formally
   recorded here; the code review covers roles, names and keyboard operation.
 - The `icons`, `utilities`, `ai` and `testing` libraries are scaffolded and out
