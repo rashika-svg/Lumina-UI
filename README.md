@@ -134,6 +134,7 @@ theme.registerTheme({
 - [Product plan](docs/PRODUCT_PLAN.md) — public site, documentation, adapter, and delivery strategy
 - [Component documentation standard](docs/COMPONENT_DOCUMENTATION_STANDARD.md) — the required page and example contract
 - [Test strategy](docs/TEST_STRATEGY.md) — acceptance cases and CI quality gates
+- [Accessibility](docs/ACCESSIBILITY.md) — the WCAG 2.2 AA baseline and the per-component conformance audit
 - [Contributing](CONTRIBUTING.md) — workflow, conventions, how to add a component
 - [Roadmap](ROADMAP.md) — phased component plan and platform features
 - [Changelog](CHANGELOG.md)
