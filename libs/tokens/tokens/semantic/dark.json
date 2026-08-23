@@ -3,23 +3,23 @@
     "bg": {
       "canvas": {
         "$type": "color",
-        "$value": "oklch(0.145 0.006 264)"
+        "$value": "oklch(0.15 0.014 264)"
       },
       "surface": {
         "$type": "color",
-        "$value": "oklch(0.185 0.007 264)"
+        "$value": "oklch(0.19 0.016 264)"
       },
       "subtle": {
         "$type": "color",
-        "$value": "oklch(0.215 0.008 264)"
+        "$value": "oklch(0.225 0.018 264)"
       },
       "muted": {
         "$type": "color",
-        "$value": "oklch(0.215 0.008 264)"
+        "$value": "oklch(0.225 0.018 264)"
       },
       "emphasis": {
         "$type": "color",
-        "$value": "oklch(0.29 0.008 264)"
+        "$value": "oklch(0.3 0.022 264)"
       },
       "inverse": {
         "$type": "color",
@@ -49,43 +49,43 @@
       },
       "link": {
         "$type": "color",
-        "$value": "{color.brand.400}"
+        "$value": "oklch(0.76 0.16 264)"
       }
     },
     "border": {
       "default": {
         "$type": "color",
-        "$value": "oklch(0.275 0.007 264)"
+        "$value": "oklch(0.29 0.016 264)"
       },
       "muted": {
         "$type": "color",
-        "$value": "oklch(0.235 0.006 264)"
+        "$value": "oklch(0.24 0.013 264)"
       },
       "strong": {
         "$type": "color",
-        "$value": "oklch(0.335 0.009 264)"
+        "$value": "oklch(0.35 0.02 264)"
       }
     },
     "accent": {
       "subtle": {
         "$type": "color",
-        "$value": "{color.brand.950}"
+        "$value": "oklch(0.3 0.07 264)"
       },
       "muted": {
         "$type": "color",
-        "$value": "{color.brand.900}"
+        "$value": "oklch(0.4 0.11 264)"
       },
       "default": {
         "$type": "color",
-        "$value": "{color.brand.500}"
+        "$value": "oklch(0.65 0.21 264)"
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.brand.400}"
+        "$value": "oklch(0.72 0.19 264)"
       },
       "active": {
         "$type": "color",
-        "$value": "{color.brand.300}"
+        "$value": "oklch(0.6 0.2 264)"
       },
       "fg": {
         "$type": "color",
@@ -93,7 +93,7 @@
       },
       "border": {
         "$type": "color",
-        "$value": "{color.brand.500}"
+        "$value": "oklch(0.65 0.21 264)"
       }
     },
     "success": {
@@ -187,7 +187,7 @@
     "focus": {
       "ring": {
         "$type": "color",
-        "$value": "{color.brand.400}"
+        "$value": "oklch(0.72 0.19 264)"
       }
     },
     "overlay": {
