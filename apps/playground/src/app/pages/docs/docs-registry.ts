@@ -412,6 +412,7 @@ export const DOCS: readonly DocEntry[] = [
     summary: 'A binary on/off toggle for instantly-applied settings.',
     status: 'stable',
     selector: 'lui-switch',
+    lab: 'switch',
     usage: `<lui-switch label="Email notifications" [(checked)]="notify" />`,
     api: [
       {
