@@ -50,9 +50,7 @@
     <div class="cat-card__body">
       <div class="cat-card__row">
         <h2 class="cat-card__title">
-          <a
-            class="cat-card__link"
-            [routerLink]="c.lab ? ['/components', c.slug] : ['/docs', c.slug]"
+          <a class="cat-card__link" [routerLink]="['/components', c.slug]"
             >{{ c.title }}</a
           >
         </h2>

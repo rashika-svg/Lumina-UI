@@ -641,6 +641,7 @@ export const DOCS: readonly DocEntry[] = [
   // ── Composites ───────────────────────────────────────────────────────────
   {
     slug: 'tabs',
+    lab: 'tabs',
     title: 'Tabs',
     group: 'Composites',
     summary: 'Switch between related panels within a shared context.',
@@ -685,6 +686,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'accordion',
+    lab: 'accordion',
     title: 'Accordion',
     group: 'Composites',
     summary:
@@ -719,6 +721,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'dialog',
+    lab: 'dialog',
     title: 'Dialog',
     group: 'Composites',
     summary: 'A modal surface for focused tasks and confirmations.',
@@ -775,6 +778,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'drawer',
+    lab: 'drawer',
     title: 'Drawer',
     group: 'Composites',
     summary: 'A panel that slides in from an edge for navigation or detail.',
@@ -825,13 +829,14 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'menu',
+    lab: 'menu',
     title: 'Menu',
     group: 'Composites',
     summary: 'A popover list of actions anchored to a trigger.',
     status: 'stable',
     selector: 'lui-menu',
     className: 'Menu',
-    usage: `<button luiButton [luiMenuTrigger]="menu">Actions</button>\n<lui-menu #menu align="end">\n  <button luiMenuItem>Edit</button>\n  <button luiMenuItem>Delete</button>\n</lui-menu>`,
+    usage: `<lui-menu align="end">\n  <button luiMenuTrigger luiButton>Actions</button>\n  <lui-menu-item>Edit</lui-menu-item>\n  <lui-menu-item>Delete</lui-menu-item>\n</lui-menu>`,
     api: [
       {
         name: 'open',
@@ -863,6 +868,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'toast',
+    lab: 'toast',
     title: 'Toast',
     group: 'Composites',
     summary: 'Transient, non-blocking notifications triggered imperatively.',
@@ -901,6 +907,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'breadcrumb',
+    lab: 'breadcrumb',
     title: 'Breadcrumb',
     group: 'Composites',
     summary:
@@ -933,6 +940,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'pagination',
+    lab: 'pagination',
     title: 'Pagination',
     group: 'Composites',
     summary: 'Navigate large result sets one page at a time.',
@@ -976,6 +984,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'table',
+    lab: 'table',
     title: 'Table',
     group: 'Composites',
     summary: 'A typed data table with sorting, selection and loading states.',
@@ -1033,6 +1042,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'command-palette',
+    lab: 'command-palette',
     title: 'Command palette',
     group: 'Composites',
     summary: 'A searchable overlay for running commands from the keyboard.',
@@ -1077,6 +1087,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'tree',
+    lab: 'tree',
     title: 'Tree',
     group: 'Composites',
     summary: 'A collapsible hierarchy for files, categories or nested data.',
@@ -1115,6 +1126,7 @@ export const DOCS: readonly DocEntry[] = [
   },
   {
     slug: 'kanban',
+    lab: 'kanban',
     title: 'Kanban',
     group: 'Composites',
     summary: 'A board of columns with movable cards for status workflows.',

@@ -1,8 +1,9 @@
 <div class="lab">
   <aside class="lab__sidebar">
-    <p class="lab__sidebar-title">Flagship components</p>
     <nav class="lab__nav" aria-label="Components">
-      @for (item of items; track item.slug) {
+      @for (group of groups; track group.label) { @if (group.items.length) {
+      <p class="lab__sidebar-title">{{ group.label }}</p>
+      @for (item of group.items; track item.slug) {
       <a
         class="lab__nav-link"
         [routerLink]="['/components', item.slug]"
@@ -10,7 +11,7 @@
       >
         {{ item.name }}
       </a>
-      }
+      } } }
     </nav>
   </aside>
 
@@ -105,6 +106,90 @@
             [lines]="$any(val('lines'))"
           />
         </div>
+        } @case ('tabs') {
+        <div class="preview__constrained">
+          <lui-tabs [align]="$any(val('align'))">
+            <lui-tab label="Overview">The overview panel.</lui-tab>
+            <lui-tab label="Specs">The specifications panel.</lui-tab>
+            <lui-tab label="Reviews">The reviews panel.</lui-tab>
+          </lui-tabs>
+        </div>
+        } @case ('accordion') {
+        <div class="preview__constrained">
+          <lui-accordion [multiple]="bool('multiple')">
+            <lui-accordion-item heading="Shipping"
+              >Ships in 2–3 business days.</lui-accordion-item
+            >
+            <lui-accordion-item heading="Returns"
+              >30-day free returns.</lui-accordion-item
+            >
+          </lui-accordion>
+        </div>
+        } @case ('dialog') {
+        <button luiButton variant="primary" (click)="overlayOpen.set(true)">
+          Open dialog
+        </button>
+        <lui-dialog
+          [open]="overlayOpen()"
+          (openChange)="overlayOpen.set($event)"
+          heading="Delete project?"
+          description="This cannot be undone."
+          [size]="$any(val('size'))"
+          [dismissible]="bool('dismissible')"
+        >
+          <p>The project and all its data will be permanently removed.</p>
+        </lui-dialog>
+        } @case ('drawer') {
+        <button luiButton variant="primary" (click)="overlayOpen.set(true)">
+          Open drawer
+        </button>
+        <lui-drawer
+          [open]="overlayOpen()"
+          (openChange)="overlayOpen.set($event)"
+          [side]="$any(val('side'))"
+          heading="Filters"
+        >
+          <p>Drawer content goes here.</p>
+        </lui-drawer>
+        } @case ('menu') {
+        <lui-menu [align]="$any(val('align'))">
+          <button luiMenuTrigger luiButton variant="secondary">Actions</button>
+          <lui-menu-item>Edit</lui-menu-item>
+          <lui-menu-item>Duplicate</lui-menu-item>
+          <lui-menu-item>Delete</lui-menu-item>
+        </lui-menu>
+        } @case ('breadcrumb') {
+        <lui-breadcrumb [items]="breadcrumbItems" />
+        } @case ('pagination') {
+        <lui-pagination [total]="120" [siblingCount]="num('siblingCount')" />
+        } @case ('table') {
+        <lui-table
+          [columns]="tableColumns"
+          [data]="tableRows"
+          [selectable]="bool('selectable')"
+          [stickyHeader]="bool('stickyHeader')"
+          [loading]="bool('loading')"
+        />
+        } @case ('command-palette') {
+        <button luiButton variant="primary" (click)="overlayOpen.set(true)">
+          Open palette
+        </button>
+        <lui-command-palette
+          [open]="overlayOpen()"
+          (openChange)="overlayOpen.set($event)"
+          [commands]="paletteCommands"
+        />
+        } @case ('tree') {
+        <div class="preview__constrained">
+          <lui-tree [nodes]="treeNodes" [selectable]="bool('selectable')" />
+        </div>
+        } @case ('kanban') {
+        <lui-kanban [columns]="kanbanColumns" />
+        } @case ('toast') {
+        <button luiButton variant="primary" (click)="showToast()">
+          Show toast
+        </button>
+        <lui-toast-outlet position="bottom-end" />
         } }
       </div>
     </div>
@@ -145,6 +230,10 @@
             />
             } }
           </div>
+          } @empty {
+          <p class="controls__empty">
+            No configurable props — see the docs page for the full API.
+          </p>
           }
         </div>
       </section>

@@ -27,9 +27,8 @@ describe('CataloguePage', () => {
     const links = Array.from(el.querySelectorAll('.cat-card__link')).map((a) =>
       a.getAttribute('href'),
     );
-    // Flagship components open the interactive Lab…
+    // Every component — flagship and composite — opens the interactive Lab.
     expect(links).toContain('/components/button');
-    // …composites (no Lab entry) link to their documentation.
-    expect(links).toContain('/docs/tabs');
+    expect(links).toContain('/components/tabs');
   });
 });

@@ -155,6 +155,11 @@
   flex-direction: column;
   gap: var(--lui-space-4);
 }
+.controls__empty {
+  margin: 0;
+  color: var(--lui-color-fg-subtle);
+  font-size: var(--lui-font-size-sm);
+}
 .control {
   display: grid;
   grid-template-columns: 6rem minmax(0, 1fr);
