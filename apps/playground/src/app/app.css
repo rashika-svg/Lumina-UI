@@ -96,6 +96,36 @@
   margin-inline-start: auto;
 }
 
+.accent-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-inline-end: var(--lui-space-1);
+}
+.accent-picker__btn {
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--lui-radius-full);
+  background: var(--_swatch);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--_swatch) 45%, transparent);
+  transition: transform var(--lui-duration-fast) var(--lui-easing-standard);
+}
+.accent-picker__btn:hover {
+  transform: scale(1.18);
+}
+.accent-picker__btn.is-active {
+  box-shadow:
+    0 0 0 2px var(--lui-surface-canvas),
+    0 0 0 4px var(--_swatch);
+}
+.accent-picker__btn:focus-visible {
+  outline: 2px solid var(--lui-color-focus-ring);
+  outline-offset: 3px;
+}
+
 .theme-toggle {
   display: inline-flex;
   padding: 0.1875rem;
@@ -187,7 +217,8 @@
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 48rem) {
-  .app-bar__github {
+  .app-bar__github,
+  .accent-picker {
     display: none;
   }
   .app-bar__menu {

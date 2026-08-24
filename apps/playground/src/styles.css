@@ -65,3 +65,46 @@ body {
     transition: none;
   }
 }
+
+/* ── Swappable accent colour ────────────────────────────────────────────────
+   The accent hue is a single runtime variable (the app-bar picker sets
+   `data-accent`). Each accent token keeps its lightness/chroma and only swaps
+   hue, so every accent stays balanced in light and dark. High-contrast is left
+   untouched. */
+:root {
+  --lui-accent-h: 300; /* violet — the default brand accent */
+}
+[data-accent='violet'] {
+  --lui-accent-h: 300;
+}
+[data-accent='indigo'] {
+  --lui-accent-h: 264;
+}
+[data-accent='cyan'] {
+  --lui-accent-h: 210;
+}
+[data-accent='emerald'] {
+  --lui-accent-h: 158;
+}
+
+:root,
+[data-theme='light'] {
+  --lui-color-accent-subtle: oklch(0.97 0.03 var(--lui-accent-h));
+  --lui-color-accent-muted: oklch(0.93 0.06 var(--lui-accent-h));
+  --lui-color-accent-default: oklch(0.5461 0.2152 var(--lui-accent-h));
+  --lui-color-accent-hover: oklch(0.4882 0.2172 var(--lui-accent-h));
+  --lui-color-accent-active: oklch(0.4244 0.1809 var(--lui-accent-h));
+  --lui-color-accent-border: oklch(0.5461 0.2152 var(--lui-accent-h));
+  --lui-color-fg-link: oklch(0.5461 0.2152 var(--lui-accent-h));
+  --lui-color-focus-ring: oklch(0.6231 0.188 var(--lui-accent-h));
+}
+[data-theme='dark'] {
+  --lui-color-accent-subtle: oklch(0.3 0.07 var(--lui-accent-h));
+  --lui-color-accent-muted: oklch(0.4 0.11 var(--lui-accent-h));
+  --lui-color-accent-default: oklch(0.65 0.21 var(--lui-accent-h));
+  --lui-color-accent-hover: oklch(0.72 0.19 var(--lui-accent-h));
+  --lui-color-accent-active: oklch(0.6 0.2 var(--lui-accent-h));
+  --lui-color-accent-border: oklch(0.65 0.21 var(--lui-accent-h));
+  --lui-color-fg-link: oklch(0.76 0.16 var(--lui-accent-h));
+  --lui-color-focus-ring: oklch(0.72 0.19 var(--lui-accent-h));
+}

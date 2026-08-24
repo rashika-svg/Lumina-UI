@@ -28,6 +28,21 @@
     </nav>
 
     <div class="app-bar__actions">
+      <div class="accent-picker" role="group" aria-label="Accent colour">
+        @for (a of accents; track a.value) {
+        <button
+          type="button"
+          class="accent-picker__btn"
+          [class.is-active]="accent() === a.value"
+          [style.--_swatch]="a.swatch"
+          [attr.aria-pressed]="accent() === a.value"
+          [attr.aria-label]="a.label + ' accent'"
+          [attr.title]="a.label"
+          (click)="setAccent(a.value)"
+        ></button>
+        }
+      </div>
+
       <div class="theme-toggle" role="group" aria-label="Theme">
         @for (mode of themeModes; track mode.value) {
         <button
