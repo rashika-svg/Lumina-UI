@@ -96,34 +96,64 @@
   margin-inline-start: auto;
 }
 
-.accent-picker {
+/* Accent picker — a single swatch button that opens the design system's own
+   Menu. Presents the current accent; the dropdown lists the palette. */
+.accent-menu {
+  display: inline-flex;
+}
+.accent-trigger {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding-inline-end: var(--lui-space-1);
-}
-.accent-picker__btn {
-  inline-size: 1.05rem;
-  block-size: 1.05rem;
-  padding: 0;
+  gap: 0.35rem;
+  block-size: 2.125rem;
+  padding-inline: 0.45rem;
   border: 0;
   border-radius: var(--lui-radius-full);
-  background: var(--_swatch);
+  background: var(--lui-color-bg-muted);
+  color: var(--lui-color-fg-muted);
   cursor: pointer;
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--_swatch) 45%, transparent);
-  transition: transform var(--lui-duration-fast) var(--lui-easing-standard);
+  transition:
+    background-color var(--lui-duration-fast) var(--lui-easing-standard),
+    color var(--lui-duration-fast) var(--lui-easing-standard);
 }
-.accent-picker__btn:hover {
-  transform: scale(1.18);
+.accent-trigger:hover {
+  color: var(--lui-color-fg-default);
 }
-.accent-picker__btn.is-active {
-  box-shadow:
-    0 0 0 2px var(--lui-surface-canvas),
-    0 0 0 4px var(--_swatch);
+.accent-trigger__dot {
+  inline-size: 0.95rem;
+  block-size: 0.95rem;
+  border-radius: var(--lui-radius-full);
+  background: var(--_swatch);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--_swatch) 50%, transparent);
 }
-.accent-picker__btn:focus-visible {
+.accent-trigger__caret {
+  font-size: 0.6rem;
+  line-height: 1;
+}
+.accent-trigger:focus-visible {
   outline: 2px solid var(--lui-color-focus-ring);
-  outline-offset: 3px;
+  outline-offset: 2px;
+}
+
+.accent-option {
+  display: flex;
+  align-items: center;
+  gap: var(--lui-space-2);
+  min-inline-size: 8rem;
+}
+.accent-option__dot {
+  inline-size: 0.9rem;
+  block-size: 0.9rem;
+  border-radius: var(--lui-radius-full);
+  background: var(--_swatch);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--_swatch) 50%, transparent);
+}
+.accent-option__label {
+  flex: 1;
+}
+.accent-option__check {
+  color: var(--lui-color-accent-default);
+  font-size: 0.8rem;
 }
 
 .theme-toggle {
@@ -218,7 +248,7 @@
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 48rem) {
   .app-bar__github,
-  .accent-picker {
+  .accent-menu {
     display: none;
   }
   .app-bar__menu {

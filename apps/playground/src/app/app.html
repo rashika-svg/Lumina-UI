@@ -28,20 +28,36 @@
     </nav>
 
     <div class="app-bar__actions">
-      <div class="accent-picker" role="group" aria-label="Accent colour">
-        @for (a of accents; track a.value) {
+      <lui-menu class="accent-menu" align="end">
         <button
+          luiMenuTrigger
           type="button"
-          class="accent-picker__btn"
-          [class.is-active]="accent() === a.value"
-          [style.--_swatch]="a.swatch"
-          [attr.aria-pressed]="accent() === a.value"
-          [attr.aria-label]="a.label + ' accent'"
-          [attr.title]="a.label"
-          (click)="setAccent(a.value)"
-        ></button>
+          class="accent-trigger"
+          aria-label="Accent colour"
+          title="Accent colour"
+        >
+          <span
+            class="accent-trigger__dot"
+            [style.--_swatch]="currentAccent().swatch"
+          ></span>
+          <span class="accent-trigger__caret" aria-hidden="true">▾</span>
+        </button>
+
+        @for (a of accents; track a.value) {
+        <lui-menu-item (selected)="setAccent(a.value)">
+          <span class="accent-option">
+            <span
+              class="accent-option__dot"
+              [style.--_swatch]="a.swatch"
+            ></span>
+            <span class="accent-option__label">{{ a.label }}</span>
+            @if (accent() === a.value) {
+            <span class="accent-option__check" aria-hidden="true">✓</span>
+            }
+          </span>
+        </lui-menu-item>
         }
-      </div>
+      </lui-menu>
 
       <div class="theme-toggle" role="group" aria-label="Theme">
         @for (mode of themeModes; track mode.value) {

@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   DOCUMENT,
   effect,
   inject,
   signal,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Menu, MenuItem, MenuTrigger } from '@lumina/ui';
 import { ThemeService, type ThemeMode } from '@lumina/theme';
 
 interface NavItem {
@@ -38,7 +40,14 @@ const ACCENT_KEY = 'lumina-accent';
 @Component({
   selector: 'lpg-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    Menu,
+    MenuTrigger,
+    MenuItem,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -66,6 +75,12 @@ export class App {
     { value: 'emerald', label: 'Emerald', swatch: 'oklch(0.72 0.16 158)' },
   ];
   protected readonly accent = signal<Accent>('violet');
+
+  /** The swatch colour of the currently active accent — shown on the trigger. */
+  protected readonly currentAccent = computed(
+    () =>
+      this.accents.find((a) => a.value === this.accent()) ?? this.accents[0],
+  );
 
   constructor() {
     const saved = this.readAccent();
