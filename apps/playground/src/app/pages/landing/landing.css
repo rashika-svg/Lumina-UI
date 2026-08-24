@@ -16,24 +16,24 @@
 }
 .hero__glow {
   position: absolute;
-  inset-block-start: -6rem;
-  inset-inline: -25%;
-  block-size: 34rem;
+  inset-block-start: -4rem;
+  inset-inline: -10%;
+  block-size: 28rem;
   z-index: -1;
   pointer-events: none;
   background:
     radial-gradient(
-      55% 55% at 22% 25%,
-      color-mix(in oklab, var(--lui-color-accent-default) 30%, transparent),
-      transparent 70%
+      42% 46% at 26% 30%,
+      color-mix(in oklab, var(--lui-color-accent-default) 16%, transparent),
+      transparent 68%
     ),
     radial-gradient(
-      45% 45% at 78% 12%,
-      color-mix(in oklab, var(--lui-color-accent-hover) 22%, transparent),
-      transparent 70%
+      36% 40% at 74% 16%,
+      color-mix(in oklab, var(--lui-color-accent-hover) 11%, transparent),
+      transparent 68%
     );
-  filter: blur(48px);
-  opacity: 0.75;
+  filter: blur(56px);
+  opacity: 0.5;
 }
 
 .hero__content {
