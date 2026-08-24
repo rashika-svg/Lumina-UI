@@ -1,0 +1,75 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 32 32"
+  width="32"
+  height="32"
+  role="img"
+  aria-label="Lumina UI"
+>
+  <title>Lumina UI</title>
+  <!--
+    Ribbon mark. Standalone asset: referenced via <img> and as the favicon, so
+    it is isolated from the page and cannot read CSS custom properties — the
+    stops below are literal OKLCH values.
+
+    Built as four overlapping curved bands rather than one polyline. Each band
+    carries its own gradient, which is what places cyan at BOTH the top-left
+    peak and the right-hand tip with deep indigo through the middle — a single
+    gradient across one stroke cannot do that. Band widths step down
+    left-to-right (7.9 → 5) so the mark reads as tapering ribbon, not pipe.
+  -->
+  <defs>
+    <linearGradient
+      id="lui-b1"
+      x1="7"
+      y1="27"
+      x2="13"
+      y2="6"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="oklch(0.62 0.26 352)" />
+      <stop offset="0.55" stop-color="oklch(0.55 0.25 315)" />
+      <stop offset="1" stop-color="oklch(0.74 0.13 232)" />
+    </linearGradient>
+    <linearGradient
+      id="lui-b2"
+      x1="12"
+      y1="6"
+      x2="19"
+      y2="23"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="oklch(0.66 0.17 250)" />
+      <stop offset="1" stop-color="oklch(0.42 0.25 277)" />
+    </linearGradient>
+    <linearGradient
+      id="lui-b3"
+      x1="18"
+      y1="23"
+      x2="23"
+      y2="11"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="oklch(0.44 0.25 280)" />
+      <stop offset="1" stop-color="oklch(0.53 0.26 288)" />
+    </linearGradient>
+    <linearGradient
+      id="lui-b4"
+      x1="23"
+      y1="11"
+      x2="27"
+      y2="22"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="oklch(0.5 0.26 285)" />
+      <stop offset="1" stop-color="oklch(0.76 0.13 233)" />
+    </linearGradient>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.8 26.5 Q 7.6 16 12.4 5.5" stroke="url(#lui-b1)" stroke-width="8" />
+    <path d="M12.4 5.5 Q 15 15 18.6 23.5" stroke="url(#lui-b2)" stroke-width="6.6" />
+    <path d="M18.6 23.5 Q 20.4 16 23 11" stroke="url(#lui-b3)" stroke-width="5.6" />
+    <path d="M23 11 Q 24.8 16.5 26.6 21.5" stroke="url(#lui-b4)" stroke-width="5" />
+  </g>
+</svg>

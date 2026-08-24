@@ -54,23 +54,13 @@
   letter-spacing: -0.01em;
   flex: 0 0 auto;
 }
+/* The mark is a freestanding ribbon, not a tile — no radius or elevation
+   shadow, which would draw a box around transparent pixels. It runs slightly
+   larger than a tiled mark would, since an open shape reads optically smaller. */
 .brand__mark {
-  display: grid;
-  place-items: center;
-  inline-size: 1.75rem;
-  block-size: 1.75rem;
-  border-radius: var(--lui-radius-md);
-  background: linear-gradient(
-    140deg,
-    var(--lui-color-accent-hover),
-    var(--lui-color-accent-default)
-  );
-  color: var(--lui-color-accent-fg);
-  font-size: 1rem;
-  box-shadow:
-    0 0 0 0.0625rem
-      color-mix(in oklab, var(--lui-color-accent-default) 40%, transparent),
-    var(--lui-elevation-1-shadow);
+  display: block;
+  inline-size: 1.9rem;
+  block-size: 1.9rem;
 }
 
 .app-nav {

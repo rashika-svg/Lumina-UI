@@ -10,7 +10,10 @@
       content="Lumina UI — an enterprise Angular design-system platform with OKLCH tokens, runtime theming, live docs and a component laboratory."
     />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- Modern browsers prefer the SVG; the .ico stays as the fallback. -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="brand/lumina-mark.svg" />
+    <link rel="apple-touch-icon" href="brand/lumina-mark.svg" />
 
     <!--
       Resolve the theme synchronously, before first paint, so the boot screen and
@@ -37,7 +40,6 @@
         --_bg: oklch(1 0 0);
         --_fg: oklch(0.2077 0.0398 265.75);
         --_muted: oklch(0.4455 0.0374 257.28);
-        --_accent: oklch(0.5461 0.2152 262.88);
 
         position: fixed;
         inset: 0;
@@ -63,17 +65,18 @@
         --_bg: oklch(0.1288 0.0406 264.7);
         --_fg: oklch(0.9842 0.0034 247.86);
         --_muted: oklch(0.7107 0.0351 256.79);
-        --_accent: oklch(0.6231 0.188 259.81);
       }
       #lumina-boot.is-hidden {
         opacity: 0;
         pointer-events: none;
       }
 
-      /* Uiverse.io by SelfMadeSystem — animated gradient letter loader. */
+      /* Animated gradient letter loader spelling LUMINA — stroke-drawing
+         technique adapted from Uiverse.io by SelfMadeSystem. */
       #lumina-boot .loader {
         display: flex;
         align-items: center;
+        justify-content: center;
       }
       #lumina-boot .absolute {
         position: absolute;
@@ -81,20 +84,35 @@
       #lumina-boot .inline-block {
         display: inline-block;
       }
-      #lumina-boot .w-2 {
-        width: 0.5em;
+      /* Each glyph lives in the same 64×64 box, so the side bearings are pulled
+         in with a negative margin to keep the word from reading as spaced-out. */
+      #lumina-boot .letter {
+        inline-size: 3rem;
+        block-size: 3rem;
+        margin-inline: -0.3rem;
       }
+      /* The I is a bare stem, so it ships a cropped viewBox to avoid twice the
+         side bearing of every other glyph — its box narrows to match. */
+      #lumina-boot .letter--i {
+        inline-size: 1.3125rem;
+      }
+      @media (max-width: 30rem) {
+        #lumina-boot .letter {
+          inline-size: 2.25rem;
+          block-size: 2.25rem;
+          margin-inline: -0.22rem;
+        }
+        #lumina-boot .letter--i {
+          inline-size: 0.984rem;
+        }
+      }
+      /* Negative delays stagger the letters into a travelling wave without
+         leaving any of them blank on the first pass. */
       #lumina-boot .dash {
         animation:
           lumina-dashArray 2s ease-in-out infinite,
           lumina-dashOffset 2s linear infinite;
-      }
-      #lumina-boot .spin {
-        animation:
-          lumina-spinDashArray 2s ease-in-out infinite,
-          lumina-spin 8s ease-in-out infinite,
-          lumina-dashOffset 2s linear infinite;
-        transform-origin: center;
+        animation-delay: calc(var(--i, 0) * -0.16s), calc(var(--i, 0) * -0.16s);
       }
       @keyframes lumina-dashArray {
         0% {
@@ -107,17 +125,6 @@
           stroke-dasharray: 359 1 0 0;
         }
       }
-      @keyframes lumina-spinDashArray {
-        0% {
-          stroke-dasharray: 270 90;
-        }
-        50% {
-          stroke-dasharray: 0 360;
-        }
-        100% {
-          stroke-dasharray: 270 90;
-        }
-      }
       @keyframes lumina-dashOffset {
         0% {
           stroke-dashoffset: 365;
@@ -126,39 +133,9 @@
           stroke-dashoffset: 5;
         }
       }
-      @keyframes lumina-spin {
-        0% {
-          rotate: 0deg;
-        }
-        12.5%,
-        25% {
-          rotate: 270deg;
-        }
-        37.5%,
-        50% {
-          rotate: 540deg;
-        }
-        62.5%,
-        75% {
-          rotate: 810deg;
-        }
-        87.5%,
-        100% {
-          rotate: 1080deg;
-        }
-      }
 
-      #lumina-boot .lumina-boot__wordmark {
-        font-size: 1.15rem;
-        font-weight: 650;
-        letter-spacing: -0.02em;
-      }
-      #lumina-boot .lumina-boot__accent {
-        margin-inline-start: 0.32em;
-        color: var(--_accent);
-      }
       #lumina-boot .lumina-boot__tagline {
-        margin-block-start: -1.2rem;
+        margin-block-start: -0.75rem;
         font-size: 0.78rem;
         letter-spacing: 0.03em;
         color: var(--_muted);
@@ -173,8 +150,7 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        #lumina-boot .dash,
-        #lumina-boot .spin {
+        #lumina-boot .dash {
           animation: none;
         }
       }
@@ -183,9 +159,11 @@
   <body>
     <!-- Branded boot screen — removed by main.ts once Angular has bootstrapped. -->
     <div id="lumina-boot">
-      <div class="loader">
+      <div class="loader" aria-hidden="true">
         <svg height="0" width="0" viewBox="0 0 64 64" class="absolute">
           <defs xmlns="http://www.w3.org/2000/svg">
+            <!-- One gradient per letter, stepping around the spectrum so the
+                 word reads as a single continuous sweep of colour. -->
             <linearGradient
               gradientUnits="userSpaceOnUse"
               y2="2"
@@ -199,23 +177,14 @@
             </linearGradient>
             <linearGradient
               gradientUnits="userSpaceOnUse"
-              y2="0"
+              y2="2"
               x2="0"
-              y1="64"
+              y1="62"
               x1="0"
               id="lumina-grad-2"
             >
-              <stop stop-color="#FFC800"></stop>
-              <stop stop-color="#F0F" offset="1"></stop>
-              <animateTransform
-                repeatCount="indefinite"
-                keySplines=".42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1;.42,0,.58,1"
-                keyTimes="0; 0.125; 0.25; 0.375; 0.5; 0.625; 0.75; 0.875; 1"
-                dur="8s"
-                values="0 32 32;-270 32 32;-270 32 32;-540 32 32;-540 32 32;-810 32 32;-810 32 32;-1080 32 32;-1080 32 32"
-                type="rotate"
-                attributeName="gradientTransform"
-              ></animateTransform>
+              <stop stop-color="#007CFF"></stop>
+              <stop stop-color="#00E0ED" offset="1"></stop>
             </linearGradient>
             <linearGradient
               gradientUnits="userSpaceOnUse"
@@ -228,71 +197,164 @@
               <stop stop-color="#00E0ED"></stop>
               <stop stop-color="#00DA72" offset="1"></stop>
             </linearGradient>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              y2="2"
+              x2="0"
+              y1="62"
+              x1="0"
+              id="lumina-grad-4"
+            >
+              <stop stop-color="#00DA72"></stop>
+              <stop stop-color="#FFC800" offset="1"></stop>
+            </linearGradient>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              y2="2"
+              x2="0"
+              y1="62"
+              x1="0"
+              id="lumina-grad-5"
+            >
+              <stop stop-color="#FFC800"></stop>
+              <stop stop-color="#F0F" offset="1"></stop>
+            </linearGradient>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              y2="2"
+              x2="0"
+              y1="62"
+              x1="0"
+              id="lumina-grad-6"
+            >
+              <stop stop-color="#F0F"></stop>
+              <stop stop-color="#973BED" offset="1"></stop>
+            </linearGradient>
           </defs>
         </svg>
+
+        <!-- L -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 64 64"
-          height="64"
-          width="64"
-          class="inline-block"
+          height="48"
+          width="48"
+          class="inline-block letter"
+          style="--i: 0"
         >
           <path
             stroke-linejoin="round"
             stroke-linecap="round"
             stroke-width="8"
             stroke="url(#lumina-grad-1)"
-            d="M 54.722656,3.9726563 A 2.0002,2.0002 0 0 0 54.941406,4 h 5.007813 C 58.955121,17.046124 49.099667,27.677057 36.121094,29.580078 a 2.0002,2.0002 0 0 0 -1.708985,1.978516 V 60 H 29.587891 V 31.558594 A 2.0002,2.0002 0 0 0 27.878906,29.580078 C 14.900333,27.677057 5.0448787,17.046124 4.0507812,4 H 9.28125 c 1.231666,11.63657 10.984383,20.554048 22.6875,20.734375 a 2.0002,2.0002 0 0 0 0.02344,0 c 11.806958,0.04283 21.70649,-9.003371 22.730469,-20.7617187 z"
+            d="M 16,10 V 54 H 48"
             class="dash"
-            id="y"
             pathLength="360"
           ></path>
         </svg>
+        <!-- U -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 64 64"
-          height="64"
-          width="64"
-          class="inline-block"
+          height="48"
+          width="48"
+          class="inline-block letter"
+          style="--i: 1"
         >
           <path
             stroke-linejoin="round"
             stroke-linecap="round"
-            stroke-width="10"
+            stroke-width="8"
             stroke="url(#lumina-grad-2)"
-            d="M 32 32 m 0 -27 a 27 27 0 1 1 0 54 a 27 27 0 1 1 0 -54"
-            class="spin"
-            id="o"
+            d="M 16,10 V 33 a 16,16 0 0 0 32,0 V 10"
+            class="dash"
             pathLength="360"
           ></path>
         </svg>
-        <div class="w-2"></div>
+        <!-- M -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 64 64"
-          height="64"
-          width="64"
-          class="inline-block"
+          height="48"
+          width="48"
+          class="inline-block letter"
+          style="--i: 2"
         >
           <path
             stroke-linejoin="round"
             stroke-linecap="round"
             stroke-width="8"
             stroke="url(#lumina-grad-3)"
-            d="M 4,4 h 4.6230469 v 25.919922 c -0.00276,11.916203 9.8364941,21.550422 21.7500001,21.296875 11.616666,-0.240651 21.014356,-9.63894 21.253906,-21.25586 a 2.0002,2.0002 0 0 0 0,-0.04102 V 4 H 56.25 v 25.919922 c 0,14.33873 -11.581192,25.919922 -25.919922,25.919922 a 2.0002,2.0002 0 0 0 -0.0293,0 C 15.812309,56.052941 3.998433,44.409961 4,29.919922 Z"
+            d="M 14,54 V 10 L 32,36 L 50,10 V 54"
             class="dash"
-            id="u"
+            pathLength="360"
+          ></path>
+        </svg>
+        <!-- I -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="18 0 28 64"
+          height="48"
+          width="21"
+          class="inline-block letter letter--i"
+          style="--i: 3"
+        >
+          <path
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="8"
+            stroke="url(#lumina-grad-4)"
+            d="M 32,10 V 54"
+            class="dash"
+            pathLength="360"
+          ></path>
+        </svg>
+        <!-- N -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 64 64"
+          height="48"
+          width="48"
+          class="inline-block letter"
+          style="--i: 4"
+        >
+          <path
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="8"
+            stroke="url(#lumina-grad-5)"
+            d="M 16,54 V 10 L 48,54 V 10"
+            class="dash"
+            pathLength="360"
+          ></path>
+        </svg>
+        <!-- A -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 64 64"
+          height="48"
+          width="48"
+          class="inline-block letter"
+          style="--i: 5"
+        >
+          <path
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="8"
+            stroke="url(#lumina-grad-6)"
+            d="M 13,54 L 32,10 L 51,54 M 20.4,37 H 43.6"
+            class="dash"
             pathLength="360"
           ></path>
         </svg>
       </div>
 
-      <div class="lumina-boot__wordmark">
-        Lumina<span class="lumina-boot__accent">UI</span>
-      </div>
       <div class="lumina-boot__tagline">Design system platform</div>
       <span class="lumina-boot__sr" role="status">Loading Lumina UI…</span>
     </div>
