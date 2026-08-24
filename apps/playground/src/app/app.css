@@ -135,25 +135,27 @@
   outline-offset: 2px;
 }
 
-.accent-option {
-  display: flex;
-  align-items: center;
-  gap: var(--lui-space-2);
-  min-inline-size: 8rem;
-}
+/* Rows reuse the menu-item's own flex layout: swatch, label, then a tick
+   pinned to the right edge on the active row. */
 .accent-option__dot {
-  inline-size: 0.9rem;
-  block-size: 0.9rem;
+  flex: 0 0 auto;
+  inline-size: 0.8rem;
+  block-size: 0.8rem;
   border-radius: var(--lui-radius-full);
   background: var(--_swatch);
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--_swatch) 50%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--_swatch) 55%, transparent);
 }
 .accent-option__label {
-  flex: 1;
+  flex: 1 1 auto;
+  text-align: start;
+}
+.accent-option.is-active .accent-option__label {
+  font-weight: var(--lui-font-weight-medium);
 }
 .accent-option__check {
+  flex: 0 0 auto;
   color: var(--lui-color-accent-default);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .theme-toggle {

@@ -44,17 +44,16 @@
         </button>
 
         @for (a of accents; track a.value) {
-        <lui-menu-item (selected)="setAccent(a.value)">
-          <span class="accent-option">
-            <span
-              class="accent-option__dot"
-              [style.--_swatch]="a.swatch"
-            ></span>
-            <span class="accent-option__label">{{ a.label }}</span>
-            @if (accent() === a.value) {
-            <span class="accent-option__check" aria-hidden="true">✓</span>
-            }
-          </span>
+        <lui-menu-item
+          class="accent-option"
+          [class.is-active]="accent() === a.value"
+          (selected)="setAccent(a.value)"
+        >
+          <span class="accent-option__dot" [style.--_swatch]="a.swatch"></span>
+          <span class="accent-option__label">{{ a.label }}</span>
+          @if (accent() === a.value) {
+          <span class="accent-option__check" aria-hidden="true">✓</span>
+          }
         </lui-menu-item>
         }
       </lui-menu>
