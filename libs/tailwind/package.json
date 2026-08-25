@@ -1,0 +1,31 @@
+{
+  "name": "@lumina/tailwind",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "description": "Tailwind v3 preset and v4 theme generated from Lumina UI design tokens.",
+  "main": "./preset.cjs",
+  "exports": {
+    ".": "./preset.cjs",
+    "./theme.css": "./theme.css"
+  },
+  "files": [
+    "preset.cjs",
+    "theme.css",
+    "README.md"
+  ],
+  "keywords": [
+    "tailwindcss",
+    "tailwind-preset",
+    "design-tokens",
+    "lumina"
+  ],
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}

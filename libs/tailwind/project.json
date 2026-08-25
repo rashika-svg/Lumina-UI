@@ -1,0 +1,19 @@
+{
+  "name": "tailwind",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tailwind",
+  "projectType": "library",
+  "tags": ["type:tokens"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "dependsOn": [{ "projects": ["tokens"], "target": "tokens" }],
+      "outputs": ["{workspaceRoot}/dist/libs/tailwind"],
+      "options": {
+        "cwd": "libs/tailwind",
+        "command": "node scripts/pack.mjs"
+      }
+    }
+  }
+}

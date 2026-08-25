@@ -23,7 +23,11 @@
       "executor": "nx:run-commands",
       "cache": true,
       "inputs": ["{projectRoot}/tokens/**/*", "{projectRoot}/scripts/**/*"],
-      "outputs": ["{projectRoot}/src/generated"],
+      "outputs": [
+        "{projectRoot}/src/generated",
+        "{workspaceRoot}/libs/tailwind/preset.cjs",
+        "{workspaceRoot}/libs/tailwind/theme.css"
+      ],
       "options": {
         "cwd": "libs/tokens",
         "command": "node scripts/build-tokens.mjs"
