@@ -13,6 +13,11 @@ interface Feature {
   readonly body: string;
 }
 
+interface Value {
+  readonly title: string;
+  readonly body: string;
+}
+
 interface Stat {
   readonly value: string;
   readonly label: string;
@@ -32,7 +37,7 @@ export class LandingPage {
     { name: 'React', status: 'planned' },
     { name: 'Vue', status: 'planned' },
     { name: 'Next.js', status: 'planned' },
-    { name: 'Tailwind', status: 'available' },
+    { name: 'Tailwind', status: 'planned' },
   ];
 
   protected readonly stats: readonly Stat[] = [
@@ -62,6 +67,25 @@ export class LandingPage {
       key: 'contract',
       title: 'Framework-neutral contract',
       body: 'Tokens, specs and accessibility rules are shared. Angular ships today; React, Vue and Next consume the same contract next.',
+    },
+  ];
+
+  protected readonly values: readonly Value[] = [
+    {
+      title: 'One contract, every framework',
+      body: 'Decide colour, spacing and accessibility once, then ship native components per framework. Angular ships today; React, Vue and Next consume the same contract.',
+    },
+    {
+      title: 'Reskin at runtime, per brand',
+      body: 'Multi-brand and white-label theming from a single data-theme swap and one accent hue — no rebuilds, and no forks to maintain.',
+    },
+    {
+      title: 'Passes accessibility review',
+      body: 'WCAG 2.2 AA with focus traps, live regions and keyboard patterns, backed by automated axe tests and a written audit — not a README claim.',
+    },
+    {
+      title: 'Own your look, not a vendor’s',
+      body: 'OKLCH tokens make it your brand, not a locked-in Material aesthetic. Rebrand by editing tokens instead of fighting CSS overrides.',
     },
   ];
 }

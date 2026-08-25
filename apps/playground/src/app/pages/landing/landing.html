@@ -88,39 +88,74 @@
   }
 </section>
 
-<section class="features" aria-label="Platform foundations">
-  @for (feature of features; track feature.title) {
-  <lui-card variant="outlined">
-    <span class="feature__icon" aria-hidden="true">
-      @switch (feature.key) { @case ('tokens') {
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M12 2 2 7l10 5 10-5-10-5Z" />
-        <path d="m2 12 10 5 10-5" />
-        <path d="m2 17 10 5 10-5" />
-      </svg>
-      } @case ('theming') {
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor" />
-      </svg>
-      } @case ('a11y') {
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none" />
-        <path d="M4 8h16M12 8v6m0 0-3 6m3-6 3 6" />
-      </svg>
-      } @case ('contract') {
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
-        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
-        <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
-      </svg>
-      } }
-    </span>
-    <h2 cardHeader>{{ feature.title }}</h2>
-    <p>{{ feature.body }}</p>
-  </lui-card>
-  }
+<section class="section values" aria-labelledby="why-heading">
+  <div class="section__head">
+    <h2 class="section__title" id="why-heading">Why teams choose Lumina</h2>
+    <p class="section__lead">
+      One accessible, themeable contract you own — built to survive rebrands and
+      the next framework you adopt.
+    </p>
+  </div>
+  <div class="values__grid">
+    @for (v of values; track v.title) {
+    <article class="value-card">
+      <span class="value-card__check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="m5 13 4 4L19 7" />
+        </svg>
+      </span>
+      <div>
+        <h3 class="value-card__title">{{ v.title }}</h3>
+        <p class="value-card__body">{{ v.body }}</p>
+      </div>
+    </article>
+    }
+  </div>
+</section>
+
+<section class="section features" aria-labelledby="foundations-heading">
+  <div class="section__head">
+    <h2 class="section__title" id="foundations-heading">
+      The platform underneath
+    </h2>
+    <p class="section__lead">
+      The engineering that makes the promises above hold up.
+    </p>
+  </div>
+  <div class="features__grid">
+    @for (feature of features; track feature.title) {
+    <lui-card variant="outlined">
+      <span class="feature__icon" aria-hidden="true">
+        @switch (feature.key) { @case ('tokens') {
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+          <path d="m2 12 10 5 10-5" />
+          <path d="m2 17 10 5 10-5" />
+        </svg>
+        } @case ('theming') {
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 3v18a9 9 0 0 0 0-18Z" fill="currentColor" />
+        </svg>
+        } @case ('a11y') {
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none" />
+          <path d="M4 8h16M12 8v6m0 0-3 6m3-6 3 6" />
+        </svg>
+        } @case ('contract') {
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+          <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+          <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+          <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        </svg>
+        } }
+      </span>
+      <h2 cardHeader>{{ feature.title }}</h2>
+      <p>{{ feature.body }}</p>
+    </lui-card>
+    }
+  </div>
 </section>
 
 <section class="cta">
