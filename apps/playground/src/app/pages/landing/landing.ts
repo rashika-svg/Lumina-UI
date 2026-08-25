@@ -37,7 +37,7 @@ export class LandingPage {
     { name: 'React', status: 'planned' },
     { name: 'Vue', status: 'planned' },
     { name: 'Next.js', status: 'planned' },
-    { name: 'Tailwind', status: 'planned' },
+    { name: 'Tailwind', status: 'available' },
   ];
 
   protected readonly stats: readonly Stat[] = [
