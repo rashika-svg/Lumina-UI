@@ -42,6 +42,113 @@
       <div class="cat-card__field">
         <lui-skeleton [lines]="3" />
       </div>
+      } @case ('tabs') {
+      <div class="mini mini--tabs">
+        <div class="mini-tabs__list">
+          <span class="mini-tabs__tab is-active">Overview</span>
+          <span class="mini-tabs__tab">Activity</span>
+          <span class="mini-tabs__tab">Settings</span>
+        </div>
+        <div class="mini-lines"><span></span><span></span></div>
+      </div>
+      } @case ('accordion') {
+      <div class="mini mini--panels">
+        <div class="mini-acc__row is-open">
+          <span>Shipping</span><span class="mini-chev">⌄</span>
+        </div>
+        <div class="mini-acc__panel"><span></span></div>
+        <div class="mini-acc__row">
+          <span>Returns</span><span class="mini-chev">⌄</span>
+        </div>
+      </div>
+      } @case ('dialog') {
+      <div class="mini mini--dialog">
+        <div class="mini-dialog__title">Confirm</div>
+        <div class="mini-lines"><span></span></div>
+        <div class="mini-dialog__actions">
+          <span class="mini-btn">Cancel</span>
+          <span class="mini-btn is-accent">Confirm</span>
+        </div>
+      </div>
+      } @case ('drawer') {
+      <div class="mini mini--drawer">
+        <div class="mini-drawer__panel">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      } @case ('menu') {
+      <div class="mini mini--menu">
+        <span class="mini-menu__item">Edit</span>
+        <span class="mini-menu__item is-active">Duplicate</span>
+        <span class="mini-menu__item">Delete</span>
+      </div>
+      } @case ('toast') {
+      <div class="mini mini--toast">
+        <span class="mini-toast__dot"></span>
+        <span class="mini-toast__text">Changes saved</span>
+        <span class="mini-toast__x">×</span>
+      </div>
+      } @case ('breadcrumb') {
+      <div class="mini mini--crumb">
+        <span>Home</span><span class="mini-sep">›</span> <span>Library</span
+        ><span class="mini-sep">›</span>
+        <span class="is-current">Button</span>
+      </div>
+      } @case ('pagination') {
+      <div class="mini mini--pager">
+        <span class="mini-pg">‹</span>
+        <span class="mini-pg is-active">1</span>
+        <span class="mini-pg">2</span>
+        <span class="mini-pg">3</span>
+        <span class="mini-pg">›</span>
+      </div>
+      } @case ('table') {
+      <div class="mini mini--table">
+        <div class="mini-table__head">
+          <span>Name</span><span>Role</span><span>·</span>
+        </div>
+        <div class="mini-table__row">
+          <span>Ada</span><span>Eng</span><span>●</span>
+        </div>
+        <div class="mini-table__row">
+          <span>Grace</span><span>Ops</span><span>●</span>
+        </div>
+      </div>
+      } @case ('command-palette') {
+      <div class="mini mini--cmd">
+        <div class="mini-cmd__search">
+          <span class="mini-cmd__icon">⌕</span>
+          <span class="mini-cmd__ph">Search…</span>
+        </div>
+        <span class="mini-cmd__item is-active">New file</span>
+        <span class="mini-cmd__item">Open recent</span>
+      </div>
+      } @case ('tree') {
+      <div class="mini mini--tree">
+        <span class="mini-tree__row"
+          ><span class="mini-tree__tw">▾</span>src</span
+        >
+        <span class="mini-tree__row mini-tree__row--l2"
+          ><span class="mini-tree__tw">▾</span>lib</span
+        >
+        <span class="mini-tree__row mini-tree__row--l3">button.ts</span>
+        <span class="mini-tree__row mini-tree__row--l2">index.ts</span>
+      </div>
+      } @case ('kanban') {
+      <div class="mini mini--kanban">
+        <div class="mini-kb__col">
+          <span class="mini-kb__h">To do</span>
+          <span class="mini-kb__card"></span><span class="mini-kb__card"></span>
+        </div>
+        <div class="mini-kb__col">
+          <span class="mini-kb__h">Doing</span>
+          <span class="mini-kb__card"></span>
+        </div>
+        <div class="mini-kb__col">
+          <span class="mini-kb__h">Done</span>
+          <span class="mini-kb__card"></span>
+        </div>
+      </div>
       } @default {
       <span class="cat-card__glyph">{{ c.selector || c.title }}</span>
       } }
